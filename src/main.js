@@ -1,86 +1,190 @@
-import Tabletop from 'tabletop'
+export default class PathwayPlugin extends BasePlugin {
 
-const ROW_HEIGHT = 30
-const ROW_MARGIN = 10
-const SPREADSHEET_URL =
-  'https://docs.google.com/spreadsheets/d/121-56BwZe8Cws0A8xE_cSGXc64YD_bBPfQM8o2YVnaM/edit?usp=sharing'
+    /** Plugin info */
+    static id = 'jjv360.pathway'
+    static name = 'Pathway Plugin'
+    static description = 'Used in the @jjv360-pathway space.'
 
-miro.onReady(function () {
-  miro.initialize({
-    extensionPoints: {
-      bottomBar: {
-        title: 'Import data from spreadsheet',
-        svgIcon:
-          '<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-import" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M16 288c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h112v-64zm489-183L407.1 7c-4.5-4.5-10.6-7-17-7H384v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H152c-13.3 0-24 10.7-24 24v264h128v-65.2c0-14.3 17.3-21.4 27.4-11.3L379 308c6.6 6.7 6.6 17.4 0 24l-95.7 96.4c-10.1 10.1-27.4 3-27.4-11.3V352H128v136c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H376c-13.2 0-24-10.8-24-24z"></path></svg>',
-        onClick: syncWithSheet,
-      },
-    },
-  })
-})
+    /** List of all running components */
+    static components = []
 
-async function syncWithSheet() {
-  const appId = await miro.getClientId()
-  const items = await Tabletop.init({
-    key: SPREADSHEET_URL,
-    simpleSheet: true,
-  })
-  const viewport = await miro.board.viewport.get()
-  const maxWidth = Math.max(...items.map((item) => item.rate)) * 2
+    /** Called on load */
+    onLoad() {
 
-  items.forEach(async ({role, rate}, i) => {
-    rate = parseFloat(rate)
+        // Register component
+        this.objects.registerComponent(PathwayFloorTile, {
+            id: 'pathway-floor-tile',
+            name: 'Pathway Floor Tile',
+            description: "Can either allow the user to walk on it, or not.",
+            settings: [
+                { type: 'label', value: "This component reads the 'Collide' field to tell if it's a correct pathway tile, and highlights the floor when a user walks on it." }
+            ]
+        })
 
-    const shapes = (
-      await miro.board.widgets.get({
-        type: 'shape',
-      })
-    ).filter((shape) => !!shape.metadata[appId])
-    const shape = shapes.find((shape) => shape.metadata[appId].role === role)
-    const width = rate * 2
+        
 
-    if (shape) {
-      const x = shape.x - (shape.width - width) / 2
-      miro.board.widgets.update([{id: shape.id, text: `${rate}%`, width, x}])
-    } else {
-      const x = viewport.x + viewport.width / 2 - (maxWidth - width) / 2
-      const y = viewport.y + ROW_HEIGHT / 2 + (ROW_HEIGHT + ROW_MARGIN) * i
-      miro.board.widgets.create({
-        type: 'shape',
-        text: `${rate}%`,
-        width,
-        height: ROW_HEIGHT,
-        x,
-        y,
-        style: {
-          borderWidth: 0,
-          backgroundColor: '#4262ff',
-          fontSize: 8,
-          textAlign: 'c',
-          textAlignVertical: 'm',
-          textColor: '#ffffff',
-        },
-        metadata: {
-          [appId]: {
-            role,
-          },
-        },
-      })
-      miro.board.widgets.create({
-        type: 'text',
-        x: viewport.x + viewport.width / 2 - maxWidth - 110,
-        y,
-        width: 400,
-        style: {
-          textAlign: 'r',
-          fontSize: 12,
-        },
-        text: role,
-        metadata: {
-          [appId]: {
-            role,
-          },
-        },
-      })
+        // Add panel view
+        this.menus.register({
+            section: 'infopanel',
+            panel: {
+                iframeURL: absolutePath('infopanel.html'),
+                width: 400,
+                height: 100
+            }
+        })
+
+        // Preload sound effects
+        this.audio.preload(absolutePath('good-ding.mp3'))
+        this.audio.preload(absolutePath('bad-ding.flac'))
+
+        // Start render timer
+        // TODO: Some better way to receive avatar position updates every frame?
+        this.renderTimer = setInterval(this.onRender.bind(this), 1000/20)
+
     }
-  })
+
+    /** Called on unload */
+    onUnload() {
+
+        // Remove timer
+        clearInterval(this.renderTimer)
+
+    }
+
+    /** Called every frame */
+    onRender() {
+
+        // Stop if busy with last frame still
+        if (this.isUpdatingPositions) return
+        this.isUpdatingPositions = true
+
+        // Update positions
+        this.updatePositions().catch(e => console.warn(e)).then(e => {
+            this.isUpdatingPositions = false
+        })
+
+    }
+
+    async updatePositions() {
+
+        // Get user's position
+        let userPos = await this.user.getPosition()
+
+        // Run each component's timer
+        for (let comp of PathwayPlugin.components)
+            comp.onRender(userPos)
+
+    }
+
+}
+
+class PathwayFloorTile extends BaseComponent {
+
+    /** Date to deactivate the tile automatically. Also used as a flag, if this is non-zero, then the tile is currently activated. */
+    deactivateAt = 0
+
+    /** Duration the tile should be actiated for */
+    activationDuration = 8000
+
+    /** Called on load */
+    onLoad() {
+
+        // Store active component
+        PathwayPlugin.components.push(this)
+
+    }
+
+    /** Called on unload */
+    onUnload() {
+
+        // Remove unloaded component
+        PathwayPlugin.components = PathwayPlugin.components.filter(c => c != this)
+
+    }
+
+    /** Called every frame, by the main plugin class */
+    onRender(userPos) {
+
+        // Check if user is inside the box
+        let insideX = userPos.x >= this.fields.world_center_x - this.fields.world_bounds_x/2 && userPos.x <= this.fields.world_center_x + this.fields.world_bounds_x/2
+        let insideY = userPos.y >= this.fields.world_center_y - this.fields.world_bounds_y/2 && userPos.y <= this.fields.world_center_y + this.fields.world_bounds_y/2 + 2
+        let insideZ = userPos.z >= this.fields.world_center_z - this.fields.world_bounds_z/2 && userPos.z <= this.fields.world_center_z + this.fields.world_bounds_z/2
+        let isInside = insideX && insideY && insideZ
+
+        // Activate tile if user is inside
+        if (isInside)
+            this.activateTile()
+            
+        // If enough time has passed, deactivate the tile
+        if (this.deactivateAt && Date.now() >= this.deactivateAt)
+            this.deactivateTile()
+
+    }
+
+    /** Called when we receive a message from a remote instance of this component */
+    onMessage(data) {
+
+        // Stop if unsupported message
+        if (data?.action != 'activate-tile')
+            return
+
+        // Activate the tile
+        this.activateTile()
+
+    }
+
+    /** Highlight the tile */
+    activateTile() {
+
+        // Check if it is already activated
+        if (this.deactivateAt) {
+
+            // Already activated, just extend the deactivation date
+            this.deactivateAt = Date.now() + this.activationDuration
+
+            // Send a message to everyone else that this tile should be activated, send it every 5 seconds
+            if (Date.now() - this.lastActivateMessageDate > 4000) {
+                this.sendMessage({ action: 'activate-tile' })
+                this.lastActivateMessageDate = Date.now()
+            }
+
+        } else {
+
+            // Check if this is a good or bad tile
+            let isGood = !!this.fields.collide
+
+            // Activate! Play the sound
+            this.plugin.audio.play(absolutePath(isGood ? 'good-ding.mp3' : 'bad-ding.flac'), {
+                x: this.fields.world_center_x,
+                height: this.fields.world_center_y,
+                y: this.fields.world_center_z,
+                radius: 20
+            })
+
+            // Set color
+            let color = isGood ? '#8F8' : '#F88'
+            this.plugin.objects.update(this.objectID, { color }, true)
+
+            // Start a timer to reset this tile
+            this.deactivateAt = Date.now() + this.activationDuration
+
+            // Send a message to everyone else that this tile should be activated
+            this.sendMessage({ action: 'activate-tile' })
+            this.lastActivateMessageDate = Date.now()
+
+        }
+
+    }
+
+    /** Deactivate the tile */
+    deactivateTile() {
+
+        // Remove deactivate timer
+        this.deactivateAt = 0
+
+        // Set color
+        this.plugin.objects.update(this.objectID, { color: 'white' }, true)
+
+    }
+
 }

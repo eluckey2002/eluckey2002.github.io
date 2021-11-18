@@ -1,19 +1,9 @@
 {
-  "plugins": [
-    [
-      "@babel/plugin-transform-runtime",
-      {
-        "helpers": true,
-        "regenerator": true
-      }
+    "presets": [
+        ["@babel/preset-env", { "useBuiltIns": "usage", "corejs": 3 }]
+    ],
+    "plugins": [
+        ["@babel/plugin-proposal-decorators", { "legacy": true }],
+        ["@babel/plugin-proposal-class-properties", { "loose": false }]
     ]
-  ],
-  "presets": [
-    [
-      "@babel/preset-env",
-      {
-        "modules": false
-      }
-    ]
-  ]
 }
