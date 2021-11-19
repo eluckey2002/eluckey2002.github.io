@@ -23,9 +23,11 @@ export default class PathwayPlugin extends BasePlugin {
             ]
         })
 
-        const Scene = new THREE.Scene();
-        
+       // const Scene = new THREE.Scene();
 
+       let objectInRadius = this.objects.fetchInRadius(0,0,100)
+
+       console.log(objectInRadius)
 
         // Add panel view
         this.menus.register({
