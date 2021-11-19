@@ -143,6 +143,22 @@ class PathwayFloorTile extends BaseComponent {
 
     /** Highlight the tile */
     activateTile() {
+        console.log("activate tile!")
+
+
+        let o = this.objects.fetchInRadius(0,0,200)
+
+        let m = this.plugin.objects.fetchInRadius(0,0,100)
+
+        console.log(o)
+
+        for (let index = 0; index < o.length; index++) {
+            const element = array[index];
+                console.log(element.name)
+
+            
+        }
+        
 
         // Check if it is already activated
         if (this.deactivateAt) {
