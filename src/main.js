@@ -29,6 +29,8 @@ export default class PathwayPlugin extends BasePlugin {
 
        console.log(objectInRadius)
 
+       console.log("evan was here")
+
         // Add panel view
         this.menus.register({
             section: 'infopanel',
