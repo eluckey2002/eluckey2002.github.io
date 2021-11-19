@@ -1,3 +1,5 @@
+import { Scene } from "three"
+
 export default class PathwayPlugin extends BasePlugin {
 
     /** Plugin info */
@@ -21,7 +23,9 @@ export default class PathwayPlugin extends BasePlugin {
             ]
         })
 
+        const Scene = new THREE.Scene();
         
+
 
         // Add panel view
         this.menus.register({
