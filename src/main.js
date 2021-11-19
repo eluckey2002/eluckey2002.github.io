@@ -29,6 +29,13 @@ export default class PathwayPlugin extends BasePlugin {
 
        console.log(objectInRadius)
 
+       for (let index = 0; index < objectInRadius.length; index++) {
+           const element = objectInRadius[index];
+           console.log(element.name)
+           
+           
+       }
+
        console.log("evan was here")
 
         // Add panel view
@@ -146,14 +153,14 @@ class PathwayFloorTile extends BaseComponent {
         console.log("activate tile!")
 
 
-        let o = this.objects.fetchInRadius(0,0,200)
+       
 
         let m = this.plugin.objects.fetchInRadius(0,0,100)
 
-        console.log(o)
+        console.log(m)
 
-        for (let index = 0; index < o.length; index++) {
-            const element = array[index];
+        for (let index = 0; index < m.length; index++) {
+            const element = m[index];
                 console.log(element.name)
 
             
