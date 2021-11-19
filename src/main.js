@@ -11,7 +11,7 @@ export default class PathwayPlugin extends BasePlugin {
     static components = []
 
     /** Called on load */
-    onLoad() {
+   async onLoad() {
 
         // Register component
         this.objects.registerComponent(PathwayFloorTile, {
@@ -25,14 +25,14 @@ export default class PathwayPlugin extends BasePlugin {
 
        // const Scene = new THREE.Scene();
 
-       let objectInRadius = this.objects.fetchInRadius(0,0,100)
+       let objectInRadius = await this.objects.fetchInRadius(0,0,100)
 
        console.log(objectInRadius)
 
        for (let index = 0; index < objectInRadius.length; index++) {
            const element = objectInRadius[index];
            console.log(element.name)
-           
+
            
        }
 
