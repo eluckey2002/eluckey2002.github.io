@@ -189,6 +189,8 @@ class PathwayFloorTile extends BaseComponent {
     }
 
     async retrieveObjectsInRadius() {
+
+        console.log("retrieveObjects method called")
        
         let m = await this.plugin.objects.fetchInRadius(0, 0, 100)
         
