@@ -32,6 +32,7 @@ const vatomIncEnvironment = hostName.includes("spatialweb.cc") ? "test" : hostNa
  * @event updated Called when anything changes.
  * @event currentUser.updated Called when the current user's profile data changes.
  */
+
 export default new class Users extends EventEmitter {
 
     /** Current Firebase user ID */
