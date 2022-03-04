@@ -11,7 +11,7 @@ export default class PathwayPlugin extends BasePlugin {
     static components = []
 
     /** Called on load */
-   async onLoad() {
+    onLoad() {
 
         // Register component
         this.objects.registerComponent(PathwayFloorTile, {
@@ -23,18 +23,7 @@ export default class PathwayPlugin extends BasePlugin {
             ]
         })
 
-       // const Scene = new THREE.Scene();
-
-       let objectInRadius = await this.objects.fetchInRadius(0,0,100)
-
-       console.log(objectInRadius)
-
-       for (let index = 0; index < objectInRadius.length; index++) {
-           const element = objectInRadius[index];
-           console.log(element.name)
-
-           
-       }
+     
 
        console.log("evan was here")
 
@@ -54,7 +43,7 @@ export default class PathwayPlugin extends BasePlugin {
 
         // Start render timer
         // TODO: Some better way to receive avatar position updates every frame?
-        this.renderTimer = setInterval(this.onRender.bind(this), 1000/20)
+        this.renderTimer = setInterval(this.onRender.bind(this), 1000)
 
     }
 
@@ -149,22 +138,11 @@ class PathwayFloorTile extends BaseComponent {
     }
 
     /** Highlight the tile */
-    activateTile() {
+   async activateTile() {
         console.log("activate tile!")
 
 
-       
-
-        let m = this.plugin.objects.fetchInRadius(0,0,100)
-
-        console.log(m)
-
-        for (let index = 0; index < m.length; index++) {
-            const element = m[index];
-                console.log(element.name)
-
-            
-        }
+      
         
 
         // Check if it is already activated
@@ -203,8 +181,26 @@ class PathwayFloorTile extends BaseComponent {
             this.sendMessage({ action: 'activate-tile' })
             this.lastActivateMessageDate = Date.now()
 
+            //evan test code 
+            await this.retrieveObjectsInRadius()
+
         }
 
+    }
+
+    async retrieveObjectsInRadius() {
+       
+        let m = await this.plugin.objects.fetchInRadius(0, 0, 100)
+        
+
+        
+
+        for (let index = 0; index < m.length; index++) {
+            const element = m[index]
+            console.log(element.name)
+
+
+        }
     }
 
     /** Deactivate the tile */
