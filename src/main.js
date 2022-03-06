@@ -102,6 +102,8 @@ class PathwayFloorTile extends BaseComponent {
         // Store active component
         PathwayPlugin.components.push(this)
 
+        console.log("evan is working again")
+
     }
 
     /** Called on unload */
