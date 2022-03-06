@@ -7,7 +7,7 @@ module.exports = {
     // mode: 'production',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'popUpMessage',
+        filename: 'popUpMessage.js',
         library: {
             name: 'module.exports',
             type: 'assign',
