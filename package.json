@@ -1,8 +1,8 @@
 {
-  "name": "evan-plugin",
+  "name": "spatialweb-plugin-pathway",
   "version": "1.0.0",
   "description": "This plugin is used in the space at https://spatialweb.net/@jjv360-pathway",
-  "main": "src/main.js",
+  "main": "src/main2.js",
   "scripts": {
     "build": "rimraf ./dist && webpack"
   },
