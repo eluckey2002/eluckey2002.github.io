@@ -25,7 +25,10 @@ export default class PathwayPlugin extends BasePlugin {
 
      
 
-       console.log("evan was here")
+       console.log("getting objects in radius")
+    
+
+
 
         // Add panel view
         this.menus.register({
@@ -95,7 +98,8 @@ class PathwayFloorTile extends BaseComponent {
 
         // Store active component
         PathwayPlugin.components.push(this)
-
+        this.retrieveObjectsInRadius()
+      
     }
 
     /** Called on unload */
@@ -182,6 +186,7 @@ class PathwayFloorTile extends BaseComponent {
             this.lastActivateMessageDate = Date.now()
 
             //evan test code 
+            console.log('getching objects in radius')
             await this.retrieveObjectsInRadius()
 
         }
