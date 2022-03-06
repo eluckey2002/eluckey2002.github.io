@@ -9,7 +9,7 @@
  * @license MIT
  * @author Vatom Inc.
  */
-module.exports = class PopupMessage extends BasePlugin {
+export default class PopupMessage extends BasePlugin {
 
     /** Plugin info */
     static get id()             { return 'vatominc-popup-message' }
