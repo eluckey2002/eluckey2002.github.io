@@ -23,11 +23,16 @@ export default class EvanPlugin extends BasePlugin {
             ]
         })
 
+        //update positions
+        console.log("Getting User Position")
         this.updatePositions()
+
+        //retrieving objects in radius
+        console.log("retrieving objects in radius")
         this.retrieveObjectsInRadius()
 
        
-        
+        console.log("finished loading evan plugin")
 
     }
     
