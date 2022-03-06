@@ -29,7 +29,7 @@ export default class PathwayPlugin extends BasePlugin {
 
      
 
-       console.log("evan plugin loaded")
+       console.log("evan plugin trying to load sigh")
        console.log(myName)
        
 
