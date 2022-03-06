@@ -26,6 +26,7 @@ export default class PathwayPlugin extends BasePlugin {
      
 
        console.log("getting objects in radius")
+       this.retrieveObjectsInRadius()
     
 
 
@@ -98,7 +99,7 @@ class PathwayFloorTile extends BaseComponent {
 
         // Store active component
         PathwayPlugin.components.push(this)
-        this.retrieveObjectsInRadius()
+       this.retrieveObjectsInRadius()
       
     }
 
