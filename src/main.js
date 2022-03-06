@@ -6,7 +6,7 @@ export default class EvanPlugin extends BasePlugin {
  static name = 'EL Plugin'
  static description = 'Evan Plugin Dscrp'
 
- static counter = 1
+ static counter = 112
 
 
 
