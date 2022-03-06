@@ -1,5 +1,5 @@
 {
-  "name": "spatialweb-plugin-pathway",
+  "name": "evan-plugin",
   "version": "1.0.0",
   "description": "This plugin is used in the space at https://spatialweb.net/@jjv360-pathway",
   "main": "src/main2.js",
