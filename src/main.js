@@ -25,12 +25,13 @@ export default class PathwayPlugin extends BasePlugin {
             ]
         })
 
+
      
 
        console.log("evan plugin loaded")
-       cntCounter = 1
+       
 
-       console.log(this.cntCounter)
+     
        
     
 
@@ -67,6 +68,8 @@ export default class PathwayPlugin extends BasePlugin {
     /** Called every frame */
     onRender() {
 
+        console.log(this.cntCounter)
+
         // Stop if busy with last frame still
         if (this.isUpdatingPositions) return
         this.isUpdatingPositions = true
@@ -75,6 +78,8 @@ export default class PathwayPlugin extends BasePlugin {
         this.updatePositions().catch(e => console.warn(e)).then(e => {
             this.isUpdatingPositions = false
         })
+
+
 
     }
 
