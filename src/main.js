@@ -10,7 +10,7 @@ export default class PathwayPlugin extends BasePlugin {
     /** List of all running components */
     static components = []
 
-    cntCounter = 0
+    
    
     /** Called on load */
     onLoad() {
@@ -30,12 +30,6 @@ export default class PathwayPlugin extends BasePlugin {
 
        console.log("evan plugin loaded")
        
-
-      cntCounter = 1
-       
-    
-
-
 
         // Add panel view
         this.menus.register({
@@ -68,8 +62,7 @@ export default class PathwayPlugin extends BasePlugin {
     /** Called every frame */
     onRender() {
 
-        console.log(this.cntCounter)
-
+     
         // Stop if busy with last frame still
         if (this.isUpdatingPositions) return
         this.isUpdatingPositions = true
@@ -93,26 +86,11 @@ export default class PathwayPlugin extends BasePlugin {
         for (let comp of PathwayPlugin.components)
             comp.onRender(userPos)
 
-            
+    
           
     }
 
-    async retrieveObjectsInRadius() {
-
-        console.log("retrieveObjects method called")
-       
-        let m = await this.plugin.objects.fetchInRadius(0, 0, 1000)
-        
-
-        
-
-        for (let index = 0; index < m.length; index++) {
-            const element = m[index]
-            console.log(element.name)
-
-
-        }
-    }
+   
 
 
 }
@@ -131,7 +109,7 @@ class PathwayFloorTile extends BaseComponent {
         // Store active component
         PathwayPlugin.components.push(this)
 
-        this.retrieveObjects()
+        
 
      
      
@@ -182,9 +160,6 @@ class PathwayFloorTile extends BaseComponent {
         console.log("activate tile!")
 
 
-      
-        
-
         // Check if it is already activated
         if (this.deactivateAt) {
 
@@ -221,9 +196,7 @@ class PathwayFloorTile extends BaseComponent {
             this.sendMessage({ action: 'activate-tile' })
             this.lastActivateMessageDate = Date.now()
 
-            //evan test code 
-            console.log('getching objects in radius')
-            await this.retrieveObjectsInRadius()
+          
 
         }
 
