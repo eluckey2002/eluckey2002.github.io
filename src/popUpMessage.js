@@ -1,14 +1,4 @@
-/**
- * Popup Message
- *
- * Displays a message, in a popup, to a user when they enter a space.
- *
- * All information regarding plugin development can be found at
- * https://dev.spatialweb.net/plugins/plugins/
- *
- * @license MIT
- * @author Vatom Inc.
- */
+
 export default class PopupMessage extends BasePlugin {
 
     /** Plugin info */
@@ -17,7 +7,7 @@ export default class PopupMessage extends BasePlugin {
     static get description()    { return 'Display a message, in a popup, to users when they enter the space.' }
 
     /** Called when the plugin is loaded */
-    async onLoad() {
+     onLoad() {
 
         // Allow message to be configured
         this.menus.register({
