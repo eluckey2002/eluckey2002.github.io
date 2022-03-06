@@ -1,4 +1,3 @@
-
 export default class PathwayPlugin extends BasePlugin {
 
     /** Plugin info */
@@ -24,14 +23,7 @@ export default class PathwayPlugin extends BasePlugin {
             ]
         })
 
-       
-        
-    
-     
-
-    
-
-       console.log("evan was here")
+    console.log("evan was here")
 
         // Add panel view
         this.menus.register({

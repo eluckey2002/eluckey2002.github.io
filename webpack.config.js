@@ -7,7 +7,7 @@ module.exports = {
     // mode: 'production',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'jjv360-pathway.min.js',
+        filename: 'evanP.js',
         library: {
             name: 'module.exports',
             type: 'assign',
