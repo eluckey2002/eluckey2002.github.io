@@ -31,7 +31,7 @@ export default class PathwayPlugin extends BasePlugin {
        console.log("evan plugin loaded")
        
 
-     
+      cntCounter = 1
        
     
 
