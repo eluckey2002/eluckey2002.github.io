@@ -10,8 +10,7 @@ export default class PathwayPlugin extends BasePlugin {
     /** List of all running components */
     static components = []
 
-    static counter = 1
-    static myName = "evan is my name"
+  
    
     /** Called on load */
     onLoad() {
@@ -30,7 +29,7 @@ export default class PathwayPlugin extends BasePlugin {
      
 
        console.log("evan plugin trying to load sigh")
-       console.log(myName)
+       
        
 
         // Add panel view
