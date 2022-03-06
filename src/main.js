@@ -9,6 +9,7 @@ export default class PathwayPlugin extends BasePlugin {
 
     /** List of all running components */
     static components = []
+    counter = 1
 
     /** Called on load */
     onLoad() {
@@ -25,8 +26,8 @@ export default class PathwayPlugin extends BasePlugin {
 
      
 
-       console.log("getting objects in radius")
-       this.retrieveObjectsInRadius()
+       console.log("evan plugin loaded")
+       
     
 
 
@@ -82,7 +83,29 @@ export default class PathwayPlugin extends BasePlugin {
         for (let comp of PathwayPlugin.components)
             comp.onRender(userPos)
 
+            
+            if(counter == 1){
+                await this.retrieveObjectsInRadius()
+            }
     }
+
+    async retrieveObjectsInRadius() {
+
+        console.log("retrieveObjects method called")
+       
+        let m = await this.plugin.objects.fetchInRadius(0, 0, 1000)
+        
+
+        
+
+        for (let index = 0; index < m.length; index++) {
+            const element = m[index]
+            console.log(element.name)
+
+
+        }
+    }
+
 
 }
 
@@ -99,7 +122,11 @@ class PathwayFloorTile extends BaseComponent {
 
         // Store active component
         PathwayPlugin.components.push(this)
-       this.retrieveObjectsInRadius()
+
+        this.retrieveObjects()
+
+     
+     
       
     }
 
@@ -194,11 +221,13 @@ class PathwayFloorTile extends BaseComponent {
 
     }
 
+   
+
     async retrieveObjectsInRadius() {
 
         console.log("retrieveObjects method called")
        
-        let m = await this.plugin.objects.fetchInRadius(0, 0, 100)
+        let m = await this.plugin.objects.fetchInRadius(0, 0, 1000)
         
 
         
