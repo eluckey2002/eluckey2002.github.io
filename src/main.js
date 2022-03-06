@@ -1,6 +1,3 @@
-import { Scene } from "three"
-import toastify from "toastify-js"
-import { Toast } from "toastify-js"
 
 export default class PathwayPlugin extends BasePlugin {
 
@@ -29,11 +26,7 @@ export default class PathwayPlugin extends BasePlugin {
 
        
         
-     let userT = new toastify({
-        text: "Did this toast work!?",
-        gravity: "bottom"
-      });
-     userT.showToast();
+    
      
 
     
