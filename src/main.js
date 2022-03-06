@@ -9,9 +9,9 @@ export default class PathwayPlugin extends BasePlugin {
 
     /** List of all running components */
     static components = []
-    static counter = 1
-    m = false
 
+    cntCounter = 0
+   
     /** Called on load */
     onLoad() {
 
@@ -28,6 +28,9 @@ export default class PathwayPlugin extends BasePlugin {
      
 
        console.log("evan plugin loaded")
+       cntCounter = 1
+
+       console.log(this.cntCounter)
        
     
 
@@ -77,14 +80,6 @@ export default class PathwayPlugin extends BasePlugin {
 
     async updatePositions() {
 
-
-        console.log(this.m)
-        console.log(this.counter)
-        
-        if(this.counter == 1){
-            await this.retrieveObjectsInRadius()
-           
-        }
 
         // Get user's position
         let userPos = await this.user.getPosition()
