@@ -28,8 +28,8 @@ export default class EvanPlugin extends BasePlugin {
         this.updatePositions()
 
         //retrieving objects in radius
-        console.log("retrieving objects in radius")
-        this.retrieveObjectsInRadius()
+       // console.log("retrieving objects in radius")
+        //this.retrieveObjectsInRadius()
 
        
         console.log("finished loading evan plugin")
@@ -48,7 +48,7 @@ export default class EvanPlugin extends BasePlugin {
 
     }
 
-    async retrieveObjectsInRadius() {
+  /*   async retrieveObjectsInRadius() { 
 
         console.log("retrieveObjects method called")
        
@@ -65,7 +65,7 @@ export default class EvanPlugin extends BasePlugin {
         }
     }
 
-    
+    */
 
    
 
