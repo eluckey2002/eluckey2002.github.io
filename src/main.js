@@ -9,7 +9,8 @@ export default class PathwayPlugin extends BasePlugin {
 
     /** List of all running components */
     static components = []
-    counter = 1
+    static counter = 1
+    m = false
 
     /** Called on load */
     onLoad() {
@@ -76,6 +77,15 @@ export default class PathwayPlugin extends BasePlugin {
 
     async updatePositions() {
 
+
+        console.log(this.m)
+        console.log(this.counter)
+        
+        if(this.counter == 1){
+            await this.retrieveObjectsInRadius()
+           
+        }
+
         // Get user's position
         let userPos = await this.user.getPosition()
 
@@ -84,9 +94,7 @@ export default class PathwayPlugin extends BasePlugin {
             comp.onRender(userPos)
 
             
-            if(counter == 1){
-                await this.retrieveObjectsInRadius()
-            }
+          
     }
 
     async retrieveObjectsInRadius() {
