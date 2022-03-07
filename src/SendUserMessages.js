@@ -47,9 +47,9 @@ export default class SendUserMessages extends BasePlugin {
     }
 
    
-  async  onAlertPress()
+  async onAlertPress()
     {
-        const msg = await this.menus.Prompt({
+        const msg = await this.menus.prompt({
             title: 'Send an alert to all users',
             text: 'Enter the message you would like sent',
             inputType: 'textarea'
@@ -71,7 +71,7 @@ export default class SendUserMessages extends BasePlugin {
     {
 
           // Ask user for message
-          const msg = await this.menus.Prompt({
+          const msg = await this.menus.prompt({
             title: 'Display an iframe popup to users',
             text: 'Enter the full iframe url - make sure you have tested! Include http://',
             inputType: 'url'
