@@ -53,7 +53,7 @@ export default class EvanPlug extends BasePlugin {
 
 
         let centerX = 0; 
-        let centery = 0;
+        let centerY = 0;
         let radius = 100;
 
         
