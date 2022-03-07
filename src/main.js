@@ -205,23 +205,6 @@ class PathwayFloorTile extends BaseComponent {
 
    
 
-    async retrieveObjectsInRadius() {
-
-        console.log("retrieveObjects method called")
-       
-        let m = await this.plugin.objects.fetchInRadius(0, 0, 1000)
-        
-
-        
-
-        for (let index = 0; index < m.length; index++) {
-            const element = m[index]
-            console.log(element.name)
-
-
-        }
-    }
-
     /** Deactivate the tile */
     deactivateTile() {
 
