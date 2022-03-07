@@ -9,6 +9,15 @@ export default class EvanPlug extends BasePlugin {
     /** Called when the plugin is loaded */
      async onLoad() {
 
+
+        
+        // Register coin component
+        this.objects.registerComponent(EvanPlugComponent, {
+            id: 'evan-plug-comp',
+            name: 'Collectible Coin',
+            description: 'Allows this object to act as a coin that can be picked up.'
+        })
+
         // Allow message to be configured
         this.menus.register({
             id: 'evan-plug',
@@ -30,41 +39,68 @@ export default class EvanPlug extends BasePlugin {
           
        // intervalID = setInterval(this.retrieveObjects,5000)
 
-       await this.retrieveObjects()
+       console.log("calling fetch in main base plugin")
+       let nearby = await this.objects.fetchInRadius(0,0,100)
+
+       for (let obj = 0; obj < nearby.length; obj++) {
+           const element = nearby[obj];
+
+           console.log(element)
+           
+       }
+    
         
     }
 
 
-
-
-    //UNLOAD METHOD
+      //UNLOAD METHOD
       onUnload(){
 
-      //  clearInterval(intervalID)
+        //  clearInterval(intervalID)
+  
+       }
+}
 
-     }
 
 
 
-    //MAIN METHOD
+  class EvanPlugComponent extends BaseComponent {
+     
+    
+    async onload() 
+    {
+
+                console.log("calling retrieve in plugin component on load")
+                 await this.retrieveObjects()
+
+    }  
+  
+
+  
+
+
+
+    
         async retrieveObjects()
         {
             console.log("Retrieving objects in radius")
 
 
-        let centerX = 0; 
+        let centerX = 0;
         let centerY = 0;
         let radius = 100;
 
         
-        let obj = await this.objects.fetchInaRdius(centerX, centerY, radius)
+       
 
-        for (let obj = 0; obj < obj.length; obj++) {
-            const element = array[obj];
+            let nearby = await this.plugin.objects.fetchInRadius(0,0,100)
 
-            console.log(element)
-            
-        }
+            for (let obj = 0; obj < nearby.length; obj++) {
+                const element = nearby[obj];
+
+                console.log(element)
+                
+            }
 
         }
      
@@ -78,7 +114,7 @@ export default class EvanPlug extends BasePlugin {
         }
 
            
-        }
+}
 
     
 
