@@ -26,9 +26,10 @@ export default class EvanPlug extends BasePlugin {
             }
         })
 
+        
+        intervalID = setInterval(this.retrieveObjects,5000)
 
-          // Watch for events
-          this.timer = Timer.setInterval(this.retrieveObjects.bind(this), 5000)
+        
     }
 
 
@@ -37,7 +38,7 @@ export default class EvanPlug extends BasePlugin {
     //UNLOAD METHOD
       onUnload(){
 
-         Timer.clearInterval(this.Timer)
+        clearInterval(intervalID)
      }
 
 
@@ -45,6 +46,9 @@ export default class EvanPlug extends BasePlugin {
     //MAIN METHOD
         async retrieveObjects()
         {
+            console.log("Retrieving objects in radius")
+
+            
         let centerX = 0; 
         let centery = 0;
         let radius = 100;
