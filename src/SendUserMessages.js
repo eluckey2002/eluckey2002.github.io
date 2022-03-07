@@ -79,15 +79,6 @@ export default class SendUserMessages extends BasePlugin {
           // No message to send
           if (!msg) { return }
 
-        //trying it here first but believe this will go with a message....
-        this.menus.displayPopup({
-            title: 'Popup Message',
-            panel: {
-                iframeURL: this.paths.absolute(msg.text),
-                width: 400,
-                height: 600
-            }
-        })
         
          
             
@@ -146,7 +137,7 @@ export default class SendUserMessages extends BasePlugin {
             this.menus.displayPopup({
                 title: 'Popup Message',
                 panel: {
-                    iframeURL: this.paths.absolute(msg.text),
+                    iframeURL: msg.text,
                     width: 400,
                     height: 600
                 }
@@ -156,7 +147,7 @@ export default class SendUserMessages extends BasePlugin {
 
         onShowAlert(msg, fromUserID){
 
-            this.menus.alert(msg,'Message','Info')
+            this.menus.alert(msg.text,'Message','Info')
 
 
         }
