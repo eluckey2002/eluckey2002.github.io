@@ -25,9 +25,24 @@ export default class EvanPlug extends BasePlugin {
                 ]
             }
         })
+
+
+          // Watch for events
+          this.timer = Timer.setInterval(this.retrieveObjects.bind(this), 5000)
     }
 
 
+
+
+    //UNLOAD METHOD
+      onUnload(){
+
+         Timer.clearInterval(this.Timer)
+     }
+
+
+
+    //MAIN METHOD
         async retrieveObjects()
         {
         let centerX = 0; 
