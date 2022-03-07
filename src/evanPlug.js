@@ -66,8 +66,8 @@ export default class EvanPlug extends BasePlugin {
 
   class EvanPlugComponent extends BaseComponent {
      
-    
-    async onload() 
+
+    async onLoad() 
     {
 
                 console.log("calling retrieve in plugin component on load")
