@@ -28,8 +28,9 @@ export default class EvanPlug extends BasePlugin {
        //   MessageManager.addMessageListener('avatar:slow', this.onSlowAvatarUpdate.bind(this))
 
           
-        intervalID = setInterval(this.retrieveObjects,5000)
+       // intervalID = setInterval(this.retrieveObjects,5000)
 
+       await this.retrieveObjects()
         
     }
 
@@ -39,7 +40,7 @@ export default class EvanPlug extends BasePlugin {
     //UNLOAD METHOD
       onUnload(){
 
-        clearInterval(intervalID)
+      //  clearInterval(intervalID)
 
      }
 
@@ -56,7 +57,7 @@ export default class EvanPlug extends BasePlugin {
         let radius = 100;
 
         
-        let obj = await this.objects.fetchInRadius(centerX, centerY, radius)
+        let obj = await this.objects.fetchInaRdius(centerX, centerY, radius)
 
         for (let obj = 0; obj < obj.length; obj++) {
             const element = array[obj];
