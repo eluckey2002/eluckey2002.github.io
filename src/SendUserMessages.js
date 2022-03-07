@@ -47,7 +47,7 @@ export default class SendUserMessages extends BasePlugin {
     }
 
    
-    onAlertPress()
+  async  onAlertPress()
     {
         const msg = await this.menus.Prompt({
             title: 'Send an alert to all users',
@@ -67,7 +67,7 @@ export default class SendUserMessages extends BasePlugin {
 
 
 
-    onPopupPress()
+    async onPopupPress()
     {
 
           // Ask user for message
@@ -96,7 +96,7 @@ export default class SendUserMessages extends BasePlugin {
 
     }
 
-    onToastPress()
+  async onToastPress()
     {   
         // Ask user for message
         const msg = await this.menus.prompt({
