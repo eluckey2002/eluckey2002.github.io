@@ -1,9 +1,7 @@
 
 
 
-class BasePlugin{
 
-}
 
 
 export default class PathwayPlugin extends BasePlugin {
