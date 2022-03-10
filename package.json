@@ -28,6 +28,8 @@
     "webpack-cli": "^4.7.2"
   },
   "dependencies": {
-    "three": "^0.134.0"
+    "jquery": "^3.6.0",
+    "three": "^0.134.0",
+    "lodash": "^4.17.0"
   }
 }

@@ -1,8 +1,8 @@
-
 export default class EvanPlug extends BasePlugin {
 
     /** Plugin info */
     static get id()             { return 'vatominc-popup-message' }
+    // @ts-ignore
     static get name()           { return 'Popup Message' }
     static get description()    { return 'Display a message, in a popup, to users when they enter the space.' }
 
@@ -69,6 +69,8 @@ export default class EvanPlug extends BasePlugin {
 
      onLoad() 
     {
+
+     
 
             console.log("EvanPlugComponent Loaded")
         

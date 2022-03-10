@@ -1,16 +1,21 @@
 //works at 10:05 3/6
 
+
+
+
 export default class SendUserMessages extends BasePlugin {
 
     /** Plugin info */
     static get id()             { return 'EvanL All Message Types' }
+    // @ts-ignore
     static get name()           { return 'EvanL All Message Types' }
     static get description()    { return 'Options for sending alert, popup, or toast message' }
 
     /** Called when the plugin is loaded */
      onLoad() {
 
-
+        var btnToast = document.getElementById('btnSendToast')
+        btnToast.addEventListener('onClick()', this.onToastPress())
         //Add constraint for facilitator or admin role
 
 
@@ -80,8 +85,6 @@ export default class SendUserMessages extends BasePlugin {
           if (!msg) { return }
 
         
-         
-            
            // Send message
          this.messages.send({ action: 'show-popup', text: msg }, true)
 
@@ -136,10 +139,13 @@ export default class SendUserMessages extends BasePlugin {
 
             this.menus.displayPopup({
                 title: 'Popup Message',
+                inAccordion: true,
+                section: 'controls',
                 panel: {
                     iframeURL: msg.text,
-                    width: 400,
-                    height: 600
+                    maxWidth: 400,
+                    maxHeight: 600
+
                 }
             })
 

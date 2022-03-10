@@ -1,9 +1,12 @@
 //works at 10:05 3/6
 
+
+
 export default class PopupMessage extends BasePlugin {
 
     /** Plugin info */
     static get id()             { return 'vatominc-popup-message' }
+    // @ts-ignore
     static get name()           { return 'Popup Message' }
     static get description()    { return 'Display a message, in a popup, to users when they enter the space.' }
 

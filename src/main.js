@@ -1,9 +1,16 @@
-import { Scene } from "three"
+
+
+
+class BasePlugin{
+
+}
+
 
 export default class PathwayPlugin extends BasePlugin {
 
     /** Plugin info */
     static id = 'jjv360.pathway'
+    // @ts-ignore
     static name = 'Pathway Plugin'
     static description = 'Used in the @jjv360-pathway space.'
 
@@ -36,6 +43,7 @@ export default class PathwayPlugin extends BasePlugin {
         this.menus.register({
             section: 'infopanel',
             panel: {
+                // @ts-ignore
                 iframeURL: absolutePath('infopanel.html'),
                 width: 400,
                 height: 100
@@ -43,7 +51,9 @@ export default class PathwayPlugin extends BasePlugin {
         })
 
         // Preload sound effects
+        // @ts-ignore
         this.audio.preload(absolutePath('good-ding.mp3'))
+        // @ts-ignore
         this.audio.preload(absolutePath('bad-ding.flac'))
 
         // Start render timer
@@ -111,7 +121,7 @@ class PathwayFloorTile extends BaseComponent {
         PathwayPlugin.components.push(this)
 
         
-
+        console.log("basecomponent loaded")
      
      
       
@@ -179,6 +189,7 @@ class PathwayFloorTile extends BaseComponent {
             let isGood = !!this.fields.collide
 
             // Activate! Play the sound
+            // @ts-ignore
             this.plugin.audio.play(absolutePath(isGood ? 'good-ding.mp3' : 'bad-ding.flac'), {
                 x: this.fields.world_center_x,
                 height: this.fields.world_center_y,

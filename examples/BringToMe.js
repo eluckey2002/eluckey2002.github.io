@@ -1,14 +1,5 @@
-import React from 'react'
-import JSAlert from 'js-alert'
-import Swal from 'sweetalert2'
-import { Vector3 } from 'three'
-import { v4 as uuidv4 } from 'uuid'
-import BasePlugin from '../../BasePlugin'
-import MainMenu from './MainMenu'
-import Map3D from '../../../Map3D'
-import MessageManager from '../../../MessageManager'
-import Server from '../../../Server'
-import Users from '../../../Users'
+
+
 
 export default class BringToMePlugin extends BasePlugin {
     /** Plugin info */
