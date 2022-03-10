@@ -1,6 +1,22 @@
 //works at 10:05 3/9
 
+class UserObjProps{
 
+     UserIDProp = ''
+     User_RoleProp = ''
+     PositionProp = ''
+     DisplayNameProp = ''
+     AllProperties = ''
+   
+
+    UserObjProps()
+    {
+            console.log('user obj properties created')
+
+    }
+
+
+}
 
 
 export default class SendUserMessages extends BasePlugin {
@@ -150,46 +166,32 @@ export default class SendUserMessages extends BasePlugin {
 
        async onShowAlert(msg, fromUserID){
 
-            this.menus.alert(msg.text,'Message','Info')
+
+            //this.menus.alert(msg.text,'Message','Info')
 
             //other test function
-            let position = await this.user.getPosition()
-            let displayName = await this.user.getDisplayName()
-            let properties = await this.user.getProperties()
-            let roleProp = await this.user.getProperty( '', 'user_role')
-          
-            try {
-                console.log(position)
-            } catch (error) {
-                console.log(error)
-            }
+           console.log( await this.GetUserData())
 
-           
-           try {
-            console.log(displayName)
-           } catch (error) {
-            console.log(error)
-           } 
-
-         try {   console.log(properties)
-             
-         } catch (error) {
-            console.log(error)
-         }
-
-         try {   console.log(roleProp)
-             
-         } catch (error) {
-            console.log(error)
-         }
-     
-
-            console.log("finished getting user properties test")
+           console.log("done getting user data")
 
             
 
 
 
         }
+
+     async  GetUserData() {
+
+
+        userP = new UserObjProps()
+        userP.UserIDProp = await this.user.getID()
+        userP.PositionProp = await this.user.getPosition()      
+        userP.displayPopup = await this.user.getDisplayName()
+        userP.AllProperties = await this.user.getProperties()
+        userP.RoleProp = await this.user.getProperty('', 'user_role')
+
+     
+        return userP
+    }
 }
 
