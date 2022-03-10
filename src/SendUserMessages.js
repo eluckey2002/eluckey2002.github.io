@@ -148,14 +148,15 @@ export default class SendUserMessages extends BasePlugin {
 
         }
 
-        onShowAlert(msg, fromUserID){
+       async onShowAlert(msg, fromUserID){
 
             this.menus.alert(msg.text,'Message','Info')
 
             //other test function
-            let position = this.user.getPosition()
-            let displayName = this.user.getDisplayName()
-            let properties = this.user.getProperties()
+            let position = await this.user.getPosition()
+            let displayName = await this.user.getDisplayName()
+            let properties = await this.user.getProperties()
+            let roleProp = await this.user.getProperty( '', 'user_role')
           
             try {
                 console.log(position)
@@ -171,6 +172,12 @@ export default class SendUserMessages extends BasePlugin {
            } 
 
          try {   console.log(properties)
+             
+         } catch (error) {
+            console.log(error)
+         }
+
+         try {   console.log(roleProp)
              
          } catch (error) {
             console.log(error)
