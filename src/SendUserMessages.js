@@ -7,15 +7,14 @@ export default class SendUserMessages extends BasePlugin {
 
     /** Plugin info */
     static get id()             { return 'EvanL All Message Types' }
-    // @ts-ignore
     static get name()           { return 'EvanL All Message Types' }
     static get description()    { return 'Options for sending alert, popup, or toast message' }
 
     /** Called when the plugin is loaded */
      onLoad() {
 
-        var btnToast = document.getElementById('btnSendToast')
-        btnToast.addEventListener('onClick()', this.onToastPress())
+    //    var btnToast = document.getElementById('btnSendToast')
+    //    btnToast.addEventListener('onClick()', this.onToastPress())
         //Add constraint for facilitator or admin role
 
 
