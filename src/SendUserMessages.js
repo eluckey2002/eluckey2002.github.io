@@ -1,16 +1,33 @@
 //works at 10:05 3/9
+////@ts-check
+import React from 'react'
+import ReactDOM from 'react-dom'
+
 
 class UserObjProps{
+    CONSTRUCTOR(){
+this.isCreated = true
 
-     UserIDProp = ''
-     User_RoleProp = ''
-     PositionProp = ''
-     DisplayNameProp = ''
-     AllProperties = ''
+    }
+     isCreated= true
+     UserIDProp = null
+     UserRoleProp = null
+     PositionProp = null
+     DisplayNameProp = null
+     AllProperties = null
    
 
-    UserObjProps()
+ 
+   
+     PrintUserObjProps()
     {
+            
+            this.UserIDProp = 'nothing'
+            this. UserRoleProp = 'nothing'
+            this.PositionProp = 'nothing'
+            this.DisplayNameProp = 'nothing'
+            this.AllProperties = 'nothing'
+
             console.log('user obj properties created')
 
     }
@@ -166,7 +183,7 @@ export default class SendUserMessages extends BasePlugin {
 
        async onShowAlert(msg, fromUserID){
 
-
+        console.log("called showAlert and will now call getUserData")
             //this.menus.alert(msg.text,'Message','Info')
 
             //other test function
@@ -183,12 +200,12 @@ export default class SendUserMessages extends BasePlugin {
      async  GetUserData() {
 
 
-        userP = new UserObjProps()
+      let userP = new UserObjProps()
         userP.UserIDProp = await this.user.getID()
         userP.PositionProp = await this.user.getPosition()      
-        userP.displayPopup = await this.user.getDisplayName()
+        userP.DisplayNameProp = await this.user.getDisplayName()
         userP.AllProperties = await this.user.getProperties()
-        userP.RoleProp = await this.user.getProperty('', 'user_role')
+        userP.UserRoleProp = await this.user.getProperty('', 'user_role')
 
      
         return userP
