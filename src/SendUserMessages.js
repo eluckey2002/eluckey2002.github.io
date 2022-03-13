@@ -71,6 +71,7 @@ export default class SendUserMessages extends BasePlugin {
     //    btnToast.addEventListener('onClick()', this.onToastPress())
         //Add constraint for facilitator or admin role
 
+            console.log('loaded v2')
 
         // Allow message to be configured
         this.menus.register({
