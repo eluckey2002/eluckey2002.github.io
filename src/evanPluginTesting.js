@@ -30,7 +30,7 @@ export default class EvanPlugin extends BasePlugin {
 
      
 
-       console.log("Evan Plugin V2")
+       console.log("Evan Plugin V3")
        
        
 
@@ -42,9 +42,8 @@ export default class EvanPlugin extends BasePlugin {
             text: 'evanPlugin',
             section: 'controls',
             order: -60,
-            inAccordion: true,
-            panel: {
-                component: props => <EvanPanel plugin={this} {...props} />
+            inAccordion: false,
+            panel: { component: EvanPanel 
             }
         })
 
@@ -87,6 +86,12 @@ class EvanBaseComponent extends BaseComponent {
       
     }
 
+    onClick()
+    {
+            
+
+    }
+
     /** Called on unload */
     onUnload() {
 
@@ -124,14 +129,12 @@ class EvanPanel extends React.PureComponent {
         return <>
 
             {/* Header bar */}
-            <PanelHeader title='Evan Test' count='20' buttonLayout='close' onClickClose={e => this.props.onClose()} style={{ borderRadius: 0 }} />
+            <AccordionHeader title='Agenda' buttonLayout='close' show={this.props.show} sticky={true} onClickClose={e => this.props.onClose()} onClickChevron={e => this.props.onChevron()} />
 
             {/* Container area */}
             <ScrollContainer>
 
-                {/* <Button title={Users.currentUser.raisedHandStatus != 'hand' ? 'Raise Hand' : 'Lower Hand'} onClick={e => this.props.plugin.toggleHand()} /> */}
-
-              
+                          
                 {/* More users button */}
                 { 
                     <div style={{ margin: 20, textAlign: 'center', color: '#08F', fontSize: 13, cursor: 'pointer' }} >
@@ -144,16 +147,26 @@ class EvanPanel extends React.PureComponent {
                 <div style={{ height: 10 }} />
 
             </ScrollContainer>
-
-
-
-
-        
-        
-        
         
         </>
     }
+
+    componentDidMount() {
+
+     
+       
+
+    }
+
+    /** Called on component remove */
+    componentWillUnmount() {
+
+        // Remove timer
+      
+
+    }
+
+  
 
 
 }
