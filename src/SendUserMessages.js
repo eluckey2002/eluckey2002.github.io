@@ -226,7 +226,7 @@ export default class SendUserMessages extends BasePlugin {
             console.log("setting user property color to red")
            this.user.setProperty('color','red')
 
-            
+        this.hooks.trigger('')
 
 
 
@@ -246,8 +246,5 @@ export default class SendUserMessages extends BasePlugin {
         return userP
     }
 }
-
-
-
 
 

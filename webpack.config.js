@@ -2,12 +2,12 @@ const path = require('path')
 const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
-    entry: './src/SendUserMessages.js',
+    entry: './src/evanPluginTesting.js',
     mode: 'production',
     // mode: 'production',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'sendUserMessagesPlug.js',
+        filename: 'evanPluginTest.js',
         library: {
             name: 'module.exports',
             type: 'assign',
