@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+
 export default class EvanPlugin extends BasePlugin {
 
     /** Plugin info */
@@ -112,7 +113,7 @@ class EvanPanel extends React.PureComponent {
 
     render(){
 
-        renderView()
+       return renderView()
 
 
     }
@@ -122,8 +123,30 @@ class EvanPanel extends React.PureComponent {
 
         return <>
 
-        <dv><h1>H! Baby </h1> HI! </dv>
-        <div><button> BUTTON </button></div>
+            {/* Header bar */}
+            <PanelHeader title='Evan Test' count='20' buttonLayout='close' onClickClose={e => this.props.onClose()} style={{ borderRadius: 0 }} />
+
+            {/* Container area */}
+            <ScrollContainer>
+
+                {/* <Button title={Users.currentUser.raisedHandStatus != 'hand' ? 'Raise Hand' : 'Lower Hand'} onClick={e => this.props.plugin.toggleHand()} /> */}
+
+              
+                {/* More users button */}
+                { 
+                    <div style={{ margin: 20, textAlign: 'center', color: '#08F', fontSize: 13, cursor: 'pointer' }} >
+                        Show More
+                        </div>
+                    
+                }
+
+                {/* Bottom padding */}
+                <div style={{ height: 10 }} />
+
+            </ScrollContainer>
+
+
+
 
         
         
