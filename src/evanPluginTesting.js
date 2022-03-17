@@ -76,24 +76,26 @@ class EvanBaseComponent extends BaseComponent {
     onLoad() {
 
            
-        console.log("evan basecomponent v5 - hooks v2 loaded")
+        console.log("evan basecomponent v5 - hooks v3 loaded")
 
      //   Hooks.get('avatarVideo.setRingColor').trigger({})
 
      //map.gestures.ontap
      //avatarVideo.toggle
 
-     this.plugin.hooks.addHandler('map.gestures.quick-move-start', this.hookTriggerdCallback('quick move start'))
-     this.plugin.hooks.addHandler('avatarVideo.toggle',this.hookTriggerdCallback('avatarVideoToggle'))
-     this.plugin.hooks.addHandler('map.gestures.ontap',this.hookTriggerdCallback('map gestures On canvas Tap'))
+     this.plugin.hooks.addHandler('map.gestures.quick-move-start', this.hookTriggerdCallback)
+     this.plugin.hooks.addHandler('avatarVideo.toggle',this.hookTriggerdCallback)
+     this.plugin.hooks.addHandler('map.gestures.ontap',this.hookTriggerdCallback)
      
      
       
     }
 
-    hookTriggerdCallback(msg)
+   static async hookTriggerdCallback(msg)
     {
             console.log(msg)
+
+            return true
 
     }
 
