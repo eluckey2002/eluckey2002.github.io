@@ -1,7 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-
 export default class EvanPlugin extends BasePlugin {
 
     /** Plugin info */
@@ -30,7 +26,7 @@ export default class EvanPlugin extends BasePlugin {
 
      
 
-       console.log("Evan Plugin V3")
+       console.log("Evan Plugin V4")
        
        
 
@@ -43,7 +39,7 @@ export default class EvanPlugin extends BasePlugin {
             section: 'controls',
             order: -60,
             inAccordion: false,
-            panel: { component: EvanPanel 
+            panel: { iframe: absolutePath('infopanel.html')
             }
         })
 
@@ -80,10 +76,25 @@ class EvanBaseComponent extends BaseComponent {
     onLoad() {
 
            
-        console.log("evan basecomponent v2 loaded")
+        console.log("evan basecomponent v4 - hooks loaded")
+
+     //   Hooks.get('avatarVideo.setRingColor').trigger({})
+
+     //map.gestures.ontap
+     //avatarVideo.toggle
+
+     this.plugin.hooks.addHandler('map.gestures.quick-move-start', hookTriggerdCallback('quick move start'))
+     this.plugin.hooks.addHandler('avatarVideo.toggle',hookTriggerdCallback('avatarVideoToggle'))
+     this.plugin.hooks.addHandler('map.gestures.ontap',hookTriggerdCallback('map gestures On canvas Tap'))
      
      
       
+    }
+
+    hookTriggerdCallback(msg)
+    {
+            console.log(msg)
+
     }
 
     onClick()
@@ -112,66 +123,3 @@ class EvanBaseComponent extends BaseComponent {
     }
 
 }
-
-
-class EvanPanel extends React.PureComponent {
-
-    render(){
-
-       return renderView()
-
-
-    }
-
-
-    renderView(){
-
-        return <>
-
-            {/* Header bar */}
-            <AccordionHeader title='Agenda' buttonLayout='close' show={this.props.show} sticky={true} onClickClose={e => this.props.onClose()} onClickChevron={e => this.props.onChevron()} />
-
-            {/* Container area */}
-            <ScrollContainer>
-
-                          
-                {/* More users button */}
-                { 
-                    <div style={{ margin: 20, textAlign: 'center', color: '#08F', fontSize: 13, cursor: 'pointer' }} >
-                        Show More
-                        </div>
-                    
-                }
-
-                {/* Bottom padding */}
-                <div style={{ height: 10 }} />
-
-            </ScrollContainer>
-        
-        </>
-    }
-
-    componentDidMount() {
-
-     
-       
-
-    }
-
-    /** Called on component remove */
-    componentWillUnmount() {
-
-        // Remove timer
-      
-
-    }
-
-  
-
-
-}
-
-
-
-
-
