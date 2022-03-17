@@ -75,7 +75,7 @@ class EvanBaseComponent extends BaseComponent {
     onLoad() {
 
            
-        console.log("evan basecomponent - hooks v4 loaded")
+        console.log("evan basecomponent - hooks v5 loaded")
 
      //   Hooks.get('avatarVideo.setRingColor').trigger({})
 
