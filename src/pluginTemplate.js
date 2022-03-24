@@ -88,6 +88,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
            this.opacity += this.OpacityStep
 
            if (this.opacity > 1) {
+               console.log("opacity was higher than 1. resetting to 1.")
                this.opacity = 1
             
            }
@@ -97,7 +98,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
              this.opacity = 0
            }
 
-           
+
            this.plugin.objects.update(this.objectID, { opacity: this.opacity}, false)
 
            console.log(this.opacity)
@@ -133,8 +134,11 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
                     //restart values
                     this.plugin.objects.update(this.objectID, { opacity: 1}, false)
+                    this.OpacityMin = this.getField('opacity-min')
+                    this.OpacityMax = this.getField('opacity-max')
+                    this.OpacityStep = this.getField('opacity-step') * -1
 
-                    this.timer = setInterval(this.onTimer.bind(this), 2000)
+                    this.timer = setInterval(this.onTimer.bind(this), 200)
                     this.isRunnning = true
                     console.log("Start Pressed and Interval set!")
                 }
