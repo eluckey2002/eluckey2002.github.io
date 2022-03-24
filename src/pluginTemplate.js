@@ -126,7 +126,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
                     this.dimUp = false
                    
 
-                    this.timer = setInterval(this.onTimer.bind(this), 205)
+                    this.timer = setInterval(this.onTimer.bind(this), 1000)
                     this.isRunnning = true
                   
                 }
