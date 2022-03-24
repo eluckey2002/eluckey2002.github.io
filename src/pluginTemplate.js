@@ -14,7 +14,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
             name: 'Evan Plug - Animate Opacity',
             description: 'Animate opacity ',
             settings: [
-                {id: 'opacity-min', name: 'Opacity Min', type: 'number', default: 1 },
+                {id: 'opacity-min', name: 'Opacity Min', type: 'number', default: 0.5 },
                 {id: 'opacity-max', name: 'Opacity Max', type: 'number', default: 1 },
                 {id: 'opacity-step', name: 'opacity Step Size', type: 'number', default: 0.01 }      
 
@@ -50,7 +50,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
        console.log("component almost finished loading - out object id in console is next")
        console.log(this.objectID)
 
-       this.plugin.objects.update(this.objectID, { opacity: 0.5}, false)
+      
 
     }
 
