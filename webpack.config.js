@@ -2,12 +2,12 @@ const path = require('path')
 const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
-    entry: './src/evanPluginTesting.js',
+    entry: './src/pluginTemplate.js',
     mode: 'production',
     // mode: 'production',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'evanPluginTest.js',
+        filename: 'evanPluginAnimateOpacity.js',
         library: {
             name: 'module.exports',
             type: 'assign',
