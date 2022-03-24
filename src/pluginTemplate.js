@@ -49,7 +49,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
    //     this.ObjectIDDD = 
 
        console.log("component almost finished loading - out object id in console is next")
-   console.log(this.plugin.objects.id)
+       console.log(this.objectID)
 
     }
 
