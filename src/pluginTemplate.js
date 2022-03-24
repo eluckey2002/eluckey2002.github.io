@@ -38,10 +38,10 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
   class EvanPlugAnimateOpacityComp extends BaseComponent {
 
-    opacity = 1
-    OpacityMax = 0.9
-    OpacityMin = 0.5
-    OpacityStep = 0.05
+    opacity = 0.8
+    OpacityMax = 0.8
+    OpacityMin = 0.1
+    OpacityStep = 0.01
     isRunnning = false
     isTimerRunning = false
     dimUp = false
@@ -77,7 +77,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
     async onTimer()
     {
         let newOpacityValue = 0
-        if(this.dimUp = false)
+        if(this.dimUp == false)
         {
             newOpacityValue = this.Opacity - this.OpacityStep
             if(newOpacityValue < 0 || newOpacityValue < this.OpacityMin){ 
@@ -88,7 +88,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
         }
 
-        else if (this.dimUp = true)
+        else if (this.dimUp == true)
         {
             newOpacityValue = this.Opacity + this.OpacityStep
             if(newOpacityValue > 1 || newOpacityValue > this.OpacityMax){ 
@@ -113,7 +113,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
        // THIS WORKS! this.plugin.objects.animate({ target: this.objectID, duration: 1000, field: 'opacity', value: 0, delay: 1000 })
 
             //is there a button in the settings? this worked!
-           if (id='btn-start') {
+           if (id=='btn-start') {
                
                 if (this.isRunnning == false) {
 
@@ -124,6 +124,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
                     this.OpacityMin = this.getField('opacity-min')
                     this.OpacityMax = this.getField('opacity-max')
                     this.OpacityStep = this.getField('opacity-step')
+                    this.opacity = this.OpacityMax
                     this.dimUp = false
                    
 
