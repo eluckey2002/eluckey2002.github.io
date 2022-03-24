@@ -35,14 +35,16 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
   class EvanPlugAnimateOpacityComp extends BaseComponent {
 
-  Opacity = 1
-  OpacityMin = 0
-  OpacityMax = 1
-  OpacityStep = 0
+    CurrentOpacity = 1
+    OpacityMax = 0.9
+    OpacityMin = 0.5
+    OpacityStep = 0.1
+ 
 
   onLoad() 
     {
-        this.CurrentOpacity = 1   
+        
+        this.CurrentOpacity = 1
         this.OpacityMin = this.getField('opacity-min')
         this.OpacityMax = this.getField('opacity-max')
         this.OpacityStep = this.getField('opacity-step') * -1
@@ -64,10 +66,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
         console.log("running timer")
             //check min / max
 
-            console.log(this.opacity)
-            console.log(this.OpacityMax)
-            console.log(this.OpacityMin)
-            console.log(this.OpacityStep)
+          
 
             if (this.opacity < this.OpacityMin){
                 //opacity has reached min. Go back up. '
