@@ -41,7 +41,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
     opacity = 1
     OpacityMax = 0.9
     OpacityMin = 0.5
-    OpacityStep = 0.1
+    OpacityStep = 0.05
     isRunnning = false
     isTimerRunning = false
 
@@ -54,6 +54,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
         this.OpacityMax = this.getField('opacity-max')
         this.OpacityStep = this.getField('opacity-step') * -1
         this.isRunnning = false
+        this.isTimerRunning = false
        
     
     
@@ -119,25 +120,26 @@ try{
 
         try{
            this.plugin.objects.update(this.objectID, { opacity: this.opacity}, false)
+           console.log(this.opacity)
         }
         catch(er){ console.warn(er) }
 
+        this.isTimerRunning = false
+            
 
-            console.log(this.opacity)
-
-           this.isTimerRunning = false
+          
         }
 
 
       newMethod(opMin, opMax, opStep) {
-          console.log("running timer spit out opacity min and max and step values")
+          console.log("Spitting out MIN, MAX and OPSTEP")
           //check min / max
-          console.log(opMin)
+          console.log(opMin & ":" & opMax & ":" & ':' & opStep)
           console.log(opMax)
           console.log(opStep)
       }
 
-    Updated(field, value)
+    onUpdated(field, value)
     {
         console.log("field updated : " & field & " : " & value)
 
@@ -164,12 +166,12 @@ try{
 
 
                     //restart values
-                    this.plugin.objects.update(this.objectID, { opacity: 1}, false)
+                    this.plugin.objects.update(this.objectID, { opacity: this.OpacityMax}, false)
                     this.OpacityMin = this.getField('opacity-min')
                     this.OpacityMax = this.getField('opacity-max')
-                    this.OpacityStep = this.getField('opacity-step')
+                    this.OpacityStep = this.getField('opacity-step') * -1
 
-                    this.timer = setInterval(this.onTimer.bind(this), 200)
+                    this.timer = setInterval(this.onTimer.bind(this), 500)
                     this.isRunnning = true
                     console.log("Start Pressed and Interval set!")
                 }
