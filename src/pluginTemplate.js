@@ -1,3 +1,4 @@
+
 export default class EvanPlugAnimateOpacity extends BasePlugin {
 
     /** Plugin info */
@@ -25,6 +26,10 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
         })
 
         console.log("Animate Opacity Plugin loaded")
+
+        console.log("VELOCITY!")
+
+        await this.hooks.trigger('avatar.applyVerticalVelocity', { velocity: 20 })
 
 
     }
@@ -76,7 +81,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
         {
             console.log("dim down Loop")
             
-            newOpacityValue = this.Opacity - this.OpacityStep
+            newOpacityValue = parseInt(this.Opacity) - parseInt(this.OpacityStep)
 
             console.log('Opacity: ' + this.Opacity)
             console.log('Max: ' + this.OpacityMax)
@@ -98,7 +103,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
         else if (this.dimUp == true)
         {
             console.log("dim up loop")
-            newOpacityValue = this.Opacity + this.OpacityStep
+            newOpacityValue = parseInt(this.Opacity) + parseInt(this.OpacityStep)
 
             console.log('Opacity: ' + this.Opacity)
             console.log('Max: ' + this.OpacityMax)
@@ -111,12 +116,12 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
                 this.dimUp = false
 
                 console.log("reached max - should switch directions to Dim Down")
-                console.log('max reached and opacity set to min value: ' + this.OpacityMin)
+                console.log('min reached and opacity set to max value: ' + this.OpacityMax)
               }   
        }
 
 
-       console.log('Calling update on object: ' + newOpacityValue)
+       console.log(`Calling update on object: ${newOpacityValue}`)
        this.plugin.objects.update(this.objectID, {opacity: newOpacityValue}, false)
        this.Opacity = parseInt(newOpacityValue)
     }

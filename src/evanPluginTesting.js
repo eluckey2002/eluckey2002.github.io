@@ -26,7 +26,7 @@ export default class EvanPlugin extends BasePlugin {
 
      
 
-       console.log("Evan Plugin v0.1")
+       console.log("Evan Plugin v0.2")
        
        
 
