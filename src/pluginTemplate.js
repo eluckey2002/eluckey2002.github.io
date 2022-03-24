@@ -35,7 +35,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
   class EvanPlugAnimateOpacityComp extends BaseComponent {
 
-    CurrentOpacity = 1
+    opacity = 1
     OpacityMax = 0.9
     OpacityMin = 0.5
     OpacityStep = 0.1
@@ -44,18 +44,19 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
   onLoad() 
     {
         
-        this.CurrentOpacity = 1
-        this.OpacityMin = this.getField('opacity-min')
-        this.OpacityMax = this.getField('opacity-max')
-        this.OpacityStep = this.getField('opacity-step') * -1
+        this.opacity = 1
+        this.OpacityMin = 0.5  //this.getField('opacity-min')
+        this.OpacityMax = 1    //this.getField('opacity-max')
+        this.OpacityStep = 0.1 //this.getField('opacity-step') * -1
 
-        this.timer = setInterval(this.onTimer.bind(this), 500)
+        this.timer = setInterval(this.onTimer.bind(this), 1000)
     
       
 
        console.log("component almost finished loading - out object id in console is next")
        console.log(this.objectID)
        console.log(this.OpacityMax)
+       console.log(this.OpacityMin)
 
       
 
@@ -65,7 +66,9 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
     {
         console.log("running timer")
             //check min / max
-
+            console.log(this.OpacityMax)
+            console.log(this.OpacityMin)
+            console.log(this.OpacityStep)
           
 
             if (this.opacity < this.OpacityMin){
@@ -78,10 +81,10 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
                 this.OpacityStep = this.OpacityStep * -1
             }
 
-           this.CurrentOpacity += this.OpacityStep
+           this.opacity += this.OpacityStep
            this.plugin.objects.update(this.objectID, { opacity: this.opacity}, false)
 
-           console.log(this.CurrentOpacity)
+           console.log(this.opacity)
 
     }
 
