@@ -17,8 +17,8 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
             description: 'Animate opacity ',
             settings: [
                 {id: 'opacity-min', name: 'Opacity Min', type: 'number', default: 0.5 },
-                {id: 'opacity-max', name: 'Opacity Max', type: 'number', default: 1 },
-                {id: 'opacity-step', name: 'opacity Step Size', type: 'number', default: 0.1 },     
+                {id: 'opacity-max', name: 'Opacity Max', type: 'number', default: 0.9 },
+                {id: 'opacity-step', name: 'opacity Step Size', type: 'number', default: 0.5 },     
                 {id: 'btn-start', name: 'Start!', type: 'button'} 
 
             ]
@@ -44,6 +44,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
     OpacityStep = 0.05
     isRunnning = false
     isTimerRunning = false
+    dimUp = false
 
   onLoad() 
     {
@@ -52,7 +53,8 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
         this.opacity = 1
         this.OpacityMin = this.getField('opacity-min')
         this.OpacityMax = this.getField('opacity-max')
-        this.OpacityStep = this.getField('opacity-step') * -1
+        this.OpacityStep = this.getField('opacity-step') 
+        this.dimUp = false;
         this.isRunnning = false
         this.isTimerRunning = false
        
@@ -61,7 +63,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
       
 
        console.log("component almost finished loading - out object id in console is next")
-       console.log(this.objectID)
+       console.log(this.objectID )
        console.log(this.instanceID)
     
       
@@ -74,82 +76,32 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
     async onTimer()
     {
-
-        if(this.isTimerRunning == true){return}
-        this.isTimerRunning = true
-        
-        this.newMethod(this.OpacityMin, this.OpacityMax, this.OpacityStep)
-          
-        try {
-      
+        if(this.dimUp = false)
+        {
+            let newOpacityValue = this.Opacity - this.OpacityStep
+            if(newOpacityValue < 0 || newOpacityValue < this.OpacityMin){ 
+                newOpacityValue = this.OpacityMin
+                this.dimUp = true
             
-        
-            if (this.opacity <= this.OpacityMin){
-                //opacity has reached min. Go back up. '
-                this.OpacityStep = this.OpacityStep * - 1
             }
+        }
 
-             if (this.opacity >= this.OpacityMax) {
-                //opacity has reached max - substract
-                this.OpacityStep = this.OpacityStep * - 1
-            }
+        else if (this.dimUp = true)
+        {
+            let newOpacityValue = this.Opacity + this.OpacityStep
+            if(newOpacityValue > 1 || newOpacityValue > this.OpacityMax){ 
+                newOpacityValue = this.OpacityMax
+                this.dimUp = false
+              }   
+       }
 
-      
+       this.plugin.objects.update(this.objectID, { opacity: this.newOpacityValue}, false)
+       this.opacity = newOpacityValue
        
-
-           this.opacity += this.OpacityStep
-
-        } catch (error) 
-        { console.warn(error) }
-                 
-
-try{
-
-           if (this.opacity > 1) {
-               console.log("opacity was higher than 1. resetting to 1.")
-               this.opacity = 1
-            
-           }
-           else if (this.opacity < 0)
-           {
-
-             this.opacity = 0
-           }
-
-        }catch(err){ console.warn(err)}
-
-        try{
-           this.plugin.objects.update(this.objectID, { opacity: this.opacity}, false)
-           console.log(this.opacity)
-        }
-        catch(er){ console.warn(er) }
-
-        this.isTimerRunning = false
-            
-
-          
-        }
-
-
-      newMethod(opMin, opMax, opStep) {
-          console.log("Spitting out MIN, MAX and OPSTEP")
-          //check min / max
-          console.log(opMin & ":" & opMax & ":" & ':' & opStep)
-          console.log(opMax)
-          console.log(opStep)
-      }
-
-    onUpdated(field, value)
-    {
-        console.log("field updated : " & field & " : " & value)
-
     }
+     
 
-    onMessage(data)
-    {
-        
-
-    }
+    
 
 
     onAction(id)
@@ -169,17 +121,19 @@ try{
                     this.plugin.objects.update(this.objectID, { opacity: this.OpacityMax}, false)
                     this.OpacityMin = this.getField('opacity-min')
                     this.OpacityMax = this.getField('opacity-max')
-                    this.OpacityStep = this.getField('opacity-step') * -1
+                    this.OpacityStep = this.getField('opacity-step')
+                    this.dimUp = false
+                   
 
-                    this.timer = setInterval(this.onTimer.bind(this), 500)
+                    this.timer = setInterval(this.onTimer.bind(this), 205)
                     this.isRunnning = true
-                    console.log("Start Pressed and Interval set!")
+                  
                 }
                 else if (this.isRunnning == true)
                 {
                     clearInterval(this.timer)
                     this.isRunnning = false
-                    console.log("Stop Pressed. Interval removed")
+                  
                   
                 }
 
