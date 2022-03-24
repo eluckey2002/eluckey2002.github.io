@@ -76,13 +76,14 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
     async onTimer()
     {
-       let newOpacityValue = 0
+       var newOpacityValue = 0
         if(this.dimUp == false)
         {
             console.log("dim down Loop")
             
             newOpacityValue = this.Opacity - this.OpacityStep
 
+            console.log('Opacity: ' + this.opacity)
             console.log('Max: ' + this.OpacityMax)
             console.log('Min: ' + this.OpacityMin)
             console.log('Step: ' + this.OpacityStep)
