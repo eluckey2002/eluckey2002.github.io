@@ -74,6 +74,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
             console.log(this.OpacityStep)
           
 
+
             if (this.opacity < this.OpacityMin){
                 //opacity has reached min. Go back up. '
                 this.OpacityStep = this.OpacityStep * - 1
@@ -85,6 +86,18 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
             }
 
            this.opacity += this.OpacityStep
+
+           if (this.opacity > 1) {
+               this.opacity = 1
+            
+           }
+           else if (this.opacity < 0)
+           {
+
+             this.opacity = 0
+           }
+
+           
            this.plugin.objects.update(this.objectID, { opacity: this.opacity}, false)
 
            console.log(this.opacity)
@@ -108,8 +121,8 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
     onAction(id)
     {
 
-        console.log("animating object")
-        this.plugin.objects.animate({ target: this.objectID, duration: 1000, field: 'opacity', value: 0, delay: 1000 })
+       
+       // THIS WORKS! this.plugin.objects.animate({ target: this.objectID, duration: 1000, field: 'opacity', value: 0, delay: 1000 })
 
             //is there a button in the settings? this worked!
            if (id='btn-start') {
