@@ -51,10 +51,10 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
         this.instanceID = Math.random().toString(36).substring(2)
 
        
-        this.OpacityMin = this.getField('opacity-min')
-        this.OpacityMax = this.getField('opacity-max')
-        this.OpacityStep = this.getField('opacity-step') 
-        this.Opacity = this.getField('opacity-max')
+        this.OpacityMin = parseInt(this.getField('opacity-min'))
+        this.OpacityMax = parseInt(this.getField('opacity-max'))
+        this.OpacityStep = parseInt(this.getField('opacity-step'))
+        this.Opacity = parseInt(this.getField('opacity-max'))
         this.dimUp = false;
         this.isRunnning = false
         this.isTimerRunning = false
@@ -86,7 +86,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
 
             if(newOpacityValue < 0 || newOpacityValue < this.OpacityMin){ 
-                newOpacityValue = this.OpacityMin
+                newOpacityValue = parseInt(this.OpacityMin)
                 this.dimUp = true
                 console.log("reached max - should switch directions to Dim Up")
                 console.log('max reached and opacity set to min value: ' + this.OpacityMin)
@@ -100,13 +100,14 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
             console.log("dim up loop")
             newOpacityValue = this.Opacity + this.OpacityStep
 
+            console.log('Opacity: ' + this.Opacity)
             console.log('Max: ' + this.OpacityMax)
             console.log('Min: ' + this.OpacityMin)
             console.log('Step: ' + this.OpacityStep)
             console.log('new opacity value: ' + newOpacityValue)
 
             if(newOpacityValue > 1 || newOpacityValue > this.OpacityMax){ 
-                newOpacityValue = this.OpacityMax
+                newOpacityValue = parseInt(this.OpacityMax)
                 this.dimUp = false
 
                 console.log("reached max - should switch directions to Dim Down")
@@ -116,9 +117,8 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
 
        console.log('Calling update on object: ' + newOpacityValue)
-       this.plugin.objects.update(this.objectID, { opacity: newOpacityValue}, false)
-       this.Opacity = newOpacityValue
-
+       this.plugin.objects.update(this.objectID, {opacity: newOpacityValue}, false)
+       this.Opacity = parseInt(newOpacityValue)
     }
      
 
