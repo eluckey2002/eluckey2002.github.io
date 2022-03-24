@@ -55,8 +55,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
        console.log("component almost finished loading - out object id in console is next")
        console.log(this.objectID)
-       console.log(this.OpacityMax)
-       console.log(this.OpacityMin)
+      
 
       
 
@@ -64,7 +63,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
     async onTimer()
     {
-        console.log("running timer")
+        console.log("running timer spit out opacity min and max and step values")
             //check min / max
             console.log(this.OpacityMax)
             console.log(this.OpacityMin)
