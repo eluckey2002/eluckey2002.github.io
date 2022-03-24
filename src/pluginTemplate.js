@@ -5,6 +5,8 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
     static get name()           { return 'Animate Opacity' }
     static get description()    { return 'Animate opacity of objects' }
 
+    components = []
+
     /** Called when the plugin is loaded */
      async onLoad() {
 
@@ -41,7 +43,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
     OpacityMin = 0.5
     OpacityStep = 0.1
     isRunnning = false
- 
+    isTimerRunning = false
 
   onLoad() 
     {
@@ -59,33 +61,48 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
        console.log("component almost finished loading - out object id in console is next")
        console.log(this.objectID)
+       console.log(this.instanceID)
+    
       
 
       
 
     }
 
+   
+
     async onTimer()
     {
-        console.log("running timer spit out opacity min and max and step values")
-            //check min / max
-            console.log(this.OpacityMax)
-            console.log(this.OpacityMin)
-            console.log(this.OpacityStep)
+
+        if(this.isTimerRunning == true){return}
+        this.isTimerRunning = true
+        
+        this.newMethod(this.OpacityMin, this.OpacityMax, this.OpacityStep)
           
-
-
-            if (this.opacity < this.OpacityMin){
+        try {
+      
+            
+        
+            if (this.opacity <= this.OpacityMin){
                 //opacity has reached min. Go back up. '
                 this.OpacityStep = this.OpacityStep * - 1
             }
 
-             if (this.opacity > this.OpacityMax) {
+             if (this.opacity >= this.OpacityMax) {
                 //opacity has reached max - substract
                 this.OpacityStep = this.OpacityStep * - 1
             }
 
+      
+       
+
            this.opacity += this.OpacityStep
+
+        } catch (error) 
+        { console.warn(error) }
+                 
+
+try{
 
            if (this.opacity > 1) {
                console.log("opacity was higher than 1. resetting to 1.")
@@ -98,13 +115,27 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
              this.opacity = 0
            }
 
+        }catch(err){ console.warn(err)}
 
+        try{
            this.plugin.objects.update(this.objectID, { opacity: this.opacity}, false)
+        }
+        catch(er){ console.warn(er) }
 
-           console.log(this.opacity)
 
-    }
+            console.log(this.opacity)
 
+           this.isTimerRunning = false
+        }
+
+
+      newMethod(opMin, opMax, opStep) {
+          console.log("running timer spit out opacity min and max and step values")
+          //check min / max
+          console.log(opMin)
+          console.log(opMax)
+          console.log(opStep)
+      }
 
     Updated(field, value)
     {
@@ -136,7 +167,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
                     this.plugin.objects.update(this.objectID, { opacity: 1}, false)
                     this.OpacityMin = this.getField('opacity-min')
                     this.OpacityMax = this.getField('opacity-max')
-                    this.OpacityStep = this.getField('opacity-step') * -1
+                    this.OpacityStep = this.getField('opacity-step')
 
                     this.timer = setInterval(this.onTimer.bind(this), 200)
                     this.isRunnning = true
@@ -153,9 +184,36 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
 
            }
-           
+         
 
+    }
 
+    dimDown()
+    {
+                this.opacity = this.opacity - this.OpacityStep
+
+                if(this.opacity < this.OpacityMin)
+                {
+                    this.opacity = this.OpacityMin
+                    return true
+                }
+                
+                 return false   
+        
+    }
+
+    dimUp()
+    {
+
+                this.opacity = this.opacity + this.OpacityStep
+
+                if(this.opacity > this.OpacityMax)
+                {
+                    this.opacity = this.OpacityMax
+                    return true
+                }
+                
+                 return false   
     }
 
         
