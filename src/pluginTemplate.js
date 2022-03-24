@@ -16,7 +16,8 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
             settings: [
                 {id: 'opacity-min', name: 'Opacity Min', type: 'number', default: 0.5 },
                 {id: 'opacity-max', name: 'Opacity Max', type: 'number', default: 1 },
-                {id: 'opacity-step', name: 'opacity Step Size', type: 'number', default: 0.1 }      
+                {id: 'opacity-step', name: 'opacity Step Size', type: 'number', default: 0.1 },     
+                {id: 'btn-Action', name: 'Action!', type: 'button'} 
 
             ]
         })
@@ -39,17 +40,20 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
     OpacityMax = 0.9
     OpacityMin = 0.5
     OpacityStep = 0.1
+    isRunnning = false
  
 
   onLoad() 
     {
-        
+        this.instanceID = Math.random().toString(36).substring(2)
+
         this.opacity = 1
         this.OpacityMin = this.getField('opacity-min')
         this.OpacityMax = this.getField('opacity-max')
         this.OpacityStep = this.getField('opacity-step') * -1
-
-        this.timer = setInterval(this.onTimer.bind(this), 100)
+        this.isRunnning = false
+        this.timer = setInterval(this.onTimer.bind(this), 2000)
+    
     
       
 
@@ -87,6 +91,26 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
     }
 
+
+    onSettingsUpdated(field, value)
+    {
+
+
+    }
+
+    onMessage(data)
+    {
+        
+
+    }
+
+
+    onAction(id)
+    {
+            //is there a button in the settings?
+            console.log("BUTTON PRESSED!")
+
+    }
 
         
            
