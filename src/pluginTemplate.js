@@ -50,6 +50,8 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
        console.log("component almost finished loading - out object id in console is next")
        console.log(this.objectID)
 
+       this.plugin.objects.update(this.objectID, { opacity: 0.5}, false)
+
     }
 
     async onTimer()
