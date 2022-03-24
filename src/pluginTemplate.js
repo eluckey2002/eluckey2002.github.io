@@ -76,13 +76,24 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
     async onTimer()
     {
-        let newOpacityValue = 0
+        newOpacityValue = 0
         if(this.dimUp == false)
         {
+            console.log("dim down Loop")
+            
             newOpacityValue = this.Opacity - this.OpacityStep
+
+            console.log('Max: ' + this.OpacityMax)
+            console.log('Min: ' + this.OpacityMin)
+            console.log('Step: ' + this.OpacityStep)
+            console.log('new opacity value: ' + newOpacityValue)
+
+
             if(newOpacityValue < 0 || newOpacityValue < this.OpacityMin){ 
                 newOpacityValue = this.OpacityMin
                 this.dimUp = true
+                console.log("reached max - should switch directions to Dim Up")
+                console.log('max reached and opacity set to min value: ' + this.OpacityMin)
             
             }
 
@@ -90,13 +101,25 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
         else if (this.dimUp == true)
         {
+            console.log("dim up loop")
             newOpacityValue = this.Opacity + this.OpacityStep
+
+            console.log('Max: ' + this.OpacityMax)
+            console.log('Min: ' + this.OpacityMin)
+            console.log('Step: ' + this.OpacityStep)
+            console.log('new opacity value: ' + newOpacityValue)
+
             if(newOpacityValue > 1 || newOpacityValue > this.OpacityMax){ 
                 newOpacityValue = this.OpacityMax
                 this.dimUp = false
+
+                console.log("reached max - should switch directions to Dim Down")
+                console.log('max reached and opacity set to min value: ' + this.OpacityMin)
               }   
        }
 
+
+       console.log('Calling update on object: ' + newOpacityValue)
        this.plugin.objects.update(this.objectID, { opacity: newOpacityValue}, false)
        this.opacity = newOpacityValue
 
@@ -128,7 +151,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
                     this.dimUp = false
                    
 
-                    this.timer = setInterval(this.onTimer.bind(this), 1000)
+                    this.timer = setInterval(this.onTimer.bind(this), 5000)
                     this.isRunnning = true
                   
                 }
