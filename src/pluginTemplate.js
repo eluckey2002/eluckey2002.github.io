@@ -76,9 +76,10 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
     async onTimer()
     {
+        let newOpacityValue = 0
         if(this.dimUp = false)
         {
-            let newOpacityValue = this.Opacity - this.OpacityStep
+            newOpacityValue = this.Opacity - this.OpacityStep
             if(newOpacityValue < 0 || newOpacityValue < this.OpacityMin){ 
                 newOpacityValue = this.OpacityMin
                 this.dimUp = true
@@ -88,7 +89,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
         else if (this.dimUp = true)
         {
-            let newOpacityValue = this.Opacity + this.OpacityStep
+            newOpacityValue = this.Opacity + this.OpacityStep
             if(newOpacityValue > 1 || newOpacityValue > this.OpacityMax){ 
                 newOpacityValue = this.OpacityMax
                 this.dimUp = false
@@ -144,34 +145,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
     }
 
-    dimDown()
-    {
-                this.opacity = this.opacity - this.OpacityStep
-
-                if(this.opacity < this.OpacityMin)
-                {
-                    this.opacity = this.OpacityMin
-                    return true
-                }
-                
-                 return false   
-        
-    }
-
-    dimUp()
-    {
-
-                this.opacity = this.opacity + this.OpacityStep
-
-                if(this.opacity > this.OpacityMax)
-                {
-                    this.opacity = this.OpacityMax
-                    return true
-                }
-                
-                 return false   
-    }
-
+  
         
            
 }
