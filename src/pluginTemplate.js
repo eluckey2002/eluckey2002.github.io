@@ -95,9 +95,9 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
               }   
        }
 
-       this.plugin.objects.update(this.objectID, { opacity: this.newOpacityValue}, false)
+       this.plugin.objects.update(this.objectID, { opacity: newOpacityValue}, false)
        this.opacity = newOpacityValue
-       
+
     }
      
 
