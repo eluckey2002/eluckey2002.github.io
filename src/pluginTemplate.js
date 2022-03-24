@@ -16,9 +16,9 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
             name: 'Evan Plug - Animate Opacity',
             description: 'Animate opacity ',
             settings: [
-                {id: 'opacity-min', name: 'Opacity Min', type: 'number', default: 0.5 },
+                {id: 'opacity-min', name: 'Opacity Min', type: 'number', default: 0.1 },
                 {id: 'opacity-max', name: 'Opacity Max', type: 'number', default: 0.9 },
-                {id: 'opacity-step', name: 'opacity Step Size', type: 'number', default: 0.5 },     
+                {id: 'opacity-step', name: 'opacity Step Size', type: 'number', default: 0.01 },     
                 {id: 'btn-start', name: 'Start!', type: 'button'} 
 
             ]
@@ -85,6 +85,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
                 this.dimUp = true
             
             }
+
         }
 
         else if (this.dimUp = true)
