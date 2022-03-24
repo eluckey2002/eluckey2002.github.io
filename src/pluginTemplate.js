@@ -21,29 +21,24 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
             ]
         })
 
+        console.log("Animate Opacity Plugin loaded")
+
 
     }
 
   
-
-
-      //UNLOAD METHOD
-      onUnload(){
-
-       
-  
-       }
+    
 }
 
 
 
 
   class EvanPlugAnimateOpacityComp extends BaseComponent {
-      CurrentOpacity = 1
-      OpacityStep = 0      
+      
   
   onLoad() 
     {
+        this.CurrentOpacity = 1   
         this.OpacityMin = this.getField('opacity-min')
         this.OpacityMax = this.getField('opacity-max')
         this.OpacityStep = this.getField('opacity-step') * -1
@@ -53,7 +48,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
         //get objectID
         this.ObjectIDDD = this.plugin.objects.id
 
-        console.log("This is the object id " & this.ObjectIDDD )
+        console.log(this.ObjectIDDD)
 
     }
 
@@ -71,23 +66,12 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
             this.CurrentOpacity += this.OpacityStep
            this.plugin.objects.update(this.plugin.objects.id, { opacity: this.CurrentOpacity}, false)
 
-           log.console(this.CurrentOpacity)
+           console.log(this.CurrentOpacity)
 
     }
 
 
-    
-    onUnload()
-    {
-
-
-
-    }
-  
-
-
-
-    
+        
            
 }
 
