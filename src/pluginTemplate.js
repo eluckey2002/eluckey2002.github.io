@@ -38,7 +38,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
   class EvanPlugAnimateOpacityComp extends BaseComponent {
 
-    Opacity = 0.8
+    Opacity = 0.6
     OpacityMax = 0.8
     OpacityMin = 0.1
     OpacityStep = 0.01
@@ -54,7 +54,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
         this.OpacityMin = this.getField('opacity-min')
         this.OpacityMax = this.getField('opacity-max')
         this.OpacityStep = this.getField('opacity-step') 
-        this.Opacity = this.OpacityMax
+        this.Opacity = this.getField('opacity-max')
         this.dimUp = false;
         this.isRunnning = false
         this.isTimerRunning = false
