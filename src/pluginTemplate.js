@@ -17,7 +17,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
                 {id: 'opacity-min', name: 'Opacity Min', type: 'number', default: 0.5 },
                 {id: 'opacity-max', name: 'Opacity Max', type: 'number', default: 1 },
                 {id: 'opacity-step', name: 'opacity Step Size', type: 'number', default: 0.1 },     
-                {id: 'btn-Action', name: 'Action!', type: 'button'} 
+                {id: 'btn-start', name: 'Start!', type: 'button'} 
 
             ]
         })
@@ -52,7 +52,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
         this.OpacityMax = this.getField('opacity-max')
         this.OpacityStep = this.getField('opacity-step') * -1
         this.isRunnning = false
-        this.timer = setInterval(this.onTimer.bind(this), 2000)
+       
     
     
       
@@ -76,12 +76,12 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
             if (this.opacity < this.OpacityMin){
                 //opacity has reached min. Go back up. '
-                this.OpacityStep = this.OpacityStep * -1
+                this.OpacityStep = this.OpacityStep * - 1
             }
 
              if (this.opacity > this.OpacityMax) {
                 //opacity has reached max - substract
-                this.OpacityStep = this.OpacityStep * -1
+                this.OpacityStep = this.OpacityStep * - 1
             }
 
            this.opacity += this.OpacityStep
@@ -92,9 +92,9 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
     }
 
 
-    onSettingsUpdated(field, value)
+    Updated(field, value)
     {
-
+        console.log("field updated : " & field & " : " & value)
 
     }
 
@@ -107,8 +107,37 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
     onAction(id)
     {
-            //is there a button in the settings?
-            console.log("BUTTON PRESSED!")
+
+        console.log("animating object")
+        this.plugin.objects.animate({ target: this.objectID, duration: 1000, field: 'opacity', value: 0, delay: 1000 })
+
+            //is there a button in the settings? this worked!
+           if (id='btn-start') {
+               
+                if (this.isRunnning == false) {
+
+
+
+                    //restart values
+                    this.plugin.objects.update(this.objectID, { opacity: 1}, false)
+
+                    this.timer = setInterval(this.onTimer.bind(this), 2000)
+                    this.isRunnning = true
+                    console.log("Start Pressed and Interval set!")
+                }
+                else if (this.isRunnning == true)
+                {
+                    clearInterval(this.timer)
+                    this.isRunnning = false
+                    console.log("Stop Pressed. Interval removed")
+                  
+                }
+
+
+
+           }
+           
+
 
     }
 
