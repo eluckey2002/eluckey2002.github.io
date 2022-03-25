@@ -13,7 +13,7 @@ export default class EvanPlugAnimateOpacity extends BasePlugin {
 
         // Register coin component
         this.objects.registerComponent(EvanPlugAnimateOpacityComp, {
-            id: 'EvanPlugAnimateOpacity',
+            id: 'EvanPlugAnimateOpacity',   
             name: 'Evan Plug - Animate Opacity',
             description: 'Animate opacity ',
             settings: [

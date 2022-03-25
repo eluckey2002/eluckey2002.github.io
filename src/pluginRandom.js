@@ -74,13 +74,14 @@ export default class EvanPlugRandom extends BasePlugin {
     async onAction(id)
     {
 
-       
-      
+
+        console.log('action clicked!')
+        console.log(id)
 
             //is there a button in the settings? this worked!
            if (id=='btn-animateOpacity') {
                
-            this.plugin.objects.animate({ target: this.objectID, duration: this.getField('animate-duration'), field: 'opacity', value: this.getField('animate-value'), delay: this.getField('animate-delay') })
+            this.plugin.objects.animate({ target: this.objectID, duration: this.Duration, field: 'opacity', value: this.Value, delay: this.Delay })
           
            }
            
@@ -91,7 +92,7 @@ export default class EvanPlugRandom extends BasePlugin {
 
            if (id=='btn-animateScale') {
 
-            this.plugin.objects.animate({ target: this.objectID, duration: this.getField('animate-duration'), field: 'scale', value: this.getField('animate-value'), delay: this.getField('animate-delay') })
+            this.plugin.objects.animate({ target: this.objectID, duration: this.Duration, field: 'scale', value: this.Value, delay: this.Delay })
           
             
            }
