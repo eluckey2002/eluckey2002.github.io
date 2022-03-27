@@ -1,5 +1,4 @@
-
- module.exports = class iFrameAccordion extends BasePlugin {
+export default class iFrameAccordion extends BasePlugin {
 
     /** Plugin info */
     static get id()             { return 'evanplug-iframepanel' }
