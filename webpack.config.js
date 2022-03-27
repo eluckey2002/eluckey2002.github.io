@@ -2,12 +2,12 @@ const path = require('path')
 const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
-    entry: './src/pluginRandom.js',
+    entry: './src/iframeAccordion.js',
     mode: 'production',
     // mode: 'production',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'evanPluginRandom.js',
+        filename: 'evanPluginIframe.js',
         library: {
             name: 'module.exports',
             type: 'assign',

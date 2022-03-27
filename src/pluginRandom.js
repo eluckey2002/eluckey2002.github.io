@@ -22,7 +22,9 @@ export default class EvanPlugRandom extends BasePlugin {
                 {id: 'animate-value', name: 'opacity Step Size', type: 'number', default: 0 },     
                 {id: 'btn-animateOpacity', name: 'Animate Opacity!', type: 'button'},
                 {id: 'btn-animateScale', name: 'Animate Scale!', type: 'button'},
-                {id: 'btn-applyVelocity', name: 'Apply Vertical Velocity', type: 'button'}
+                {id: 'btn-applyVelocity', name: 'Apply Vertical Velocity', type: 'button'},
+                {id: 'btn-createObject', name: 'Apply Vertical Velocity', type: 'button'}
+
 
 
             ]
@@ -59,9 +61,6 @@ export default class EvanPlugRandom extends BasePlugin {
         this.Duration = parseInt(this.getField('animate-duration'))
         this.Delay = parseInt(this.getField('animate-delay'))
         this.Value = parseInt(this.getField('animate-value'))
-  
-     
-         
 
     }
 
@@ -73,7 +72,6 @@ export default class EvanPlugRandom extends BasePlugin {
 
     async onAction(id)
     {
-
 
         console.log('action clicked!')
         console.log(id)
@@ -97,22 +95,32 @@ export default class EvanPlugRandom extends BasePlugin {
             
            }
 
-           
+           if (id=='btn-createObject') {
+
+            this.plugin.objects.create({
+                type: 'sphere',
+                color: '#000',
+                x: 0,
+                y: 0,
+                height: 0,
+                name: 'EvanPluginSphere'
+            }
 
 
 
-         
+
+            )
+
+
+
+
+            }
+          
             
            
 
-           
-         
-
     }
-
-  
-        
-           
+         
 }
 
     
