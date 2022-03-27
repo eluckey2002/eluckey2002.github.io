@@ -23,13 +23,12 @@ export default class iframeAccordion extends BasePlugin  {
         // Register the button
         this.menus.register({
             id: 'evan-iframe-button',
-            icon: this.paths.absolute('./spotify.svg'),
             text: 'Iframe Test',
             section: 'controls',
             order: 3,
             inAccordion: true,
             panel: {
-                iframeURL: this.getField('url') || 'https://open.spotify.com/embed/playlist/0vC2B4CRTQfTu899Jh0Cxf',
+                iframeURL: this.getField('url'),
                 width: 320
             }
         })
@@ -51,13 +50,12 @@ export default class iframeAccordion extends BasePlugin  {
         // Re-register the button when settings have changed
         this.menus.register({
             id: 'evan-iframe-button',
-            icon: this.paths.absolute('./spotify.svg'),
             text: 'IFrame Test',
             section: 'controls',
             order: 3,
             inAccordion: true,
             panel: {
-                iframeURL: value || 'https://open.spotify.com/embed/playlist/0vC2B4CRTQfTu899Jh0Cxf',
+                iframeURL: value,
                 width: 320
             }
         })
