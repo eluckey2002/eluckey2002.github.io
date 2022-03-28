@@ -36,16 +36,17 @@ export default class iframeAccordion extends BasePlugin  {
     }
 
     async onMessage(e) {
-    
+    console.log("on Message received")
+    console.log(e)
         // Update image now if panel loaded
         if (e.action === 'send-toast') {
-            this.sendAlert()
+           this.sendAlert()
             return
         }
     }
 
     sendAlert(){
-
+        console.log("alert function called")
         this.menus.alert('Button called from iframe','Message','Info')
 
     }
