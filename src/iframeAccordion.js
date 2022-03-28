@@ -35,6 +35,21 @@ export default class iframeAccordion extends BasePlugin  {
 
     }
 
+    async onMessage(e) {
+    
+        // Update image now if panel loaded
+        if (e.action === 'send-toast') {
+            this.sendAlert()
+            return
+        }
+    }
+
+    sendAlert(){
+
+        this.menus.alert('Button called from iframe','Message','Info')
+
+    }
+    
     /**
      * Updates the plugin when the settings have changed.
      * @param {string} field Field that has been updated.

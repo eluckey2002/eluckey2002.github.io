@@ -6,8 +6,8 @@
   </head>
   <body>
     <div id="grid-gap">
-      <div class="cell">Send Toast style message</div>
-      <div class="cell">Cell</div>
+      <div class="cell"><Button name="btnSendToast" onclick="btnSendToast()">Send Toast Message</Button></div>
+      
       <div class="cell">Send Alert style message</div>
       <div class="cell">Cell</div>
 
@@ -16,4 +16,14 @@
 
     </div>
   </body>
+  <script>
+
+    btnSendToast()
+    {
+         // On load, ask the plugin to send us all messages
+         parent.postMessage({ action: 'send-toast' }, 'Here is my toast message')
+
+    }
+
+  </script>
 </html>

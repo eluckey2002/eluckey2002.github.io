@@ -198,7 +198,7 @@ export default class SendUserMessages extends BasePlugin {
 
             this.menus.displayPopup({
                 title: 'Popup Message',
-                inAccordion: true,
+                inAccordion: false,
                 section: 'controls',
                 panel: {
                     iframeURL: msg.text,
