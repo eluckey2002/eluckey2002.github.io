@@ -30,7 +30,7 @@ export default class iframeAccordion extends BasePlugin  {
             order: 3,
             inAccordion: true,
             panel: {
-                iframeURL: this.getField('url'),
+                iframeURL: this.paths.absolute('./iframe.html'),
                 width: 320
             }
         })
@@ -65,18 +65,7 @@ export default class iframeAccordion extends BasePlugin  {
             return
         }
 
-        // Re-register the button when settings have changed
-        this.menus.register({
-            id: 'evan-iframe-button',
-            text: 'IFrame Test',
-            section: 'controls',
-            order: 3,
-            inAccordion: true,
-            panel: {
-                iframeURL: value,
-                width: 320
-            }
-        })
+    return
 
     }
 
