@@ -21,9 +21,15 @@
     function btnSendToast()
     {
 
+      console.log("btn from iframe clicked")
+
          // On load, ask the plugin to send us all messages
-         parent.send({ action: 'send-toast' })
-         
+        // parent.send({ action: 'send-toast' })
+
+
+         // On load, ask the plugin to send us all messages
+        parent.postMessage({ action: 'send-toast' }, '*')
+
     }
 
   </script>
