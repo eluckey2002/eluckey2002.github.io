@@ -6,31 +6,36 @@
   </head>
   <body>
     <div id="grid-gap">
-      <div class="cell"><Button name="btnSendToast" onclick="btnSendToast()">Send Toast Message</Button></div>
-      
-      <div class="cell">Send Alert style message</div>
-      <div class="cell">Cell</div>
-
-      <div class="cell">Send Toast style message</div>
-      <div class="cell">Cell</div>
-
+      <div class="cell"><Button name="btnSendToast" onclick="btnSendToast()">Sends alert</Button></div>
+      <div class="cell">Send alert using parent.postMessage</div>
+      <div class="cell"><Button name="btnSendAlert" onclick="btnSendAlert()">Sends alert</Button></div>
+      <div class="cell">Send alert using parent.send</div>
+      <div class="cell"><button name=btnAnimate onclick="btnAnimate()">Animate Opacity</button></div>
+      <div class="cell"><input type="text" id="txtObjectID" value="Enter Object ID"> 
     </div>
   </body>
   <script>
 
+
+    //WORKING!!
     function btnSendToast()
     {
 
-      console.log("btn from iframe clicked")
-
-         // On load, ask the plugin to send us all messages
-        // parent.send({ action: 'send-toast' })
-
-
-         // On load, ask the plugin to send us all messages
+        //working - do not know about the * ?
         parent.postMessage({ action: 'send-toast' }, '*')
 
     }
+
+    function btnSendAlert()
+    {
+         parent.send({ action: 'send-alert' })
+
+    }
+
+    function btnAnimate()
+
+    let objID = document.getElementById("txtObjectID")
+    parent.send({action: 'animate', id: objID})
 
   </script>
 </html>

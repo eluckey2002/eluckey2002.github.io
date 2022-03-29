@@ -22,7 +22,9 @@ export default class iframeAccordion extends BasePlugin  {
             }
         })
 
+        //WORKING! Allows cross-origin - use the this.paths.absolute
         // Register the button
+        
         this.menus.register({
             id: 'evan-iframe-button',
             text: 'Iframe Test',
@@ -37,22 +39,53 @@ export default class iframeAccordion extends BasePlugin  {
 
     }
 
+    //working!
     async onMessage(e) {
-  //  console.log("on Message received")
-   // console.log(e)
-        // Update image now if panel loaded
+       
         if (e.action === 'send-toast') {
            this.sendAlert()
             return
         }
+
+
+
+        if (e.action === 'send-alert') {
+            this.sendAlert2()
+             return
+         }
+
+         if (e.action === 'animate') {
+            this.animate(e.id)
+             return
+         }
     }
 
+
+    //working! iframe uses parent.postMessage with * 
     sendAlert(){
         console.log("alert function called")
         this.menus.alert('Button called from iframe','Message','Info')
 
     }
     
+
+    //testing iframe calling parent.send
+    sendAlert2()
+    {
+        this.menus.alert('Button called from iframe','Message','Info')
+
+
+    }
+
+    animate(objID)
+    {
+        this.objects.animate({ target: objID, duration: 1000, field: 'opacity', value: 0, delay: 1000 })
+
+    }
+
+
+
+
     /**
      * Updates the plugin when the settings have changed.
      * @param {string} field Field that has been updated.
