@@ -8,6 +8,8 @@ export default class iframeAccordion extends BasePlugin  {
     /** Called when the plugin is loaded */
     onLoad() {
 
+        this.crossOrigin = 'anonymous'
+
         // Allow playlist URL to be modified
         this.menus.register({
             id: 'evanplug-iframepanel',
