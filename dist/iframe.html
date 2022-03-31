@@ -28,15 +28,15 @@
 
     function btnSendAlert()
     {
-         parent.send({ action: 'send-alert' })
+         parent.postMessage({ action: 'send-alert' })
 
     }
 
     function btnAnimate()
     {
 
-    let objID = document.getElementById("txtObjectID")
-    parent.send({action: 'animate', id: objID})
+    let objID = document.getElementById("txtObjectID").value
+    parent.postMessage({action: 'animate', id: objID})
     }
     
   </script>
