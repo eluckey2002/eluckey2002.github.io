@@ -47,8 +47,6 @@ export default class iframeAccordion extends BasePlugin  {
             return
         }
 
-
-
         if (e.action === 'send-alert') {
             this.sendAlert2()
              return

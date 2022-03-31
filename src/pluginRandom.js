@@ -57,7 +57,6 @@ export default class EvanPlugRandom extends BasePlugin {
     {
         this.instanceID = Math.random().toString(36).substring(2)
 
-       
         this.Duration = parseInt(this.getField('animate-duration'))
         this.Delay = parseInt(this.getField('animate-delay'))
         this.Value = parseInt(this.getField('animate-value'))
@@ -68,8 +67,6 @@ export default class EvanPlugRandom extends BasePlugin {
      
 
     
-
-
     async onAction(id)
     {
 
@@ -100,9 +97,9 @@ export default class EvanPlugRandom extends BasePlugin {
             this.plugin.objects.create({
                 type: 'sphere',
                 color: '#000',
-                x: 0,
-                y: 0,
-                height: 0,
+                x: 5,
+                y: 5,
+                height: 5,
                 name: 'EvanPluginSphere'
             }
 
