@@ -22,9 +22,31 @@ export default class iframeAccordion extends BasePlugin  {
             }
         })
 
+           // Register the overlay UI
+           this.infoOverlayID = this.menus.register({
+            section: 'infopanel',
+            panel: {
+                iframeURL: this.paths.absolute('./overlay.html'),
+                width: 300,
+                height: 100
+            }
+        })
+
         //WORKING! Allows cross-origin - use the this.paths.absolute
         // Register the button
         
+        this.menus.register({
+            id: 'evan-iframe-button',
+            text: 'Iframe Test',
+            section: 'controls',
+            order: 3,
+            inAccordion: true,
+            panel: {
+                iframeURL: this.paths.absolute('./iframe.html'),
+                width: 320
+            }
+        })
+
         this.menus.register({
             id: 'evan-iframe-button',
             text: 'Iframe Test',

@@ -7,14 +7,15 @@
   <body>
     <div id="grid-gap">
       <div class="cell"><Button name="btnSendToast" onclick="btnSendToast()">Sends alert</Button></div>
-      <div class="cell">Send alert using parent.postMessage</div>
+      <div class="cell"><input type="text" id="txtToastMsg" onfocus="this.value=''" value="Enter message"></div>
       <div class="cell"><Button name="btnSendAlert" onclick="btnSendAlert()">Sends alert</Button></div>
       <div class="cell">Send alert using parent.send</div>
       <div class="cell"><button name=btnAnimate onclick="btnAnimate()">Animate Opacity</button></div>
-      <div class="cell"><input type="text" id="txtObjectID" value="Enter Object ID"> 
+      <div class="cell"><input type="text" id="txtObjectID" onfocus="this.value=''" value="Enter Object ID"> 
     </div>
   </body>
   <script>
+
 
 
     //WORKING!!
@@ -28,15 +29,31 @@
 
     function btnSendAlert()
     {
-         parent.postMessage({ action: 'send-alert' })
+
+         console.log("click send alert")
+         parent.postMessage({ action: 'send-alert' }, '*')
 
     }
 
     function btnAnimate()
     {
-
+    console.log('click animate opacity')
+    
     let objID = document.getElementById("txtObjectID").value
-    parent.postMessage({action: 'animate', id: objID})
+
+    console.log(objId)
+
+    parent.postMessage({action: 'animate', id: objID}, '*')
+    }
+
+
+    function btnApplyVelocity()
+    {
+      console.log('apply velocity')
+      parent.postMessage({action: 'applyVelocity'}, '*')
+
+
+
     }
     
   </script>
