@@ -78,8 +78,20 @@ export default class iframeAccordion extends BasePlugin  {
             this.animate(e.id)
              return
          }
+
+         if (e.action === 'applyVelocity') {
+            this.applyVelocity()
+            return
+
+         }
     }
 
+    applyVelocity()
+    {
+
+            console.log("apply velocity code needed")
+
+    }
 
     //working! iframe uses parent.postMessage with * 
     sendAlert(){
@@ -97,9 +109,15 @@ export default class iframeAccordion extends BasePlugin  {
 
     }
 
-    animate(objID)
+    animate(objId)
     {
-        this.objects.animate({ target: objID, duration: 1000, field: 'opacity', value: 0, delay: 1000 })
+        this.objects.animate({ target: objId, duration: 1000, field: 'opacity', value: 0, delay: 1000 })
+
+    }
+
+    createObject()
+    {
+        this.objects.createObject({})
 
     }
 

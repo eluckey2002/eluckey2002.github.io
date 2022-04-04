@@ -11,8 +11,9 @@
       <div class="cell"><Button name="btnSendAlert" onclick="btnSendAlert()">Sends alert</Button></div>
       <div class="cell">Send alert using parent.send</div>
       <div class="cell"><button name=btnAnimate onclick="btnAnimate()">Animate Opacity</button></div>
-      <div class="cell"><input type="text" id="txtObjectID" onfocus="this.value=''" value="Enter Object ID"> 
-    </div>
+      <div class="cell"><input type="text" id="txtObjectID" onfocus="this.value=''" value="Enter Object ID"> </div>
+      <div class="cell"><button name=btnApplyVelocity onclick="btnApplyVelocity()">Apply Velocity</button></div>
+      <div class="cell"><input type="text" id="txtApplyVelocity" onfocus="this.value=''"> </div>
   </body>
   <script>
 
@@ -39,11 +40,11 @@
     {
     console.log('click animate opacity')
     
-    let objID = document.getElementById("txtObjectID").value
+    let objId = document.getElementById("txtObjectID").value
 
     console.log(objId)
 
-    parent.postMessage({action: 'animate', id: objID}, '*')
+    parent.postMessage({action: 'animate', id: objId}, '*')
     }
 
 
