@@ -9,6 +9,7 @@ export default class iframeAccordion extends BasePlugin  {
     onLoad() {
 
         this.crossOrigin = 'anonymous'
+        this.objID = ''
 
         // Allow playlist URL to be modified
         this.menus.register({
@@ -84,7 +85,7 @@ export default class iframeAccordion extends BasePlugin  {
             let objHeight = obj.height
 
             this.objects.update(obj.id, {height: objHeight+1}, false)
-
+          
             console.log('obj height increased')
              
          }
@@ -115,7 +116,7 @@ export default class iframeAccordion extends BasePlugin  {
 
     animate(objId)
     {
-        this.objects.animate({ target: objId, duration: 1000, field: 'Opacity', value: 0, delay: 1000 })
+        this.objects.animate({ target: this.objID, duration: 2000, field: 'Opacity', value: 0, delay: 1000 })
 
     }
 
@@ -123,8 +124,8 @@ export default class iframeAccordion extends BasePlugin  {
     {
         console.log('create object message received and in method')
         //in development
-       let objID = await this.objects.create({type: 'cube'})
-       console.log(objID)
+       this.objID = await this.objects.create({type: 'cube'})
+       console.log(this.objID)
 
     }
 
