@@ -13,7 +13,7 @@
       <div class="cell"><button name=btnAnimate onclick="btnAnimate()">Animate Opacity</button></div>
       <div class="cell"><input type="text" id="txtObjectID" onfocus="this.value=''" value="Enter Object ID"> </div>
       <div class="cell"><button name=btnCreateObject onclick="btnCreateObject()">Create Object</button>
-          <button name="btnIncreaseHeight" onclick="btnUpdateSize"> Increase Height</button></div>
+          <button name="btnIncreaseHeight" onclick="btnUpdateSize()"> Increase Height</button></div>
       <div class="cell">Create an cube</div>
      
   </body>
@@ -53,14 +53,14 @@
 
     function btnCreateObject()
     {
-      console.log('create object')
+      
       parent.postMessage({action: 'createObject'}, '*')
 
 
 
     }
 
-    function btnUpdateSize(e)
+    function btnUpdateSize()
     {
 
       let objID = document.getElementById("txtObjectID").value
