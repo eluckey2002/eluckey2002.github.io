@@ -79,7 +79,8 @@ export default class iframeAccordion extends BasePlugin  {
     {
         console.log('increase called')
         console.log(msg.id)
-        console.log("is the id passed from js")
+        console.log(msg.scale_y)
+        console.log("is the id and scale passed from js")
          if (msg.action === 'increase') {
 
             let obj = await this.objects.get(msg.id)
@@ -133,10 +134,10 @@ export default class iframeAccordion extends BasePlugin  {
         //in development
        this.objID = await this.objects.create(
            { type: 'cube',
-           parent: this.flatContainerID,
            scale: 1.0,
            x: 5,
            y: 5,
+           scale_y: 1.0,
            height: 2,
            clientOnly: false,
            shading: 'basic',
