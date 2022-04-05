@@ -12,8 +12,10 @@
       <div class="cell">Send alert using parent.send</div>
       <div class="cell"><button name=btnAnimate onclick="btnAnimate()">Animate Opacity</button></div>
       <div class="cell"><input type="text" id="txtObjectID" onfocus="this.value=''" value="Enter Object ID"> </div>
-      <div class="cell"><button name=btnApplyVelocity onclick="btnApplyVelocity()">Apply Velocity</button></div>
-      <div class="cell"><input type="text" id="txtApplyVelocity" onfocus="this.value=''"> </div>
+      <div class="cell"><button name=btnCreateObject onclick="btnCreateObject()">Create Object</button>
+          <button name="btnIncreaseHeight" onclick="btnUpdateSize"> Increase Height</button></div>
+      <div class="cell">Create an cube</div>
+     
   </body>
   <script>
 
@@ -22,9 +24,10 @@
     //WORKING!!
     function btnSendToast()
     {
+      let message = document.getElementById("txtToastMsg").value
 
         //working - do not know about the * ?
-        parent.postMessage({ action: 'send-toast' }, '*')
+        parent.postMessage({ action: 'send-toast', value: message }, '*')
 
     }
 
@@ -48,12 +51,20 @@
     }
 
 
-    function btnApplyVelocity()
+    function btnCreateObject()
     {
-      console.log('apply velocity')
-      parent.postMessage({action: 'applyVelocity'}, '*')
+      console.log('create object')
+      parent.postMessage({action: 'createObject'}, '*')
 
 
+
+    }
+
+    function btnUpdateSize(e)
+    {
+
+      let objID = document.getElementById("txtObjectID").value
+      parent.postMessage({action: 'increase', id: objID}, '*')
 
     }
     

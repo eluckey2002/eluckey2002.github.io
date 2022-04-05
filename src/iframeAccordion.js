@@ -22,15 +22,7 @@ export default class iframeAccordion extends BasePlugin  {
             }
         })
 
-           // Register the overlay UI
-           this.infoOverlayID = this.menus.register({
-            section: 'infopanel',
-            panel: {
-                iframeURL: this.paths.absolute('./overlay.html'),
-                width: 300,
-                height: 100
-            }
-        })
+         
 
         //WORKING! Allows cross-origin - use the this.paths.absolute
         // Register the button
@@ -47,17 +39,7 @@ export default class iframeAccordion extends BasePlugin  {
             }
         })
 
-        this.menus.register({
-            id: 'evan-iframe-button',
-            text: 'Iframe Test',
-            section: 'controls',
-            order: 3,
-            inAccordion: true,
-            panel: {
-                iframeURL: this.paths.absolute('./iframe.html'),
-                width: 320
-            }
-        })
+       
 
     }
 
@@ -65,7 +47,7 @@ export default class iframeAccordion extends BasePlugin  {
     async onMessage(e) {
        
         if (e.action === 'send-toast') {
-           this.sendAlert()
+           this.sendAlert(e.value)
             return
         }
 
@@ -79,24 +61,46 @@ export default class iframeAccordion extends BasePlugin  {
              return
          }
 
-         if (e.action === 'applyVelocity') {
-            this.applyVelocity()
+         if (e.action === 'createObject') {
+            this.createObject()
+            return
+
+         }
+
+         if (e.action === 'increase') {
+            this.updateSize(e)
             return
 
          }
     }
 
+    updateSize(msg)
+    {
+        console.log('increase called')
+         if (msg.action === 'increase') {
+
+            let obj = this.objects.get(msg.id)
+            console.log(obj)
+            let objHeight = obj.height
+
+            this.objects.update(obj.id, {height: objHeight+1}, false)
+
+            console.log('obj height increased')
+             
+         }
+    }
+
     applyVelocity()
     {
-
+            //not connected to front end
             console.log("apply velocity code needed")
 
     }
 
     //working! iframe uses parent.postMessage with * 
-    sendAlert(){
+    sendAlert(msg){
         console.log("alert function called")
-        this.menus.alert('Button called from iframe','Message','Info')
+        this.menus.alert(msg,'Message','Info')
 
     }
     
@@ -111,15 +115,18 @@ export default class iframeAccordion extends BasePlugin  {
 
     animate(objId)
     {
-        this.objects.animate({ target: objId, duration: 1000, field: 'opacity', value: 0, delay: 1000 })
+        this.objects.animate({ target: objId, duration: 1000, field: 'Opacity', value: 0, delay: 1000 })
 
     }
 
     createObject()
     {
-        this.objects.createObject({})
+        //in development
+       let objID = this.objects.createObject({type: 'cube'})
 
     }
+
+
 
 
 
