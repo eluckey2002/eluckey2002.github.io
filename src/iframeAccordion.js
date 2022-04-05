@@ -76,10 +76,10 @@ export default class iframeAccordion extends BasePlugin  {
     }
 
    async updateSize(msg)
-    {
+    { //create and scale are working!
         console.log('increase called')
         console.log(msg.id)
-        console.log(msg.scale_y)
+       
         console.log("is the id and scale passed from js")
          if (msg.action === 'increase') {
 
@@ -130,8 +130,9 @@ export default class iframeAccordion extends BasePlugin  {
 
   async createObject()
     {
+        //create and scale are working!
         console.log('create object message received and in method')
-        //in development
+   
        this.objID = await this.objects.create(
            { type: 'cube',
            scale: 1.0,
