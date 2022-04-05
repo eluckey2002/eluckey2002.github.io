@@ -79,13 +79,18 @@ export default class iframeAccordion extends BasePlugin  {
     {
         console.log('increase called')
         console.log(msg.id)
+        console.log("is the id passed from js")
          if (msg.action === 'increase') {
 
             let obj = await this.objects.get(msg.id)
             console.log(obj)
-            let objHeight = obj.height
+            console.log(obj.id)
+          //  let objHeight = obj.height
+            console.log(obj.x)
+            console.log(obj.y)
+            console.log(obj.height)
 
-            this.objects.update(obj.id, {height: objHeight+1})
+           await this.objects.update(obj.id, {height: 5})
           
             console.log('obj height increased')
              
@@ -127,6 +132,7 @@ export default class iframeAccordion extends BasePlugin  {
         //in development
        this.objID = await this.objects.create({type: 'cube'})
        console.log(this.objID)
+       console.log("is the id returned from creating the object")
 
     }
 
