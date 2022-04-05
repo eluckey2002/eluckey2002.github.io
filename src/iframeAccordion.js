@@ -75,16 +75,17 @@ export default class iframeAccordion extends BasePlugin  {
          }
     }
 
-    updateSize(msg)
+   async updateSize(msg)
     {
         console.log('increase called')
+        console.log(msg.id)
          if (msg.action === 'increase') {
 
-            let obj = this.objects.get(msg.id)
+            let obj = await this.objects.get(msg.id)
             console.log(obj)
             let objHeight = obj.height
 
-            this.objects.update(obj.id, {height: objHeight+1}, false)
+            this.objects.update(obj.id, {height: objHeight+1})
           
             console.log('obj height increased')
              
