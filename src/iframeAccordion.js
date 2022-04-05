@@ -122,7 +122,7 @@ export default class iframeAccordion extends BasePlugin  {
     createObject()
     {
         //in development
-       let objID = this.objects.createObject({type: 'cube'})
+       let objID = this.objects.create({type: 'cube'})
 
     }
 
