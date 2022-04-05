@@ -85,12 +85,12 @@ export default class iframeAccordion extends BasePlugin  {
             let obj = await this.objects.get(msg.id)
             console.log(obj)
             console.log(obj.id)
-           //let objHeight = obj.height
+            let objYHeight = obj.scale_y
             console.log(obj.x)
             console.log(obj.y)
             console.log(obj.height)
 
-           await this.objects.update(obj.id, {height: 5})
+           await this.objects.update(obj.id, {scale_y: objYHeight +1, height: obj.height+1})
           
             console.log('obj height increased')
              
