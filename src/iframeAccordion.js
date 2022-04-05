@@ -124,6 +124,7 @@ export default class iframeAccordion extends BasePlugin  {
         console.log('create object message received and in method')
         //in development
        let objID = await this.objects.create({type: 'cube'})
+       console.log(objID)
 
     }
 
