@@ -85,7 +85,7 @@ export default class iframeAccordion extends BasePlugin  {
             let obj = await this.objects.get(msg.id)
             console.log(obj)
             console.log(obj.id)
-          //  let objHeight = obj.height
+           //let objHeight = obj.height
             console.log(obj.x)
             console.log(obj.y)
             console.log(obj.height)
@@ -120,7 +120,7 @@ export default class iframeAccordion extends BasePlugin  {
 
     }
 
-    animate(objId)
+    animate(e)
     {
         this.objects.animate({ target: this.objID, duration: 2000, field: 'Opacity', value: 0, delay: 1000 })
 
@@ -130,14 +130,26 @@ export default class iframeAccordion extends BasePlugin  {
     {
         console.log('create object message received and in method')
         //in development
-       this.objID = await this.objects.create({type: 'cube'})
+       this.objID = await this.objects.create(
+           { type: 'cube',
+           parent: this.flatContainerID,
+           scale: 1.0,
+           x: 5,
+           y: 5,
+           height: 2,
+           clientOnly: false,
+           shading: 'basic',
+           disabled: false,
+           targetable: true,
+           color: '#A52A2A'}, false)
+
        console.log(this.objID)
+
        console.log("is the id returned from creating the object")
 
     }
 
-
-
+   
 
 
 
