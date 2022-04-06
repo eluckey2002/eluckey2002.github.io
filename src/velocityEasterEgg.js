@@ -1,4 +1,4 @@
-export default class iframeAccordion extends BasePlugin  {
+export default class evanPlugEvanOnEnter extends BasePlugin  {
 
     /** Plugin info */
     static get id()             { return 'evanplug-velocityEasterEgg' }
@@ -24,7 +24,7 @@ export default class iframeAccordion extends BasePlugin  {
 }
 
 class evanPlugVelocityBase extends BaseComponent {
-
+    hasTriggered = false
 
     onLoad(){
         console.log("Velocity Plug BaseComponet loaded - v.01")
@@ -38,7 +38,7 @@ class evanPlugVelocityBase extends BaseComponent {
     }
 
 
-    /** Called on a regular basis to check if user can pick up power-up */
+   
     async onTimer() {
 
         // Only allow triggering once
