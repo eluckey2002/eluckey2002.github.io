@@ -7,7 +7,7 @@ module.exports = {
     // mode: 'production',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'evanIframe.js',
+        filename: 'evanOnEnter.js',
         library: {
             name: 'module.exports',
             type: 'assign',
