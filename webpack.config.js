@@ -2,7 +2,7 @@ const path = require('path')
 const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
-    entry: './src/iframeAccordion.js',
+    entry: './src/velocityEasterEgg.js',
     mode: 'production',
     // mode: 'production',
     output: {
