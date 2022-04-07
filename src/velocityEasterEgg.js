@@ -67,10 +67,25 @@ class evanPlugVelocityBase extends BaseComponent {
     }
 
     onEnter(){
+        this.hasTriggered = true
         console.log("onEnter called!")
-    
+
+         // Get user position
+         let userPos = await this.plugin.user.getPosition()
+
+         //set position in air
+        this.plugin.user.setPosition(userPos.x, userPos.y + 20, userPos.z, false)   
+        
+        //display toast
+        this.plugin.menus.toast({     
+            text: 'You are now flying!!! Weeeeeeee!',
+            textColor: '#2DCA8C',
+            duration: 5000})
+   
     
     }
+
+   
 
   
 }
