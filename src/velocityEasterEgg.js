@@ -81,6 +81,8 @@ class evanPlugVelocityBase extends BaseComponent {
             text: 'You are now flying!!! Weeeeeeee!',
             textColor: '#2DCA8C',
             duration: 5000})
+
+        this.hasTriggered = false
    
     
     }
