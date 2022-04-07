@@ -66,7 +66,7 @@ class evanPlugVelocityBase extends BaseComponent {
 
     }
 
-    onEnter(){
+   async onEnter(){
         this.hasTriggered = true
         console.log("onEnter called!")
 
@@ -74,7 +74,7 @@ class evanPlugVelocityBase extends BaseComponent {
          let userPos = await this.plugin.user.getPosition()
 
          //set position in air
-        this.plugin.user.setPosition(userPos.x, userPos.y + 20, userPos.z, false)   
+       await this.plugin.user.setPosition(userPos.x, userPos.y + 20, userPos.z, false)   
         
         //display toast
         this.plugin.menus.toast({     
