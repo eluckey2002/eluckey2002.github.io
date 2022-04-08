@@ -33,7 +33,7 @@ class evanPlugVelocityBase extends BaseComponent {
             // Generate instance ID
         //this.instanceID = Math.random().toString(36).substr(2)
 
-        this.timer = setInterval(this.checkIfWithin.bind(this), 200)
+        this.timer = setInterval(this.checkIfWithin.bind(this), 1000)
 
 
     }
@@ -106,6 +106,10 @@ class evanPlugVelocityBase extends BaseComponent {
          let maxZ = this.fields.world_center_z + this.fields.world_bounds_z/2
          let isNowInside = userPos.x >= minX && userPos.x <= maxX && userPos.y >= minY && userPos.y <= maxY && userPos.z >= minZ && userPos.z <= maxZ
         
+
+        console.log(isNowInside)
+        console.log(this.isPreviousInside)
+
          if (!this.isPreviousInside && isNowInside) //outside and now inside
          {
                 //user has entered
@@ -122,7 +126,7 @@ class evanPlugVelocityBase extends BaseComponent {
 
 
          }
-         
+
          if( this.isPreviousInside && !isNowInside) //inside and now outside
          {
                 //user has exited
