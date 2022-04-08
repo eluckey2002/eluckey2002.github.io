@@ -122,7 +122,8 @@ class evanPlugVelocityBase extends BaseComponent {
 
 
          }
-         if(this.isPrevious = "inside" && !isNowInside) //inside and now outside
+         
+         if( this.isPreviousInside && !isNowInside) //inside and now outside
          {
                 //user has exited
                 this.isPreviousInside = false
