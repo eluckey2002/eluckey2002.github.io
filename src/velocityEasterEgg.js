@@ -1,14 +1,14 @@
 export default class evanPlugEvanOnEnter extends BasePlugin  {
 
     /** Plugin info */
-    static get id()             { return 'evanplug-velocityEasterEgg' }
-    static get name()           { return 'velocityEasterEgg' }
-    static get description()    { return 'triggers velocity movement' }
+    static get id()             { return 'evanplug-CompEventMessaging' }
+    static get name()           { return 'evanPlug-IDCompEventMessaging' }
+    static get description()    { return 'custom component enter exit' }
 
     /** Called when the plugin is loaded */
     onLoad() {
 
-       console.log("Velocity Plug loaded - v.01")
+       console.log("ComponentCompEventMessaging Plug loaded - v0.5")
        
         // Register component
         this.objects.registerComponent(evanPlugVelocityBase, {
@@ -16,7 +16,10 @@ export default class evanPlugEvanOnEnter extends BasePlugin  {
             name: 'Evan Plugin Testing',
             description: "Testing plugin capabilities",
             settings: [
-                { type: 'label', value: "This is the value in the label." }
+                { type: 'label', value: "onEnter Message" },
+                { id: 'txt-onEnter', type: 'text',  value: 'You have an entered a presentation sound zone. You can hear and speak to everyone throughout the whole zone. Sound is no longer limited by distance.'},
+                { type: 'label', value: "onExit Message" },
+                { id: 'txt-onExit', type: 'text',  value: 'You have left the presentation sound zone.  You will only be able to speak and hear others who are close to you.'}
             ]
         })
 
@@ -26,18 +29,38 @@ export default class evanPlugEvanOnEnter extends BasePlugin  {
 class evanPlugVelocityBase extends BaseComponent {
     hasTriggered = false
     isPreviousInside = false
+    onEnterMessage = ""
+    onExitMessage = ""
 
     onLoad(){
-        console.log("Velocity Plug BaseComponet loaded - v.01")
+        console.log("Event Component Loaded 0.5v")
 
             // Generate instance ID
         //this.instanceID = Math.random().toString(36).substr(2)
 
         this.timer = setInterval(this.checkIfWithin.bind(this), 1000)
 
+    
+
 
     }
 
+    onUnload(){
+            console.log("on unload method called")
+
+            clearInterval(this.Timer)
+
+
+    }
+
+
+    onSettingsUpdated(field, value){
+            //called when field is updated
+
+            console.log(field + ' changed to ' + value)
+
+
+    }
 
    
     async onTimer() {
@@ -107,9 +130,7 @@ class evanPlugVelocityBase extends BaseComponent {
          let isNowInside = userPos.x >= minX && userPos.x <= maxX && userPos.y >= minY && userPos.y <= maxY && userPos.z >= minZ && userPos.z <= maxZ
         
 
-        console.log(isNowInside)
-        console.log(this.isPreviousInside)
-
+    
          if (!this.isPreviousInside && isNowInside) //outside and now inside
          {
                 //user has entered
@@ -117,7 +138,7 @@ class evanPlugVelocityBase extends BaseComponent {
                 
                 //display toast
                 this.plugin.menus.toast({     
-                text: 'You have an entered a presentation sound zone. You can hear and speak to everyone throughout the whole zone. Sound is no longer limiited by distance.',
+                text: 'You have an entered a presentation sound zone. You can hear and speak to everyone throughout the whole zone. Sound is no longer limited by distance.',
                 textColor: '#2DCA8C',
                 duration: 5000})
 

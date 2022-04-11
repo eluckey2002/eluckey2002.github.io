@@ -46,7 +46,7 @@ class StageButton extends React.PureComponent {
         this.props.plugin.hooks.addHandler('stageView.refresh', this.onRefresh)
 
         // Add flash timer
-      //  this.flashTimer = Timer.setInterval(this.doFlash.bind(this), 3000)
+      //   this.flashTimer = Timer.setInterval(this.doFlash.bind(this), 3000)
 
     }
 
