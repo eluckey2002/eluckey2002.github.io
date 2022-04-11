@@ -16,9 +16,9 @@ export default class evanPlugEvanOnEnter extends BasePlugin  {
             name: 'Evan Plugin Testing',
             description: "Testing plugin capabilities",
             settings: [
-                { type: 'label', value: "onEnter Message" },
+                { id: 'lbl-onEnter', type: 'label', value: "onEnter Message" },
                 { id: 'txt-onEnter', type: 'text',  value: 'You have an entered a presentation sound zone. You can hear and speak to everyone throughout the whole zone. Sound is no longer limited by distance.'},
-                { type: 'label', value: "onExit Message" },
+                { id: 'lbl-onExit', type: 'label', value: "onExit Message" },
                 { id: 'txt-onExit', type: 'text',  value: 'You have left the presentation sound zone.  You will only be able to speak and hear others who are close to you.'}
             ]
         })
