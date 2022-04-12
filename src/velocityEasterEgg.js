@@ -17,10 +17,10 @@ export default class evanPlugEvanOnEnter extends BasePlugin  {
             description: "Testing plugin capabilities",
             settings: [
                 { id: 'lbl-onEnter', type: 'label', value: "onEnter Message" },
-                { id: 'txt-onEnter', type: 'text',  default: "You have an entered a presentation sound zone. You can hear and speak to everyone throughout the whole zone. Sound is no longer limited by distance."},
+                { id: 'txt-onEnter', type: 'text',  default: 'You have an entered a presentation sound zone. You can hear and speak to everyone throughout the whole zone. Sound is no longer limited by distance.'},
                 { id: 'lbl-onExit', type: 'label', value: "onExit Message" },
-                { id: 'txt-onExit', type: 'text',  default: "You have left the presentation sound zone.  You will only be able to speak and hear others who are close to you."}
-               
+                { id: 'txt-onExit', type: 'text',  default: 'You have left the presentation sound zone.  You will only be able to speak and hear others who are close to you.'},
+                { id: 'btn-action-update', type: 'button', value: 'Update' }
             ]
         })
 
@@ -36,7 +36,7 @@ class evanPlugVelocityBase extends BaseComponent {
     instanceID = "string"
 
     onLoad(){
-        console.log("Event Component Loaded 0..52v")
+        console.log("Event Component Loaded 0..55v")
 
         //Generate instanceID
         this.instanceID = Math.random().toString(36).substring(2)
@@ -50,17 +50,26 @@ class evanPlugVelocityBase extends BaseComponent {
 
     }
 
+    onAction(id)
+    {
+        if (id==='btn-action-update')
+        {
+           console.log("btn action animate clicked")
+           console.log(this.getField('txt-onEnter'))
+           console.log(this.getField('txt-onExit'))
+        }
+
+    }
 
     onUnload(){
           
-
             clearInterval(this.Timer)
 
 
     }
 
 
-   
+  
 
    
     async onTimer() {
@@ -140,17 +149,14 @@ class evanPlugVelocityBase extends BaseComponent {
                 //user has entered
                 this.isPreviousInside = true
 
-                
-                
+
                 //display toast
                 this.plugin.menus.toast({     
-                text: this.getField('txt-onEnter').toString(),
+                text: this.getField('txt-onEnter'),
                 textColor: '#2DCA8C',
                 duration: 5000})
 
-                
-
-
+   
 
          }
 
@@ -162,7 +168,7 @@ class evanPlugVelocityBase extends BaseComponent {
                          
                 //display toast
                 this.plugin.menus.toast({     
-                    text: this.getField('txt-onExit').toString(),
+                    text: this.getField('txt-onExit'),
                     textColor: '#2DCA8C',
                     duration: 5000})
 
