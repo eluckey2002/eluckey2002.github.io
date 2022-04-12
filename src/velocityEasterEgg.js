@@ -17,10 +17,10 @@ export default class evanPlugEvanOnEnter extends BasePlugin  {
             description: "Testing plugin capabilities",
             settings: [
                 { id: 'lbl-onEnter', type: 'label', value: "onEnter Message" },
-                { id: 'txt-onEnter', type: 'text',  default: 'You have an entered a presentation sound zone. You can hear and speak to everyone throughout the whole zone. Sound is no longer limited by distance.'},
+                { id: 'txt-onEnter', type: 'text',  default: "You have an entered a presentation sound zone. You can hear and speak to everyone throughout the whole zone. Sound is no longer limited by distance."},
                 { id: 'lbl-onExit', type: 'label', value: "onExit Message" },
-                { id: 'txt-onExit', type: 'text',  default: 'You have left the presentation sound zone.  You will only be able to speak and hear others who are close to you.'},
-                { id: 'btn-action-update', type: 'button', value: 'Update' }
+                { id: 'txt-onExit', type: 'text',  default: "You have left the presentation sound zone.  You will only be able to speak and hear others who are close to you."}
+               
             ]
         })
 
@@ -50,19 +50,9 @@ class evanPlugVelocityBase extends BaseComponent {
 
     }
 
-    onAction(id)
-    {
-        if (id==='btn-action-update')
-        {
-           console.log("btn action animate clicked")
-           console.log(this.getField('txt-onEnter'))
-           console.log(this.getfield('txt-onExit'))
-        }
-
-    }
 
     onUnload(){
-            console.log("on unload method called")
+          
 
             clearInterval(this.Timer)
 
@@ -70,14 +60,7 @@ class evanPlugVelocityBase extends BaseComponent {
     }
 
 
-    onSettingsUpdated(field, value){
-            //called when field is updated
-            console.log(field + ' changed to ' + value)
-
-            
-
-
-    }
+   
 
    
     async onTimer() {
