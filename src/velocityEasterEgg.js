@@ -19,7 +19,8 @@ export default class evanPlugEvanOnEnter extends BasePlugin  {
                 { id: 'lbl-onEnter', type: 'label', value: "onEnter Message" },
                 { id: 'txt-onEnter', type: 'text',  default: 'You have an entered a presentation sound zone. You can hear and speak to everyone throughout the whole zone. Sound is no longer limited by distance.'},
                 { id: 'lbl-onExit', type: 'label', value: "onExit Message" },
-                { id: 'txt-onExit', type: 'text',  default: 'You have left the presentation sound zone.  You will only be able to speak and hear others who are close to you.'}
+                { id: 'txt-onExit', type: 'text',  default: 'You have left the presentation sound zone.  You will only be able to speak and hear others who are close to you.'},
+                { id: 'btn-action-update', type: 'button', value: 'Update' }
             ]
         })
 
@@ -31,17 +32,32 @@ class evanPlugVelocityBase extends BaseComponent {
     isPreviousInside = false
     onEnterMessage = ""
     onExitMessage = ""
+    isChecking = false
+    instanceID = "string"
 
     onLoad(){
-        console.log("Event Component Loaded 0..51v")
+        console.log("Event Component Loaded 0..52v")
 
-            // Generate instance ID
-        //this.instanceID = Math.random().toString(36).substr(2)
+        //Generate instanceID
+        this.instanceID = Math.random().toString(36).substring(2)
 
         this.timer = setInterval(this.checkIfWithin.bind(this), 1000)
 
+        
+
     
 
+
+    }
+
+    onAction(id)
+    {
+        if (id==='btn-action-update')
+        {
+           console.log("btn action animate clicked")
+           console.log(this.getField('txt-onEnter'))
+           console.log(this.getfield('txt-onExit'))
+        }
 
     }
 
@@ -57,6 +73,8 @@ class evanPlugVelocityBase extends BaseComponent {
     onSettingsUpdated(field, value){
             //called when field is updated
             console.log(field + ' changed to ' + value)
+
+            
 
 
     }
@@ -115,6 +133,10 @@ class evanPlugVelocityBase extends BaseComponent {
     }
 
    async checkIfWithin(){
+       if (this.isChecking){return}
+
+       this.isChecking = true
+
 
          // Get user position
          let userPos = await this.plugin.user.getPosition()
@@ -137,7 +159,7 @@ class evanPlugVelocityBase extends BaseComponent {
                 
                 //display toast
                 this.plugin.menus.toast({     
-                text: 'You have an entered a presentation sound zone. You can hear and speak to everyone throughout the whole zone. Sound is no longer limited by distance.',
+                text: this.getField('txt-onEnter'),
                 textColor: '#2DCA8C',
                 duration: 5000})
 
@@ -151,15 +173,18 @@ class evanPlugVelocityBase extends BaseComponent {
          {
                 //user has exited
                 this.isPreviousInside = false
-               
+
+                         
                 //display toast
                 this.plugin.menus.toast({     
-                    text: 'You have left the presentation sound zone.  You will only be able to speak and hear others who are close to you.',
+                    text: this.getField('txt-onExit'),
                     textColor: '#2DCA8C',
                     duration: 5000})
 
 
          }
+
+         this.isChecking = false
            
     }
    
