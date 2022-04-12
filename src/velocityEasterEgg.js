@@ -156,10 +156,12 @@ class evanPlugVelocityBase extends BaseComponent {
          {
                 //user has entered
                 this.isPreviousInside = true
+
+                
                 
                 //display toast
                 this.plugin.menus.toast({     
-                text: this.getField('txt-onEnter'),
+                text: this.getField('txt-onEnter').toString(),
                 textColor: '#2DCA8C',
                 duration: 5000})
 
@@ -177,7 +179,7 @@ class evanPlugVelocityBase extends BaseComponent {
                          
                 //display toast
                 this.plugin.menus.toast({     
-                    text: this.getField('txt-onExit'),
+                    text: this.getField('txt-onExit').toString(),
                     textColor: '#2DCA8C',
                     duration: 5000})
 
