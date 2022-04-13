@@ -2,7 +2,7 @@ const path = require('path')
 const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
-    entry: './prod/onEntryExitMessages.js',
+    entry: './src/onEntryExitMessages.js',
     mode: 'production',
     // mode: 'production',
     output: {

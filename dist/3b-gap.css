@@ -1,0 +1,20 @@
+/* (A) SET CONTAINER TO GRID */
+#grid-gap {
+  display: grid;
+  grid-template-columns: auto auto;
+
+  /* SET SPACING IN-BETWEEN CELLS */
+  grid-gap: 20px;
+
+  /* TO SET SPECIFIC SPACING
+  grid-column-gap: 10px;
+  grid-row-gap: 30px; */
+}
+
+/* (B) GRID CELLS */
+div.cell {
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(0, 0, 0);
+  padding: 10px;
+  color:rgb(0, 0, 0)
+}
