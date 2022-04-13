@@ -1,8 +1,8 @@
 export default class evanPlugEvanOnEnter extends BasePlugin  {
 
     /** Plugin info */
-    static get id()             { return 'evanplug-CompEventMessaging' }
-    static get name()           { return 'evanPlug-IDCompEventMessaging' }
+    static get id()             { return 'ep--CompEventMessaging' }
+    static get name()           { return 'ep-IDCompEventMessaging' }
     static get description()    { return 'custom component enter exit' }
 
     /** Called when the plugin is loaded */
@@ -92,7 +92,7 @@ class evanPlugVelocityBase extends BaseComponent {
         // Calculate distance between the user and this pickup
         const distance = Math.sqrt((x - userPos.x) ** 2 + (y - userPos.y) ** 2 + (z - userPos.z) ** 2)
 
-        // If close enough, trigger Mine
+        // If close enough
         let triggerDistance = 1
         if (distance < triggerDistance) {
             this.onEnter()
@@ -124,60 +124,7 @@ class evanPlugVelocityBase extends BaseComponent {
     
     }
 
-   async checkIfWithin(){
-       if (this.isChecking){return}
 
-       this.isChecking = true
-
-
-         // Get user position
-         let userPos = await this.plugin.user.getPosition()
-
-         // Check if we are inside this object
-         let minX = this.fields.world_center_x - this.fields.world_bounds_x/2
-         let minY = this.fields.world_center_y - this.fields.world_bounds_y/2
-         let minZ = this.fields.world_center_z - this.fields.world_bounds_z/2
-         let maxX = this.fields.world_center_x + this.fields.world_bounds_x/2
-         let maxY = this.fields.world_center_y + this.fields.world_bounds_y/2
-         let maxZ = this.fields.world_center_z + this.fields.world_bounds_z/2
-         let isNowInside = userPos.x >= minX && userPos.x <= maxX && userPos.y >= minY && userPos.y <= maxY && userPos.z >= minZ && userPos.z <= maxZ
-        
-
-    
-         if (!this.isPreviousInside && isNowInside) //outside and now inside
-         {
-                //user has entered
-                this.isPreviousInside = true
-
-
-                //display toast
-                this.plugin.menus.toast({     
-                text: this.getField('txt-onEnter'),
-                textColor: '#2DCA8C',
-                duration: 5000})
-
-   
-
-         }
-
-         if( this.isPreviousInside && !isNowInside) //inside and now outside
-         {
-                //user has exited
-                this.isPreviousInside = false
-
-                         
-                //display toast
-                this.plugin.menus.toast({     
-                    text: this.getField('txt-onExit'),
-                    textColor: '#2DCA8C',
-                    duration: 5000})
-
-
-         }
-
-         this.isChecking = false
-           
-    }
    
  
 }
