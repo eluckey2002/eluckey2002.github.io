@@ -2,12 +2,12 @@ const path = require('path')
 const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
-    entry: './src/velocityEasterEgg.js',
+    entry: './src/prod/onEntryExitMessages.js',
     mode: 'production',
     // mode: 'production',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'evanOnEnter.js',
+        filename: 'onEntryExitMessages.js',
         library: {
             name: 'module.exports',
             type: 'assign',
