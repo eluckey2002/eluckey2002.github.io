@@ -29,37 +29,20 @@ export default class evanPlugEvanOnEnter extends BasePlugin  {
 
 class evanPlugVelocityBase extends BaseComponent {
     hasTriggered = false
-    isPreviousInside = false
-    onEnterMessage = ""
-    onExitMessage = ""
-    isChecking = false
     instanceID = "string"
 
     onLoad(){
-        console.log("Event Component Loaded 0..55v")
+        console.log("Flying Velocity")
 
         //Generate instanceID
         this.instanceID = Math.random().toString(36).substring(2)
 
-        this.timer = setInterval(this.checkIfWithin.bind(this), 1000)
+        this.timer = setInterval(this.checkIfWithin.bind(this), 250)
 
-        
-
-    
-
-
+   
     }
 
-    onAction(id)
-    {
-        if (id==='btn-action-update')
-        {
-           console.log("btn action animate clicked")
-           console.log(this.getField('txt-onEnter'))
-           console.log(this.getField('txt-onExit'))
-        }
-
-    }
+  
 
     onUnload(){
           
@@ -103,7 +86,7 @@ class evanPlugVelocityBase extends BaseComponent {
 
    async onEnter(){
         this.hasTriggered = true
-        console.log("onEnter called!")
+      
 
          // Get user position
          let userPos = await this.plugin.user.getPosition()
@@ -112,7 +95,7 @@ class evanPlugVelocityBase extends BaseComponent {
         this.plugin.menus.toast({     
             text: 'You are flying!!! Weeeeeeee!',
             textColor: '#2DCA8C',
-            duration: 5000})
+            duration: 3000})
 
          //set position in air
        await this.plugin.user.setPosition(userPos.x+2, userPos.y + 20, userPos.z+2, false)   
