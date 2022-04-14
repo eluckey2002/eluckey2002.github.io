@@ -111,6 +111,8 @@ class evanPlugVelocityBase extends BaseComponent {
     }
 
    async onEnter(){
+       try
+       {
         this.hasTriggered = true
       
      
@@ -118,7 +120,7 @@ class evanPlugVelocityBase extends BaseComponent {
          // Get user position
          let userPos = await this.plugin.user.getPosition()
 
-         const xDist = partsInt(this.getField('xdist'))
+         const xDist = parseInt(this.getField('xdist'))
          const yDist = parseInt(this.getField('ydist'))
          const zDist = parseInt(this.getField('zdist'))
 
@@ -137,7 +139,11 @@ class evanPlugVelocityBase extends BaseComponent {
         
      
        this.hasTriggered = false
-       
+        
+        }
+        catch{
+            
+        }
    
     
     }
