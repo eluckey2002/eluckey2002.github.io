@@ -38,7 +38,7 @@ class evanPlugVelocityBase extends BaseComponent {
             // Generate instance ID
         //this.instanceID = Math.random().toString(36).substr(2)
 
-        this.timer = setInterval(this.checkIfWithin.bind(this), 1000)
+        this.timer = setInterval(this.onTimer.bind(this), 1000)
 
     
 
@@ -94,7 +94,7 @@ class evanPlugVelocityBase extends BaseComponent {
 
    async onEnter(){
         this.hasTriggered = true
-        console.log("onEnter called!")
+      
 
          // Get user position
          let userPos = await this.plugin.user.getPosition()
@@ -115,54 +115,7 @@ class evanPlugVelocityBase extends BaseComponent {
     
     }
 
-   async checkIfWithin(){
-
-         // Get user position
-         let userPos = await this.plugin.user.getPosition()
-
-         // Check if we are inside this object
-         let minX = this.fields.world_center_x - this.fields.world_bounds_x/2
-         let minY = this.fields.world_center_y - this.fields.world_bounds_y/2
-         let minZ = this.fields.world_center_z - this.fields.world_bounds_z/2
-         let maxX = this.fields.world_center_x + this.fields.world_bounds_x/2
-         let maxY = this.fields.world_center_y + this.fields.world_bounds_y/2
-         let maxZ = this.fields.world_center_z + this.fields.world_bounds_z/2
-         let isNowInside = userPos.x >= minX && userPos.x <= maxX && userPos.y >= minY && userPos.y <= maxY && userPos.z >= minZ && userPos.z <= maxZ
-        
-
-    
-         if (!this.isPreviousInside && isNowInside) //outside and now inside
-         {
-                //user has entered
-                this.isPreviousInside = true
-                
-                //display toast
-                this.plugin.menus.toast({     
-                text: 'You have an entered a presentation sound zone. You can hear and speak to everyone throughout the whole zone. Sound is no longer limited by distance.',
-                textColor: '#2DCA8C',
-                duration: 5000})
-
-                
-
-
-
-         }
-
-         if( this.isPreviousInside && !isNowInside) //inside and now outside
-         {
-                //user has exited
-                this.isPreviousInside = false
-               
-                //display toast
-                this.plugin.menus.toast({     
-                    text: 'You have left the presentation sound zone.  You will only be able to speak and hear others who are close to you.',
-                    textColor: '#2DCA8C',
-                    duration: 5000})
-
-
-         }
-           
-    }
+ 
    
  
 }
