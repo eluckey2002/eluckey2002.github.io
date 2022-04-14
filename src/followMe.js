@@ -42,15 +42,10 @@ class evanPlugFollowMeComp extends BaseComponent {
 
         this.timer = setInterval(this.onTimer.bind(this), 250)
 
-    
-
-
     }
 
     onUnload(){
-        
-      
-
+   
     }
 
 
@@ -63,7 +58,7 @@ class evanPlugFollowMeComp extends BaseComponent {
           // Get user position
           let userPos = await this.plugin.user.getPosition()
 
-          this.plugin.objects.update(this.objectID, { x: userPos.x }, true)
+          this.plugin.objects.update(this.objectID, { x: userPos.x, y: userPos.y }, false)
     
     
 
