@@ -31,7 +31,7 @@ export default class evanPlugEvanOnEnter extends BasePlugin  {
 }
 
 class evanPlugLaunchPadBase extends BaseComponent {
-    isChecking = false
+    isTriggered = false
     instanceID = "string"
 
     onLoad(){
@@ -61,15 +61,14 @@ class evanPlugLaunchPadBase extends BaseComponent {
 
   
     async onTimer() {
-        console.log("onTime start")
+     
 
         // Only allow triggering once
-        if (this.isChecking) {
-            console.log("isChecking is true. Return.")
+        if (this.isTriggered) {
             return
         }
 
-      this.isChecking = true
+    
 
         // Get user position
         let userPos = await this.plugin.user.getPosition()
@@ -87,13 +86,26 @@ class evanPlugLaunchPadBase extends BaseComponent {
         // If close enough
         let triggerDistance = 1
         if (distance < triggerDistance) {
+
+            this.onTrigger()
+            return
         
+                  
+        }      
+     
+      
+
+    }
+
+    async onTrigger()
+    {
+        this.isTriggered = true
          //set position in air
          await this.plugin.user.setPosition(userPos.x + parseInt(this.getField('xdist')), userPos.y + parseInt(this.getField('ydist')), userPos.z + parseInt(this.getField('zdist')),false)   
         
 
          //display toast
-         this.plugin.menus.toast({     
+        this.plugin.menus.toast({     
            text: 'You are flying!!! Weeeeeeee!',
            textColor: '#2DCA8C',
            duration: 3000})
@@ -102,10 +114,6 @@ class evanPlugLaunchPadBase extends BaseComponent {
         this.isChecking = false
         console.log("isChecking set to false. Done running timer.")
 
-          
-        }      
-     
-      
 
     }
 
