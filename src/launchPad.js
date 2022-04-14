@@ -40,7 +40,7 @@ class evanPlugVelocityBase extends BaseComponent {
         //Generate instanceID
         this.instanceID = Math.random().toString(36).substring(2)
 
-        this.timer = setInterval(this.checkIfWithin.bind(this), 250)
+        this.timer = setInterval(this.onTimer.bind(this), 250)
 
    
     }
