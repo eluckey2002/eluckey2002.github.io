@@ -43,6 +43,11 @@ class evanPlugVelocityBase extends BaseComponent {
 
      }
 
+     onObjectUpdated(newFields)
+     {
+
+        console.log(newFields)
+     }
   
 
     onUnload(){

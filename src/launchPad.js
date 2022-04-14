@@ -16,10 +16,12 @@ export default class evanPlugEvanOnEnter extends BasePlugin  {
             name: 'Evan Plugin Testing',
             description: "Testing plugin capabilities",
             settings: [
-                { type: 'label', value: "onEnter Message" },
-                { id: 'txt-onEnter', type: 'text',  value: 'You have an entered a presentation sound zone. You can hear and speak to everyone throughout the whole zone. Sound is no longer limited by distance.'},
-                { type: 'label', value: "onExit Message" },
-                { id: 'txt-onExit', type: 'text',  value: 'You have left the presentation sound zone.  You will only be able to speak and hear others who are close to you.'}
+                { type: 'label', value: "X Distance" },
+                { id: 'xdist', type: 'number',  default: 'You have an entered a presentation sound zone. You can hear and speak to everyone throughout the whole zone. Sound is no longer limited by distance.'},
+                { type: 'label', value: "Height Distance " },
+                { id: 'ydist', type: 'number',  default: 'You have left the presentation sound zone.  You will only be able to speak and hear others who are close to you.'},
+                { type: 'label', value: "Z Distance" },
+                { id: 'zdist', type: 'number',  default: 'You have left the presentation sound zone.  You will only be able to speak and hear others who are close to you.'}
             ]
         })
 
@@ -38,7 +40,7 @@ class evanPlugVelocityBase extends BaseComponent {
             // Generate instance ID
         //this.instanceID = Math.random().toString(36).substr(2)
 
-        this.timer = setInterval(this.onTimer.bind(this), 1000)
+        this.timer = setInterval(this.onTimer.bind(this), 100)
 
     
 
@@ -54,13 +56,8 @@ class evanPlugVelocityBase extends BaseComponent {
     }
 
 
-    onSettingsUpdated(field, value){
-            //called when field is updated
+   
 
-            console.log(field + ' changed to ' + value)
-
-
-    }
 
    
     async onTimer() {
@@ -80,7 +77,7 @@ class evanPlugVelocityBase extends BaseComponent {
 
         
 
-        // Calculate distance between the user and this pickup
+        // Calculate distance between the user and this pickup 
         const distance = Math.sqrt((x - userPos.x) ** 2 + (y - userPos.y) ** 2 + (z - userPos.z) ** 2)
 
         // If close enough, trigger Mine
@@ -95,6 +92,9 @@ class evanPlugVelocityBase extends BaseComponent {
    async onEnter(){
         this.hasTriggered = true
       
+        const xDist = this.getField('xdist')
+        const yDist = this.getField('ydist')
+        const zDist = this.getField*('zdist')
 
          // Get user position
          let userPos = await this.plugin.user.getPosition()
@@ -102,15 +102,17 @@ class evanPlugVelocityBase extends BaseComponent {
             //display toast
         this.plugin.menus.toast({     
             text: 'You are flying!!! Weeeeeeee!',
-            textColor: '#2DCA8C',
-            duration: 5000})
+            textColor: '#2CCA8C',
+            duration: 3000})
+
+           
 
          //set position in air
-       await this.plugin.user.setPosition(userPos.x+2, userPos.y + 20, userPos.z+2, false)   
+       await this.plugin.user.setPosition(userPos.x+xDist, userPos.y + yDist, userPos.z+zDist, false)   
         
      
-
-        this.hasTriggered = false
+       this.hasTriggered = false
+       
    
     
     }
