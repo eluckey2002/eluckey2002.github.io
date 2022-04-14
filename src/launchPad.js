@@ -41,9 +41,9 @@ class evanPlugVelocityBase extends BaseComponent {
         this.instanceID = Math.random().toString(36).substring(2)
         console.log(this.instanceID)
 
-        console.log("This is a test of " & "concat : " & this.instanceID)
+        console.log("This is a test of " + "concat : " + this.instanceID)
 
-        this.timer = setInterval(this.onTimer.bind(this), 100)
+        this.timer = setInterval(this.onTimer.bind(this), 250)
 
     
 
@@ -113,15 +113,19 @@ class evanPlugVelocityBase extends BaseComponent {
    async onEnter(){
         this.hasTriggered = true
       
-        const xDist = this.getField('xdist')
-        const yDist = this.getField('ydist')
-        const zDist = this.getField('zdist')
+     
 
          // Get user position
          let userPos = await this.plugin.user.getPosition()
 
-            //display toast
-        this.plugin.menus.toast({     
+         const xDist = partsInt(this.getField('xdist'))
+         const yDist = parseInt(this.getField('ydist'))
+         const zDist = parseInt(this.getField('zdist'))
+
+         console.log(xDist + ":" + yDist + ":" + xDist)
+
+        //display toast
+        this.plugin.menus.toast({
             text: 'You are flying!!! Weeeeeeee!',
             textColor: '#2CCA8C',
             duration: 3000})
