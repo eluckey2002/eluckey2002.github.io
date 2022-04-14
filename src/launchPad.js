@@ -8,7 +8,7 @@ export default class evanPlugEvanOnEnter extends BasePlugin  {
     /** Called when the plugin is loaded */
     onLoad() {
 
-       console.log("ComponentCompEventMessaging Plug loaded - v0.5")
+       console.log("ComponentCompEventMessaging Plug loaded - v0.6")
        
         // Register component
         this.objects.registerComponent(evanPlugVelocityBase, {
@@ -35,10 +35,13 @@ class evanPlugVelocityBase extends BaseComponent {
     instanceID = "string"
 
     onLoad(){
-        console.log("LaunchPad Plugin Loaded")
+       
 
         //Generate instanceID
+    
         this.instanceID = Math.random().toString(36).substring(2)
+
+        console.log("LaunchPad BaseComp Loaded - " & this.instanceID)
 
         this.timer = setInterval(this.onTimer.bind(this), 250)
 
