@@ -1,8 +1,8 @@
 export default class evanPlugEvanOnEnter extends BasePlugin  {
 
     /** Plugin info */
-    static get id()             { return 'ep--CompEventMessaging' }
-    static get name()           { return 'ep-IDCompEventMessaging' }
+    static get id()             { return 'ep_launchpad' }
+    static get name()           { return 'ep-LaunchPad' }
     static get description()    { return 'custom component enter exit' }
 
     /** Called when the plugin is loaded */
