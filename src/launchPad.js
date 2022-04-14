@@ -100,6 +100,10 @@ class evanPlugLaunchPadBase extends BaseComponent {
     async onTrigger()
     {
         this.isTriggered = true
+
+         // Get user position
+         let userPos = await this.plugin.user.getPosition()
+
          //set position in air
          await this.plugin.user.setPosition(userPos.x + parseInt(this.getField('xdist')), userPos.y + parseInt(this.getField('ydist')), userPos.z + parseInt(this.getField('zdist')),false)   
         
