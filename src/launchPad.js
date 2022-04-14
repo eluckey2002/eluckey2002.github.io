@@ -61,13 +61,15 @@ class evanPlugLaunchPadBase extends BaseComponent {
 
   
     async onTimer() {
+        console.log("onTime start")
 
         // Only allow triggering once
         if (this.isChecking) {
+            console.log("isChecking is true. Return.")
             return
         }
 
-        this.isChecking = true
+      this.isChecking = true
 
         // Get user position
         let userPos = await this.plugin.user.getPosition()
@@ -85,34 +87,29 @@ class evanPlugLaunchPadBase extends BaseComponent {
         // If close enough
         let triggerDistance = 1
         if (distance < triggerDistance) {
-           await this.onTrigger()
-           return
+        
+         //set position in air
+         await this.plugin.user.setPosition(userPos.x + parseInt(this.getField('xdist')), userPos.y + parseInt(this.getField('ydist')), userPos.z + parseInt(this.getField('zdist')),false)   
+        
+
+         //display toast
+         this.plugin.menus.toast({     
+           text: 'You are flying!!! Weeeeeeee!',
+           textColor: '#2DCA8C',
+           duration: 3000})
+
+
+        this.isChecking = false
+        console.log("isChecking set to false. Done running timer.")
+
+          
         }      
      
       
 
     }
 
-   async onTrigger(x,y,z){
-        
-      
-         //set position in air
-         await this.plugin.user.setPosition(userPos.x + parseInt(this.getField('xdist')), userPos.y + parseInt(this.getField('ydist')), userPos.z + parseInt(this.getField('zdist')),false)   
-        
-
-          //display toast
-          this.plugin.menus.toast({     
-            text: 'You are flying!!! Weeeeeeee!',
-            textColor: '#2DCA8C',
-            duration: 3000})
-
-
-        this.isChecking = false
-
-        return
    
-    
-    }
 
 
    
