@@ -80,12 +80,30 @@ class evanPlugVelocityBase extends BaseComponent {
         // Calculate distance between the user and this pickup 
         const distance = Math.sqrt((x - userPos.x) ** 2 + (y - userPos.y) ** 2 + (z - userPos.z) ** 2)
 
-        // If close enough, trigger Mine
-        let triggerDistance = 1
-        if (distance < triggerDistance) {
-            this.onEnter()
-            return
-        }       
+
+        try{
+            // If close enough, trigger Mine
+            let triggerDistance = 1
+            if (distance < triggerDistance) {
+                this.onEnter()
+                return
+            }       
+        }
+        catch(e){
+            //       //display toast
+            console.error(e)
+        this.plugin.menus.toast({     
+            text: e,
+            textColor: '#2ACA8C',
+            duration: 3000})
+
+        }
+        finally{
+
+            this.hasTriggered = false
+        }
+    
+    
 
     }
 
