@@ -8,7 +8,7 @@ export default class evanPlugEvanOnEnter extends BasePlugin  {
     /** Called when the plugin is loaded */
     onLoad() {
 
-       console.log("ComponentCompEventMessaging Plug loaded - v0.1")
+       console.log("ComponentCompEventMessaging Plug loaded - v0.2")
        
         // Register component
         this.objects.registerComponent(evanPlugVelocityBase, {
@@ -35,10 +35,13 @@ class evanPlugVelocityBase extends BaseComponent {
     onExitMessage = ""
 
     onLoad(){
-        console.log("Event Component Loaded 0.5v")
+        console.log("Event Component Loaded 0.6v try catch")
 
-            // Generate instance ID
-        //this.instanceID = Math.random().toString(36).substr(2)
+        // Generate instance ID
+        this.instanceID = Math.random().toString(36).substring(2)
+        console.log(this.instanceID)
+
+        console.log("This is a test of " & "concat : " & this.instanceID)
 
         this.timer = setInterval(this.onTimer.bind(this), 100)
 
