@@ -115,14 +115,12 @@ class evanPlugVelocityBase extends BaseComponent {
        {
         this.hasTriggered = true
       
-     
-
          // Get user position
          let userPos = await this.plugin.user.getPosition()
 
-         const xDist = parseInt(this.getField('xdist'))
-         const yDist = parseInt(this.getField('ydist'))
-         const zDist = parseInt(this.getField('zdist'))
+         const xDist = parseInt(this.getField('xdist') || 5)
+         const yDist = parseInt(this.getField('ydist' || 5))
+         const zDist = parseInt(this.getField('zdist'|| 5))
 
          console.log(xDist + ":" + yDist + ":" + xDist)
 
@@ -134,7 +132,7 @@ class evanPlugVelocityBase extends BaseComponent {
 
            
 
-         //set position in air
+        //set position in air
        await this.plugin.user.setPosition(userPos.x+xDist, userPos.y + yDist, userPos.z+zDist, false)   
         
      
@@ -142,7 +140,7 @@ class evanPlugVelocityBase extends BaseComponent {
         
         }
         catch{
-            
+
         }
    
     

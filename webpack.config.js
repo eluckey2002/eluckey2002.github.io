@@ -2,12 +2,12 @@ const path = require('path')
 const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
-    entry: './src/launchPad.js',
+    entry: './src/followMe.js',
     mode: 'production',
     // mode: 'production',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'launchpad.js',
+        filename: 'followMe.js',
         library: {
             name: 'module.exports',
             type: 'assign',
