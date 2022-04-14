@@ -1,7 +1,7 @@
 export default class evanPlugEvanOnEnter extends BasePlugin  {
 
     /** Plugin info */
-    static get id()             { return 'ep_launchpad' }
+    static get id()             { return 'ep_launchpadd' }
     static get name()           { return 'ep-LaunchPad' }
     static get description()    { return 'custom component enter exit' }
 
@@ -12,7 +12,7 @@ export default class evanPlugEvanOnEnter extends BasePlugin  {
        
         // Register component
         this.objects.registerComponent(evanPlugVelocityBase, {
-            id: 'evanplug-launch-base',
+            id: 'evanplug-launch-bases',
             name: 'ep-launchpad',
             description: "Launch a user in the air in a specified direction",
             settings: [
@@ -84,12 +84,9 @@ class evanPlugVelocityBase extends BaseComponent {
         // If close enough
         let triggerDistance = 1
         if (distance < triggerDistance) {
-            this.onTrigger()
-            return
+           await this.onTrigger()
         }      
-        else{
-            this.isChecking = false
-        }
+     
       
 
     }
@@ -100,15 +97,19 @@ class evanPlugVelocityBase extends BaseComponent {
          // Get user position
          let userPos = await this.plugin.user.getPosition()
 
-        //display toast
+       
+
+         //set position in air
+         await this.plugin.user.setPosition(userPos.x + parseInt(this.getField('xdist')), userPos.y + parseInt(this.getField('ydist')), userPos.z + parseInt(this.getField('zdist')),false)   
+        
+
+          //display toast
         this.plugin.menus.toast({     
             text: 'You are flying!!! Weeeeeeee! - ' & this.instanceID,
             textColor: '#2DCA8C',
             duration: 3000})
 
-         //set position in air
-         await this.plugin.user.setPosition(userPos.x + parseInt(this.getField('xdist')), userPos.y + parseInt(this.getField('ydist')), userPos.z + parseInt(this.getField('zdist')),false)   
-        
+
         this.isChecking = false
    
     
