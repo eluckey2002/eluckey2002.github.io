@@ -2,7 +2,7 @@ const path = require('path')
 const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
-    entry: './src/velocityEasterEgg.js',
+    entry: './src/launchPad.js',
     mode: 'production',
     // mode: 'production',
     output: {

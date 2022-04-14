@@ -12,15 +12,18 @@ export default class evanPlugEvanOnEnter extends BasePlugin  {
        
         // Register component
         this.objects.registerComponent(evanPlugVelocityBase, {
-            id: 'evanplug-velocity-base',
-            name: 'Evan Plugin Testing',
-            description: "Testing plugin capabilities",
+            id: 'evanplug-launch-base',
+            name: 'ep-launchpad',
+            description: "Launch a user in the air in a specified direction",
             settings: [
-                { id: 'lbl-onEnter', type: 'label', value: "onEnter Message" },
-                { id: 'txt-onEnter', type: 'text',  default: 'You have an entered a presentation sound zone. You can hear and speak to everyone throughout the whole zone. Sound is no longer limited by distance.'},
-                { id: 'lbl-onExit', type: 'label', value: "onExit Message" },
-                { id: 'txt-onExit', type: 'text',  default: 'You have left the presentation sound zone.  You will only be able to speak and hear others who are close to you.'},
-                { id: 'btn-action-update', type: 'button', value: 'Update' }
+                { id: 'lbl-xdist', type: 'label', value: "X Dist" },
+                { id: 'xdist', type: 'number',  default: '5'},
+                { id: 'lblydist', type: 'label', value: "Y (UP) Dist" },
+                { id: 'ydist', type: 'number',  default: '25'},
+                { id: 'lblzdist', type: 'label', value: "Z Dist" },
+                { id: 'zdist', type: 'number',  default: '5'},
+
+               
             ]
         })
 
@@ -32,7 +35,7 @@ class evanPlugVelocityBase extends BaseComponent {
     instanceID = "string"
 
     onLoad(){
-        console.log("Flying Velocity")
+        console.log("LaunchPad Plugin Loaded")
 
         //Generate instanceID
         this.instanceID = Math.random().toString(36).substring(2)
@@ -45,7 +48,7 @@ class evanPlugVelocityBase extends BaseComponent {
   
 
     onUnload(){
-          
+          console.log("Launchpad Plugin Base unloaded")
             clearInterval(this.Timer)
 
 
@@ -53,8 +56,6 @@ class evanPlugVelocityBase extends BaseComponent {
 
 
   
-
-   
     async onTimer() {
 
         // Only allow triggering once
@@ -78,30 +79,27 @@ class evanPlugVelocityBase extends BaseComponent {
         // If close enough
         let triggerDistance = 1
         if (distance < triggerDistance) {
-            this.onEnter()
+            this.onTrigger()
             return
         }       
 
     }
 
-   async onEnter(){
+   async onTrigger(){
         this.hasTriggered = true
       
-
          // Get user position
          let userPos = await this.plugin.user.getPosition()
 
-            //display toast
+        //display toast
         this.plugin.menus.toast({     
             text: 'You are flying!!! Weeeeeeee!',
             textColor: '#2DCA8C',
             duration: 3000})
 
          //set position in air
-       await this.plugin.user.setPosition(userPos.x+2, userPos.y + 20, userPos.z+2, false)   
+         await this.plugin.user.setPosition(userPos.x + parseInt(this.getField('xdist')), userPos.y + parseInt(this.getField('ydist')), userPos.z + parseInt(this.getField('zdist')),false)   
         
-     
-
         this.hasTriggered = false
    
     
