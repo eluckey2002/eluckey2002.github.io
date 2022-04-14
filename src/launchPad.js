@@ -8,10 +8,10 @@ export default class evanPlugEvanOnEnter extends BasePlugin  {
     /** Called when the plugin is loaded */
     onLoad() {
 
-       console.log("ComponentCompEventMessaging Plug loaded - v0.6")
+       console.log("ComponentCompEventMessaging Plug loaded - v0.7")
        
         // Register component
-        this.objects.registerComponent(evanPlugVelocityBase, {
+        this.objects.registerComponent(evanPlugLaunchPadBase, {
             id: 'evanplug-launch-bases',
             name: 'ep-launchpad',
             description: "Launch a user in the air in a specified direction",
@@ -19,7 +19,7 @@ export default class evanPlugEvanOnEnter extends BasePlugin  {
                 { id: 'lbl-xdist', type: 'label', value: "X Dist" },
                 { id: 'xdist', type: 'number',  default: '5'},
                 { id: 'lblydist', type: 'label', value: "Y (UP) Dist" },
-                { id: 'ydist', type: 'number',  default: '25'},
+                { id: 'ydist', type: 'number',  default: '5'},
                 { id: 'lblzdist', type: 'label', value: "Z Dist" },
                 { id: 'zdist', type: 'number',  default: '5'},
 
@@ -30,7 +30,7 @@ export default class evanPlugEvanOnEnter extends BasePlugin  {
     }
 }
 
-class evanPlugVelocityBase extends BaseComponent {
+class evanPlugLaunchPadBase extends BaseComponent {
     isChecking = false
     instanceID = "string"
 
@@ -39,11 +39,12 @@ class evanPlugVelocityBase extends BaseComponent {
 
         //Generate instanceID
     
-        this.instanceID = Math.random().toString(36).substring(2)
+        this.instanceID = Math.random().toString(36)
 
-        console.log("LaunchPad BaseComp Loaded - " & this.instanceID)
+        console.log("LaunchPad BaseComp Loaded Instance ID is")
+        console.log(this.instanceID)
 
-        this.timer = setInterval(this.onTimer.bind(this), 250)
+        this.timer = setInterval(this.onTimer.bind(this), 1000)
 
    
     }
@@ -85,32 +86,30 @@ class evanPlugVelocityBase extends BaseComponent {
         let triggerDistance = 1
         if (distance < triggerDistance) {
            await this.onTrigger()
+           return
         }      
      
       
 
     }
 
-   async onTrigger(){
+   async onTrigger(x,y,z){
         
       
-         // Get user position
-         let userPos = await this.plugin.user.getPosition()
-
-       
-
          //set position in air
          await this.plugin.user.setPosition(userPos.x + parseInt(this.getField('xdist')), userPos.y + parseInt(this.getField('ydist')), userPos.z + parseInt(this.getField('zdist')),false)   
         
 
           //display toast
-        this.plugin.menus.toast({     
-            text: 'You are flying!!! Weeeeeeee! - ' & this.instanceID,
+          this.plugin.menus.toast({     
+            text: 'You are flying!!! Weeeeeeee!',
             textColor: '#2DCA8C',
             duration: 3000})
 
 
         this.isChecking = false
+
+        return
    
     
     }
