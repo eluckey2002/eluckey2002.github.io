@@ -17,11 +17,11 @@ export default class evanPlugEvanOnEnter extends BasePlugin  {
             description: "Testing plugin capabilities",
             settings: [
                 { type: 'label', value: "X Distance" },
-                { id: 'xdist', type: 'number',  default: 'You have an entered a presentation sound zone. You can hear and speak to everyone throughout the whole zone. Sound is no longer limited by distance.'},
+                { id: 'xdist', type: 'number',  default: '5'},
                 { type: 'label', value: "Height Distance " },
-                { id: 'ydist', type: 'number',  default: 'You have left the presentation sound zone.  You will only be able to speak and hear others who are close to you.'},
+                { id: 'ydist', type: 'number',  default: '20'},
                 { type: 'label', value: "Z Distance" },
-                { id: 'zdist', type: 'number',  default: 'You have left the presentation sound zone.  You will only be able to speak and hear others who are close to you.'}
+                { id: 'zdist', type: 'number',  default: '5'}
             ]
         })
 
@@ -94,7 +94,7 @@ class evanPlugVelocityBase extends BaseComponent {
       
         const xDist = this.getField('xdist')
         const yDist = this.getField('ydist')
-        const zDist = this.getField*('zdist')
+        const zDist = this.getField('zdist')
 
          // Get user position
          let userPos = await this.plugin.user.getPosition()
