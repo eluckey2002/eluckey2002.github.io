@@ -31,7 +31,7 @@ export default class evanPlugEvanOnEnter extends BasePlugin  {
 }
 
 class evanPlugVelocityBase extends BaseComponent {
-    hasTriggered = false
+    isChecking = false
     instanceID = "string"
 
     onLoad(){
@@ -59,9 +59,11 @@ class evanPlugVelocityBase extends BaseComponent {
     async onTimer() {
 
         // Only allow triggering once
-        if (this.hasTriggered) {
+        if (this.isChecking) {
             return
         }
+
+        this.isChecking = true
 
         // Get user position
         let userPos = await this.plugin.user.getPosition()
@@ -81,26 +83,30 @@ class evanPlugVelocityBase extends BaseComponent {
         if (distance < triggerDistance) {
             this.onTrigger()
             return
-        }       
+        }      
+        else{
+            this.isChecking = false
+        }
+      
 
     }
 
    async onTrigger(){
-        this.hasTriggered = true
+        
       
          // Get user position
          let userPos = await this.plugin.user.getPosition()
 
         //display toast
         this.plugin.menus.toast({     
-            text: 'You are flying!!! Weeeeeeee!',
+            text: 'You are flying!!! Weeeeeeee! - ' & this.instanceID,
             textColor: '#2DCA8C',
             duration: 3000})
 
          //set position in air
          await this.plugin.user.setPosition(userPos.x + parseInt(this.getField('xdist')), userPos.y + parseInt(this.getField('ydist')), userPos.z + parseInt(this.getField('zdist')),false)   
         
-        this.hasTriggered = false
+        this.isChecking = false
    
     
     }
