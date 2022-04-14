@@ -63,9 +63,7 @@ class evanPlugFollowMeComp extends BaseComponent {
           // Get user position
           let userPos = await this.plugin.user.getPosition()
 
-          this.fields.x = userPos.x
-          this.fields.z = userPos.z
-          this.fields.height = userPos.height
+          this.plugin.objects.update(this.objectID, { x: userPos.x }, true)
     
     
 
