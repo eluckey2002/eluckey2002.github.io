@@ -115,9 +115,8 @@ class evanPlugLaunchPadBase extends BaseComponent {
            duration: 3000})
 
 
-        this.isChecking = false
-        console.log("isChecking set to false. Done running timer.")
-
+        this.isTriggered = false
+        
 
     }
 
