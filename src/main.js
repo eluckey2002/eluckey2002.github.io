@@ -1,9 +1,3 @@
-
-
-
-
-
-
 export default class PathwayPlugin extends BasePlugin {
 
     /** Plugin info */

@@ -21,15 +21,11 @@ export default class evanPlugIframeMessaging extends BasePlugin  {
            }
           }
       )
-
- 
-
     }
 
     onUnload()
     {
         this.plugin.menus.unregister(this.iFrameID)
-
     }
 
     /*
