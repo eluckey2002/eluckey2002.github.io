@@ -43,7 +43,7 @@ export default class evanPlugIframeMessaging extends BasePlugin  {
     triggerHook()
     {
         console.log("hook about to to be triggered")
-        this.hooks.trigger('hud.update-button', { id: 'mute', altID: 'unmute', type: 'disable' })
+        this.hooks.trigger('hud.update-button', { id: 'mute', altID: 'unmute', type: 'enable' })
         console.log("MUTE hook called") 
 
     }
