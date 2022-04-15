@@ -15,14 +15,14 @@ export default class evanPlugIframeMessaging extends BasePlugin  {
           {section: 'infopanel',
            panel: 
            {
-              iframeURL: this.paths.absolute('./overlay.html'),
+              iframeURL: this.paths.absolute('./infopanel.html'),
               width: '300',
               height: '300'
            }
           }
       )
 
-      this.triggerHook()
+ 
 
     }
 
@@ -32,6 +32,7 @@ export default class evanPlugIframeMessaging extends BasePlugin  {
 
     }
 
+    /*
     loadHook()
     {
         //testing hooks
@@ -47,6 +48,8 @@ export default class evanPlugIframeMessaging extends BasePlugin  {
         console.log("MUTE hook called") 
 
     }
+
+    */
 }
 
 
