@@ -23,7 +23,7 @@ const Themes = [
     }
 ]
 
-module.exports = class CoinPickupGame extends BasePlugin {
+export default class CoinPickupGame extends BasePlugin {
 
     /** Plugin info */
     static get id()             { return 'vatominc-coin-pickup-game' }
