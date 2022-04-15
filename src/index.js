@@ -305,7 +305,7 @@ class Coin extends BaseComponent {
     onLoad() {
 
         // Generate instance ID
-        this.instanceID = Math.random().toString(36).substr(2)
+        this.instanceID = Math.random().toString(36).substring(2)
 
         // Store it
         activeCoins.push(this)
