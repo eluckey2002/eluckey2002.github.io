@@ -2,12 +2,12 @@ const path = require('path')
 const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
-    entry: './src/launchpad.js',
+    entry: './src/iframeMessaging.js',
     mode: 'production',
     // mode: 'production',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'launchpad.js',
+        filename: 'iframeoverlay.js',
         library: {
             name: 'module.exports',
             type: 'assign',
