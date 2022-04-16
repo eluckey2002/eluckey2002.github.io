@@ -15,7 +15,7 @@ export default class evanPlugIframeMessaging extends BasePlugin  {
           {section: 'infopanel',
            panel: 
            {
-              iframeURL: this.paths.absolute('./infopanel.html'),
+              iframeURL: this.paths.absolute('./overlay.html'),
               width: '300',
               height: '300'
            }
