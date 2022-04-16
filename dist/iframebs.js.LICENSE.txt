@@ -1,0 +1,11 @@
+/**
+ * Coin Pickup Game
+ *
+ * A game where users can walk over coins to collect them.
+ *
+ * All information regarding plugin development can be found at
+ * https://developer.vatom.com/plugins/plugins/
+ *
+ * @license MIT
+ * @author Vatom Inc.
+ */
