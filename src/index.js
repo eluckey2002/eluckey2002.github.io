@@ -102,7 +102,7 @@ export default class CoinPickupGame extends BasePlugin {
             panel: {
                 iframeURL: this.paths.absolute(currentTheme.scorePage),
                 width: 300,
-                height: 100
+                height: 400
             }
         })
 
