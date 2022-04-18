@@ -5,68 +5,14 @@
  
   </head>
   <body>
-    <div id="grid-gap">
-      <div class="cell"><Button name="btnSendToast" onclick="btnSendToast()">Sends alert</Button></div>
-      <div class="cell"><input type="text" id="txtToastMsg" onfocus="this.value=''" value="Enter message"></div>
-      <div class="cell"><Button name="btnSendAlert" onclick="btnSendAlert()">Sends alert</Button></div>
-      <div class="cell">Send alert using parent.send</div>
-      <div class="cell"><button name=btnAnimate onclick="btnAnimate()">Animate Opacity</button></div>
-      <div class="cell"><input type="text" id="txtObjectID" onfocus="this.value=''" value="Enter Object ID"> </div>
-      <div class="cell"><button name=btnCreateObject onclick="btnCreateObject()">Create Object</button>
-          <button name="btnIncreaseHeight" onclick="btnUpdateSize()"> Increase Height</button></div>
-      <div class="cell">Create an cube</div>
+
+    <img src="./agBig.png" width="60%">
+   
      
   </body>
-  <script>
+ 
 
 
 
-    //WORKING!!
-    function btnSendToast()
-    {
-      let message = document.getElementById("txtToastMsg").value
-
-        //working - do not know about the * ?
-        parent.postMessage({ action: 'send-toast', value: message }, '*')
-
-    }
-
-    function btnSendAlert()
-    {
-
-         console.log("click send alert")
-         parent.postMessage({ action: 'send-alert' }, '*')
-
-    }
-
-    function btnAnimate()
-    {
-    console.log('click animate opacity')
-    
-    let objId = document.getElementById("txtObjectID").value
-
-    console.log(objId)
-
-    parent.postMessage({action: 'animate', id: objId}, '*')
-    }
-
-
-    function btnCreateObject()
-    {
-      
-      parent.postMessage({action: 'createObject'}, '*')
-
-
-
-    }
-
-    function btnUpdateSize()
-    {
-
-      let objID = document.getElementById("txtObjectID").value
-      parent.postMessage({action: 'increase', id: objID}, '*')
-
-    }
-    
-  </script>
+   
 </html>
