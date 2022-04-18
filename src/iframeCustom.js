@@ -40,7 +40,7 @@ class evanPlugIframePopup extends BaseComponent {
     onLoad() 
     {
 
-        console.log("component loaded - user settings v.2")
+        console.log("component loaded - user settings v.3 not enabled")
         // Generate instance ID
         this.instanceID = Math.random().toString(36).substring(2)
 
@@ -57,12 +57,11 @@ class evanPlugIframePopup extends BaseComponent {
     const url = this.plugin.getField('uri')
     const title = this.plugin.getField('title')
 
-    if(isEnabled)
-    {
+   
      this.plugin.menus.displayPopup({
             title: title,
             panel: {
-                iframeURL: this.plugin.paths.absolute(url),
+                iframeURL: this.plugin.paths.absolute('./iframe.html'),
                 width: width,
                 height: height,
 
@@ -71,7 +70,7 @@ class evanPlugIframePopup extends BaseComponent {
 
       
         console.log('Popup displayed')
-    }
+    
             
         
 
