@@ -6,7 +6,6 @@ export default class iframeCustom extends BasePlugin {
 
     /** Plugin info */
     static get id()             { return 'vatominc-popup-message' }
-    // @ts-ignore
     static get name()           { return 'Popup Message' }
     static get description()    { return 'Display a message, in a popup, to users when they enter the space.' }
 
@@ -19,9 +18,9 @@ export default class iframeCustom extends BasePlugin {
             name: 'IFrame Popup',
             description: "Set custom size of popup",
             settings: [
-                { type: 'section', name: 'iframe popup' },
                 { type: 'checkbox', id: 'enabled', name: 'Enabled'},
-                { type: 'text', id: 'uro', name: 'url', help: 'Url to display.' },
+                { type: 'text', id: 'title', name: 'Popup Header Text'},
+                { type: 'text', id: 'uri', name: 'url', help: 'Url to display.' },
                 { type: 'number', id: 'hei', name: 'Height(px)', help: 'Size of the iframe' },
                 { type: 'number', id: 'wid', name: 'Width(px)', help: 'Size of the iframe' }
             ]
@@ -51,21 +50,41 @@ class evanPlugIframePopup extends BaseComponent {
 
     console.log('Displaying popup.')
 
+
+    const isEnabled = this.plugin.getField('enabled')
+    const height = parseFloat(this.plugin.getField('hei'))
+    const width = parseFloat(this.plugin.getField('wid'))
+    const url = this.plugin.getField('uri')
+    const title = this.plugin.getField('title')
+
+    if(isEnabled)
+    {
      this.plugin.menus.displayPopup({
-            title: 'My Popup',
+            title: title,
             panel: {
-                iframeURL: this.plugin.paths.absolute('./iframe.html')               
+                iframeURL: this.plugin.paths.absolute(url),
+                width: width,
+                height: height,
+
             }
         })
 
       
         console.log('Popup displayed')
-
+    }
             
         
 
     }
 
-    
+    onObjectUpdated(newFields){
+
+        console.log(newFields)
+
+
+
+    }
+
+
 
 }
