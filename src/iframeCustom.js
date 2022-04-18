@@ -41,7 +41,7 @@ class evanPlugIframePopup extends BaseComponent {
     onLoad() 
     {
 
-
+        console.log("component loaded")
         // Generate instance ID
         this.instanceID = Math.random().toString(36).substring(2)
 
@@ -51,11 +51,12 @@ class evanPlugIframePopup extends BaseComponent {
 
     console.log('Displaying popup.')
 
-         // Show it
-         this.plugin.menus.displayPopup({
+     this.plugin.menus.displayPopup({
             title: 'My Popup',
             panel: {
-                iframeURL: this.paths.absolute('iframe.html')
+                iframeURL: this.plugin.paths.absolute('./iframe.html'),
+                width: 400,
+                height: 600
             }
         })
 
