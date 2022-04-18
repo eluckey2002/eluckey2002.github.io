@@ -40,7 +40,7 @@ class evanPlugIframePopup extends BaseComponent {
     onLoad() 
     {
 
-        console.log("component loaded - user settings v.4 let this")
+        console.log("component loaded - user settings v.5 get rid of this keep let")
         // Generate instance ID
         this.instanceID = Math.random().toString(36).substring(2)
 
