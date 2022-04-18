@@ -52,7 +52,7 @@ class evanPlugIframePopup extends BaseComponent {
     console.log('Displaying popup.')
 
          // Show it
-         this.menus.displayPopup({
+         this.plugin.menus.displayPopup({
             title: 'My Popup',
             panel: {
                 iframeURL: this.paths.absolute('iframe.html')
