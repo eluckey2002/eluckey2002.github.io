@@ -54,7 +54,7 @@ class evanPlugIframePopup extends BaseComponent {
         // Show message now, if enabled
         if (this.getField('enabled')) {
                 // Show it
-                this.menus.displayPopup({
+                this.plugin.menus.displayPopup({
                     title: 'Popup',
                     panel: {
                         iframeURL: this.paths.absolute(this.getField('url')),
