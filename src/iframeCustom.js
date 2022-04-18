@@ -40,7 +40,7 @@ class evanPlugIframePopup extends BaseComponent {
     onLoad() 
     {
 
-        console.log("component loaded - user settings v.5 get rid of this keep let")
+        console.log("component loaded - user settings v.6 parseInt")
         // Generate instance ID
         this.instanceID = Math.random().toString(36).substring(2)
 
@@ -52,10 +52,16 @@ class evanPlugIframePopup extends BaseComponent {
 
 
     let isEnabled = this.plugin.getField('enabled')
-    let height = parseFloat(this.plugin.getField('hei'))
-    let width = parseFloat(this.plugin.getField('wid'))
+    let height = parseInt(this.plugin.getField('hei'))
+    let width = parseInt(this.plugin.getField('wid'))
     let url = this.plugin.getField('uri')
     let title = this.plugin.getField('title')
+
+    console.log(width)
+    console.log(height)
+
+    parseInt(width)
+    parseInt(height)
 
     console.log(width)
     console.log(height)
