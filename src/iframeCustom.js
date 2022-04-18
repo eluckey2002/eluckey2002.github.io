@@ -21,8 +21,8 @@ export default class iframeCustom extends BasePlugin {
                 { type: 'checkbox', id: 'enabled', name: 'Enabled'},
                 { type: 'text', id: 'title', name: 'Popup Header Text'},
                 { type: 'text', id: 'uri', name: 'url', help: 'Url to display.' },
-                { type: 'number', id: 'hei', name: 'Height(px)', help: 'Size of the iframe' },
-                { type: 'number', id: 'wid', name: 'Width(px)', help: 'Size of the iframe' }
+                { type: 'number', id: 'hei', name: 'Height(px)', help: 'Size of the iframe', default: 400 },
+                { type: 'number', id: 'wid', name: 'Width(px)', help: 'Size of the iframe', default: 600 }
             ]
         })
 
@@ -57,13 +57,16 @@ class evanPlugIframePopup extends BaseComponent {
     let url = this.plugin.getField('uri')
     let title = this.plugin.getField('title')
 
+    console.log(width)
+    console.log(height)
+
    
      this.plugin.menus.displayPopup({
-            title: this.title,
+            title: title,
             panel: {
                 iframeURL: this.plugin.paths.absolute('./iframe.html'),
-                width: this.width,
-                height: this.height,
+                width: width,
+                height: height,
 
             }
         })
