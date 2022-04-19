@@ -75,7 +75,7 @@ class evanPlugIframePopup extends BaseComponent {
        console.log(this.getField('iframe-width'))
        console.log(this.getField('iframe-height'))
 
-       console.log(typeof this.getField('iframe-width'))
+       console.log(typeof ParseInt(this.getField('iframe-width')))
         
 
     }
