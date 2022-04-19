@@ -18,13 +18,13 @@ export default class iframeCustom extends BasePlugin {
             name: 'IFrame Popup',
             description: 'Set custom size of popup',
             settings: [
-                { id: 'iframe-height', name: 'Iframe Height', type: 'number', default: 40, help: 'Height of iframe' },
-                { id: 'iframe-width', name: 'Iframe Height', type: 'number', default: 40, help: 'Width of iframe' },
+                { id: 'iframe-height', name: 'Iframe Height', type: 'number', help: 'Height of iframe' },
+                { id: 'iframe-width', name: 'Iframe Height', type: 'number', help: 'Width of iframe' },
                 { id: 'iframe-title', name: 'Iframe Title', type: 'text'}
             ]
         })
 
-            console.log('iframe 0.8 running - cannot convert the damn numbers')
+            console.log('iframe 0.9 running - remove defaults')
 
        
 
@@ -74,8 +74,8 @@ class evanPlugIframePopup extends BaseComponent {
             title: this.plugin.getField('iframe-title'),
             panel: {
                 iframeURL: this.plugin.paths.absolute('./iframe.html'),
-                width:  parseFloat(this.plugin.getField('iframe-width')) || 400,
-                height:  parseFloat(this.plugin.getField('iframe-height')) || 400
+                width:  widthStr || 400,
+                height:  heightStr || 400
 
             }
         })
@@ -90,8 +90,9 @@ class evanPlugIframePopup extends BaseComponent {
 
     onObjectUpdated(newFields){
 
-        console.log(newFields)
-
+        console.log(this.plugin.getField('iframe-title'))
+        console.log(this.plugin.getField('iframe-width'))
+        console.log(this.plugin.getField('iframe-height'))
         
 
 
