@@ -59,11 +59,11 @@ class evanPlugIframePopup extends BaseComponent {
     
  
      this.plugin.menus.displayPopup({
-            title: 'Product Info 500 x 500',
+            title: 'Product Info 200 x 400 with strings',
             panel: {
                 iframeURL: this.plugin.paths.absolute('./iframe.html'),
-                width: 500,
-                height: 500
+                width: '200',
+                height: '400'
 
             }
         })
