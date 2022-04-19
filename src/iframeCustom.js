@@ -18,8 +18,8 @@ export default class iframeCustom extends BasePlugin {
             name: 'IFrame Popup',
             description: 'Set custom size of popup',
             settings: [
-                { id: 'iframe-height', name: 'Iframe Height', type: 'number', help: 'Height of iframe' },
-                { id: 'iframe-width', name: 'Iframe Height', type: 'number', help: 'Width of iframe' },
+                { id: 'iframe-height', name: 'Iframe Height', type: 'text', help: 'Height of iframe' },
+                { id: 'iframe-width', name: 'Iframe Height', type: 'text', help: 'Width of iframe' },
                 { id: 'iframe-title', name: 'Iframe Title', type: 'text'}
             ]
         })
@@ -37,7 +37,7 @@ class evanPlugIframePopup extends BaseComponent {
 
     onLoad() 
     {
-        console.log("component loaded - user settings v.9 debugging")
+        console.log("component loaded - user settings 1.0 debugging")
         // Generate instance ID
         this.instanceID = Math.random().toString(36).substring(2)
 
@@ -50,32 +50,32 @@ class evanPlugIframePopup extends BaseComponent {
 
    
 
-    const heightStr = parseFloat(this.plugin.getField('iframe-height')) || 300
-    const widthStr = parseFloat(this.plugin.getField('iframe-width')) || 400
+  //  const heightStr = parseFloat(this.plugin.getField('iframe-height')) || 300
+  //  const widthStr = parseFloat(this.plugin.getField('iframe-width')) || 400
 
-    console.log("Type OF:")
-    console.log(typeof heightStr)
-    console.log(typeof widthStr)
+ //   console.log("Type OF:")
+//    console.log(typeof heightStr)
+//    console.log(typeof widthStr)
     
 
     
-   
-   
+   this.heightStr = this.plugin.getField('iframe-height')
+   this.widthStr = this.plugin.getField('iframe-width')
    
     console.log("Output values")
     console.log(heightStr)
     console.log(widthStr)
    
     
-   
+   this.tit = this.plugin.getField('iframe-title')
 
    
      this.plugin.menus.displayPopup({
-            title: this.plugin.getField('iframe-title'),
+            title: this.tit,
             panel: {
                 iframeURL: this.plugin.paths.absolute('./iframe.html'),
-                width:  widthStr || 400,
-                height:  heightStr || 400
+                width:  this.widthStr,
+                height:  this.heightStr 
 
             }
         })
