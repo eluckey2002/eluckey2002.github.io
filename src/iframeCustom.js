@@ -16,17 +16,15 @@ export default class iframeCustom extends BasePlugin {
             this.objects.registerComponent(evanPlugIframePopup, {
             id: 'evan-plugin-iframe-popup',
             name: 'IFrame Popup',
-            description: "Set custom size of popup",
+            description: 'Set custom size of popup',
             settings: [
-                { type: 'checkbox', id: 'enabled', name: 'Enabled'},
-                { type: 'text', id: 'title', name: 'Popup Header Text'},
-                { type: 'text', id: 'uri', name: 'url', help: 'Url to display.' },
-                { type: 'number', id: 'hei', name: 'Height', help: 'Size of the iframe', default: 400 },
-                { type: 'number', id: 'wid', name: 'Width', help: 'Size of the iframe', default: 600 }
+                { id: 'iframe-height', name: 'Iframe Height', type: 'number', default: 40, help: 'Height of iframe' },
+                { id: 'iframe-width', name: 'Iframe Height', type: 'number', default: 40, help: 'Width of iframe' },
+                { id: 'iframe-title', name: 'Iframe Title', type: 'text'}
             ]
         })
 
- 
+            console.log('iframe 0.8 running - cannot convert the damn numbers')
 
        
 
@@ -39,7 +37,6 @@ class evanPlugIframePopup extends BaseComponent {
 
     onLoad() 
     {
-
         console.log("component loaded - user settings v.9 debugging")
         // Generate instance ID
         this.instanceID = Math.random().toString(36).substring(2)
@@ -53,40 +50,32 @@ class evanPlugIframePopup extends BaseComponent {
 
    
 
-    const heightStr = this.plugin.getField('hei')
-    const widthStr = this.plugin.getField('wid')
+    const heightStr = parseFloat(this.plugin.getField('iframe-height')) || 300
+    const widthStr = parseFloat(this.plugin.getField('iframe-width')) || 400
 
     console.log("Type OF:")
     console.log(typeof heightStr)
     console.log(typeof widthStr)
     
 
-    const heightC = parseFloat(heightStr)
-    const widthC = parseFloat(widthStr)
-
-    console.log("Type of after parseFloat")
-    console.log(typeof heightC)
-    console.log(typeof widthC)
-  
-    const titleC = this.plugin.getField('title')
+    
+   
    
    
     console.log("Output values")
-    console.log(widthC)
-    console.log(heightC)
-    console.log(titleC)
-
+    console.log(heightStr)
+    console.log(widthStr)
+   
     
-    console.log(fields.hei)
-    console.log(this.getField('hei'))
+   
 
    
      this.plugin.menus.displayPopup({
-            title: titleC,
+            title: this.plugin.getField('iframe-title'),
             panel: {
                 iframeURL: this.plugin.paths.absolute('./iframe.html'),
-                width: widthC,
-                height: heightC,
+                width:  parseFloat(this.plugin.getField('iframe-width')) || 400,
+                height:  parseFloat(this.plugin.getField('iframe-height')) || 400
 
             }
         })
@@ -102,6 +91,8 @@ class evanPlugIframePopup extends BaseComponent {
     onObjectUpdated(newFields){
 
         console.log(newFields)
+
+        
 
 
 
