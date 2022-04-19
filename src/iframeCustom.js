@@ -1,4 +1,6 @@
-
+//Working as of 4/18
+//User settings work for width, height, title
+//URL is the last to be connected
 
 
 
@@ -19,7 +21,7 @@ export default class iframeCustom extends BasePlugin {
             description: 'Set custom size of popup',
             settings: [
                 { id: 'iframe-height', name: 'Iframe Height', type: 'number', help: 'Height of iframe' },
-                { id: 'iframe-width', name: 'Iframe Height', type: 'number', help: 'Width of iframe' },
+                { id: 'iframe-width', name: 'Iframe Width', type: 'number', help: 'Width of iframe' },
                 { id: 'iframe-title', name: 'Iframe Title', type: 'text'},
                 { id: 'iframe-url', name: 'Iframe URL', type: 'text'}
             ]
@@ -53,7 +55,6 @@ class evanPlugIframePopup extends BaseComponent {
 
    onClick(){
 
-    console.log('Displaying popup')
     
 
      this.plugin.menus.displayPopup({
@@ -66,7 +67,7 @@ class evanPlugIframePopup extends BaseComponent {
             }
         })
 
-        console.log('Popup displayed')
+     
   
 
     }
@@ -75,10 +76,7 @@ class evanPlugIframePopup extends BaseComponent {
 
        
 
-       console.log(this.getField('iframe-width'))
-       console.log(this.getField('iframe-height'))
-
-       console.log(typeof this.getField('iframe-height'))
+     
 
        let widthInt = parseInt(this.getField('iframe-width'))
        let heightInt = parseInt(this.getField('iframe-height'))
@@ -89,11 +87,7 @@ class evanPlugIframePopup extends BaseComponent {
        this.IframeTitle = this.getField('iframe-title')
        this.IframeURL = this.getField('iframe-url')
 
-       console.log(this.IframeHeight)
-       console.log(typeof this.IframeHeight)
-       console.log(this.IframeTitle)
-       console.log(this.IframeURL)
-        
+     
 
     }
 
