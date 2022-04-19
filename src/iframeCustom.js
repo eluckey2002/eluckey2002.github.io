@@ -62,8 +62,8 @@ class evanPlugIframePopup extends BaseComponent {
             title: 'Product Info 200px x 400px with strings',
             panel: {
                 iframeURL: this.plugin.paths.absolute('./iframe.html'),
-                width: '200px',
-                height: '400px'
+                width: '755px',
+                height: '600px'
 
             }
         })
