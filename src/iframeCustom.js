@@ -40,7 +40,7 @@ class evanPlugIframePopup extends BaseComponent {
     onLoad() 
     {
 
-        console.log("component loaded - user settings v.7 parse two statements")
+        console.log("component loaded - user settings v.9 debugging")
         // Generate instance ID
         this.instanceID = Math.random().toString(36).substring(2)
 
@@ -56,6 +56,7 @@ class evanPlugIframePopup extends BaseComponent {
     const heightStr = this.plugin.getField('hei')
     const widthStr = this.plugin.getField('wid')
 
+    console.log("Type OF:")
     console.log(typeof heightStr)
     console.log(typeof widthStr)
     
@@ -63,13 +64,14 @@ class evanPlugIframePopup extends BaseComponent {
     const heightC = parseFloat(heightStr)
     const widthC = parseFloat(widthStr)
 
+    console.log("Type of after parseFloat")
     console.log(typeof heightC)
     console.log(typeof widthC)
   
     const titleC = this.plugin.getField('title')
    
    
-
+    console.log("Output values")
     console.log(widthC)
     console.log(heightC)
     console.log(titleC)
