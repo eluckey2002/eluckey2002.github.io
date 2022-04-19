@@ -37,7 +37,7 @@ class evanPlugIframePopup extends BaseComponent {
 
     onLoad() 
     {
-        console.log("component loaded - user settings 1.0 debugging")
+        console.log("component loaded - user settings 2.0 debugging")
         // Generate instance ID
         this.instanceID = Math.random().toString(36).substring(2)
 
@@ -58,9 +58,11 @@ class evanPlugIframePopup extends BaseComponent {
 //    console.log(typeof widthStr)
     
 
-    
-   this.heightStr = this.plugin.getField('iframe-height')
-   this.widthStr = this.plugin.getField('iframe-width')
+
+console.log(this.plugin.getField(''))
+  console.log( this.plugin.getField('iframe-height') )
+  console.log( this.plugin.getField('iframe-width') )
+
    
     console.log("Output values")
     console.log(this.heightStr)
@@ -71,11 +73,9 @@ class evanPlugIframePopup extends BaseComponent {
 
    
      this.plugin.menus.displayPopup({
-            title: this.tit,
+            title: 'Product Info',
             panel: {
                 iframeURL: this.plugin.paths.absolute('./iframe.html'),
-                width:  this.widthStr,
-                height:  this.heightStr 
 
             }
         })
@@ -90,9 +90,9 @@ class evanPlugIframePopup extends BaseComponent {
 
     onObjectUpdated(newFields){
 
-        console.log(this.plugin.getField('iframe-title'))
-        console.log(this.plugin.getField('iframe-width'))
-        console.log(this.plugin.getField('iframe-height'))
+       console.log(newFields)
+
+
         
 
 
