@@ -18,8 +18,8 @@ export default class iframeCustom extends BasePlugin {
             name: 'IFrame Popup',
             description: 'Set custom size of popup',
             settings: [
-                { id: 'iframe-height', name: 'Iframe Height', type: 'text', help: 'Height of iframe' },
-                { id: 'iframe-width', name: 'Iframe Height', type: 'text', help: 'Width of iframe' },
+                { id: 'iframe-height', name: 'Iframe Height', type: 'number', help: 'Height of iframe' },
+                { id: 'iframe-width', name: 'Iframe Height', type: 'number', help: 'Width of iframe' },
                 { id: 'iframe-title', name: 'Iframe Title', type: 'text'}
             ]
         })
@@ -41,44 +41,37 @@ class evanPlugIframePopup extends BaseComponent {
         // Generate instance ID
         this.instanceID = Math.random().toString(36).substring(2)
 
+        
+            this.IframeWidth = 100
+            this.IframeHeight = 100
+
+
     }
 
    onClick(){
 
-    console.log('Displaying popup.')
+    console.log('Displaying popup')
     
 
-   
-
-
-    
- 
      this.plugin.menus.displayPopup({
             title: 'Product Info',
             panel: {
                 iframeURL: this.plugin.paths.absolute('./iframe.html'),
-                width: 800,
-                height: 750
+                width: 780,
+                height: 660
 
             }
         })
 
-      
         console.log('Popup displayed')
-    
-            
-        
+  
 
     }
 
     onObjectUpdated(newFields){
 
        console.log(newFields)
-
-
         
-
-
 
     }
 
