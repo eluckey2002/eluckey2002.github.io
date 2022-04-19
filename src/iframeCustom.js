@@ -50,29 +50,29 @@ class evanPlugIframePopup extends BaseComponent {
 
     console.log('Displaying popup.')
 
+    const heightStr = this.plugin.getField('hei')
+    const widthStr = this.plugin.getFiekd('wid')
+
 
     let isEnabled = this.plugin.getField('enabled')
-    let height = parseInt(this.plugin.getField('hei'))
-    let width = parseInt(this.plugin.getField('wid'))
+    const heightC = parseInt(heightStr)
+    const widthC = parseInt(widthStr)
     let url = this.plugin.getField('uri')
-    let title = this.plugin.getField('title')
+    const titleC = this.plugin.getField('title')
 
-    console.log(width)
-    console.log(height)
+    console.log(widthC)
+    console.log(heightC)
 
-    parseInt(width)
-    parseInt(height)
+    
 
-    console.log(width)
-    console.log(height)
 
    
      this.plugin.menus.displayPopup({
-            title: title,
+            title: titleC,
             panel: {
                 iframeURL: this.plugin.paths.absolute('./iframe.html'),
-                width: width,
-                height: height,
+                width: widthC,
+                height: heightC,
 
             }
         })
