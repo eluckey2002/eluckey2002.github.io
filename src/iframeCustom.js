@@ -24,7 +24,7 @@ export default class iframeCustom extends BasePlugin {
             ]
         })
 
-            console.log('iframe 1 running - set to 500 x 500')
+            console.log('iframe 2 running - 850 800')
 
        
 
@@ -50,20 +50,15 @@ class evanPlugIframePopup extends BaseComponent {
 
    
 
-  //  const heightStr = parseFloat(this.plugin.getField('iframe-height')) || 300
-  //  const widthStr = parseFloat(this.plugin.getField('iframe-width')) || 400
 
- //   console.log("Type OF:")
-//    console.log(typeof heightStr)
-//    console.log(typeof widthStr)
     
  
      this.plugin.menus.displayPopup({
-            title: 'Product Info 200px x 400px with strings',
+            title: 'Product Info 850x800 numbers not px strings',
             panel: {
                 iframeURL: this.plugin.paths.absolute('./iframe.html'),
-                width: '755px',
-                height: '600px'
+                width: 850,
+                height: 800
 
             }
         })
