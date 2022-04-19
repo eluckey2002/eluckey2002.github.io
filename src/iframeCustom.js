@@ -21,8 +21,8 @@ export default class iframeCustom extends BasePlugin {
                 { type: 'checkbox', id: 'enabled', name: 'Enabled'},
                 { type: 'text', id: 'title', name: 'Popup Header Text'},
                 { type: 'text', id: 'uri', name: 'url', help: 'Url to display.' },
-                { type: 'number', id: 'hei', name: 'Height(px)', help: 'Size of the iframe', default: 400 },
-                { type: 'number', id: 'wid', name: 'Width(px)', help: 'Size of the iframe', default: 600 }
+                { type: 'number', id: 'hei', name: 'Height', help: 'Size of the iframe', default: 400 },
+                { type: 'number', id: 'wid', name: 'Width', help: 'Size of the iframe', default: 600 }
             ]
         })
 
@@ -46,25 +46,37 @@ class evanPlugIframePopup extends BaseComponent {
 
     }
 
-   async onClick(){
+   onClick(){
 
     console.log('Displaying popup.')
+    
+
+   
 
     const heightStr = this.plugin.getField('hei')
     const widthStr = this.plugin.getField('wid')
 
+    console.log(typeof heightStr)
+    console.log(typeof widthStr)
+    
 
-    let isEnabled = this.plugin.getField('enabled')
-    const heightC = parseInt(heightStr)
-    const widthC = parseInt(widthStr)
-    let url = this.plugin.getField('uri')
+    const heightC = parseFloat(heightStr)
+    const widthC = parseFloat(widthStr)
+
+    console.log(typeof heightC)
+    console.log(typeof widthC)
+  
     const titleC = this.plugin.getField('title')
+   
+   
 
     console.log(widthC)
     console.log(heightC)
+    console.log(titleC)
 
     
-
+    console.log(fields.hei)
+    console.log(this.getField('hei'))
 
    
      this.plugin.menus.displayPopup({
