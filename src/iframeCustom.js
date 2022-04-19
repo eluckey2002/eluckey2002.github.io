@@ -20,11 +20,12 @@ export default class iframeCustom extends BasePlugin {
             settings: [
                 { id: 'iframe-height', name: 'Iframe Height', type: 'number', help: 'Height of iframe' },
                 { id: 'iframe-width', name: 'Iframe Height', type: 'number', help: 'Width of iframe' },
-                { id: 'iframe-title', name: 'Iframe Title', type: 'text'}
+                { id: 'iframe-title', name: 'Iframe Title', type: 'text'},
+                { id: 'iframe-url', name: 'Iframe URL', type: 'text'}
             ]
         })
 
-            console.log('iframe 2 running - 850 800')
+            console.log("so close!")
 
        
 
@@ -42,8 +43,10 @@ class evanPlugIframePopup extends BaseComponent {
         this.instanceID = Math.random().toString(36).substring(2)
 
         
-            this.IframeWidth = 100
-            this.IframeHeight = 100
+            this.IframeWidth = 0
+            this.IframeHeight = 0
+            this.IframeTitle = ""
+            this.IframeURL = ""
 
 
     }
@@ -54,11 +57,11 @@ class evanPlugIframePopup extends BaseComponent {
     
 
      this.plugin.menus.displayPopup({
-            title: 'Product Info',
+            title: this.getField('iframe-title') || 'Product Info',
             panel: {
                 iframeURL: this.plugin.paths.absolute('./iframe.html'),
-                width: 780,
-                height: 660
+                width: this.IframeWidth, // 780,
+                height: this.IframeHeight // 660
 
             }
         })
@@ -70,17 +73,26 @@ class evanPlugIframePopup extends BaseComponent {
 
     onObjectUpdated(newFields){
 
-       console.log(newFields)
+       
 
        console.log(this.getField('iframe-width'))
        console.log(this.getField('iframe-height'))
 
-       console.log(typeof this.getField('iframe-width'))
+       console.log(typeof this.getField('iframe-height'))
 
-       let test = parseInt(this.getField('iframe-width'))
+       let widthInt = parseInt(this.getField('iframe-width'))
+       let heightInt = parseInt(this.getField('iframe-height'))
 
-       console.log(test)
-       console.log(typeof test)
+       this.IframeWidth = widthInt
+       this.IframeHeight = heightInt
+
+       this.IframeTitle = this.getField('iframe-title')
+       this.IframeURL = this.getField('iframe-url')
+
+       console.log(this.IframeHeight)
+       console.log(typeof this.IframeHeight)
+       console.log(this.IframeTitle)
+       console.log(this.IframeURL)
         
 
     }
