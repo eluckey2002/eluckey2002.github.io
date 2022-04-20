@@ -59,6 +59,11 @@ class evanPlugIframePopup extends BaseComponent {
     let widthInt = parseInt(this.getField('iframe-width'))
     let heightInt = parseInt(this.getField('iframe-height'))
 
+    console.log("UPDATE : Store width in height in temp variables and use getField with parseInt")
+    console.log(widthInt)
+    console.log(heightInt)
+    console.log(widthInt + heightInt)
+
      this.plugin.menus.displayPopup({
             title: this.getField('iframe-title') || 'Product Info',
             panel: {
