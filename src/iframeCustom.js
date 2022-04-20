@@ -56,13 +56,15 @@ class evanPlugIframePopup extends BaseComponent {
    onClick(){
 
     
+    let widthInt = parseInt(this.getField('iframe-width'))
+    let heightInt = parseInt(this.getField('iframe-height'))
 
      this.plugin.menus.displayPopup({
             title: this.getField('iframe-title') || 'Product Info',
             panel: {
                 iframeURL: this.plugin.paths.absolute('./iframe.html'),
-                width: this.IframeWidth, // 780,
-                height: this.IframeHeight // 660
+                width: widthInt, // 780,
+                height: heightInt // 660
 
             }
         })
