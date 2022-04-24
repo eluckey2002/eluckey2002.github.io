@@ -113,8 +113,10 @@ class userDrivesModelComponent extends BaseComponent {
                 textColor: '#2DCA8C',
                 duration: 4000})
 
+                let ifUserDriven = true
+
                 //createObject
-                this.createAndViewObject(ifUserDriven=true, url="")
+                this.createAndViewObject(ifUserDriven, url="")
 
    
 
