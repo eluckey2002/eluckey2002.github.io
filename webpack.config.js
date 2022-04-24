@@ -2,12 +2,12 @@ const path = require('path')
 const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
-    entry: './src/iframeCustom.js',
+    entry: './src/UserDrivesModel.js',
     mode: 'production',
     // mode: 'production',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'iframe.js',
+        filename: 'userDrivesModel.js',
         library: {
             name: 'module.exports',
             type: 'assign',
