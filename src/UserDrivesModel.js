@@ -12,8 +12,8 @@ export default class EYFoundryUserDrivesModel extends BasePlugin  {
        
         // Register component
         this.objects.registerComponent(userDrivesModelComponent, {
-            id: 'EYFoundry-onEntryExitMessaging',
-            name: 'EntryExitMessaging',
+            id: 'EYFoundry-userDrivesModelComp',
+            name: 'UserDrivesModelComp 0.1v',
             description: "Display custom messages to user on entry and exit of object",
             settings: [
                 { id: 'lbl-onEnter', type: 'label', value: "onEnter Message" },
