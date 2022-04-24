@@ -54,6 +54,7 @@ class userDrivesModelComponent extends BaseComponent {
     isPreviousInside = false
     isChecking = false
     instanceID = "string"
+    modelID = ""
 
     onLoad(){
         console.log("userDrivesModelComponent 0.1v Loaded")
@@ -117,7 +118,19 @@ class userDrivesModelComponent extends BaseComponent {
                 let url = ""
 
                 //createObject
-                this.createAndViewObject(ifUserDriven, url)
+               modelID = this.createAndViewObject(
+                    {
+                        id: "Object1",
+                        name: "Object1",
+                        type: "Object",
+                        x: "0",
+                        y: "10",
+                        z: "0",
+                       // url: this.plugin.paths.absolute('./iframe.html'), 
+                        url: this.plugin.paths.absolute('./CornPlant.glb')
+        
+                    }
+                )
 
    
 
