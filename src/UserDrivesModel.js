@@ -114,9 +114,10 @@ class userDrivesModelComponent extends BaseComponent {
                 duration: 4000})
 
                 let ifUserDriven = true
+                let url = ""
 
                 //createObject
-                this.createAndViewObject(ifUserDriven, url="")
+                this.createAndViewObject(ifUserDriven, url)
 
    
 
