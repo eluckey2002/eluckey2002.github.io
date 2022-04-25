@@ -24,6 +24,8 @@ export default class EYFoundryUserDrivesModel extends BasePlugin  {
                 { id: 'xloc', type: 'number'},
                 { id: 'lbl-y', type: 'label', value: "Y" },
                 { id: 'yloc', type: 'number'},
+                { id: 'lbl-scale', type: 'label', value: 'Scale'},
+                { id: 'scale', type: 'text', value: 1},
                 { id: 'lbl-url', type: 'label', value: "URL" },
                 { id: 'url', type: 'text', help: './CornPlant.glb'},
                 { id: 'code', type: 'textarea'},
@@ -128,9 +130,9 @@ class userDrivesModelComponent extends BaseComponent {
                         x: parseInt(this.getField('xloc')),                 
                         y: parseInt(this.getField('yloc')),
                         height: 1,
-                        scale: 2,
+                        scale: parseInt(this.getField('scale')),
                         shading: 'basic',
-                        url: this.plugin.paths.absolute('./CornPlant.glb'),
+                        url: this.plugin.paths.absolute(this.getField('url')),
                         clientOnly: false
                         }
 
@@ -139,7 +141,7 @@ class userDrivesModelComponent extends BaseComponent {
 
                    
 
-
+                 // url: this.plugin.paths.absolute('./CornPlant.glb'),
           
 
    
