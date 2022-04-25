@@ -118,11 +118,11 @@ class userDrivesModelComponent extends BaseComponent {
                 let url = ""
 
                 //createObject
-               modelID = this.plugin.objects.create(
+               this.modelID = this.plugin.objects.create(
                     {
                         id: "Object1",
                         name: "Object1",
-                        type: "Object",
+                        type: "Model",
                         x: "0",
                         y: "10",
                         z: "0",
