@@ -31,7 +31,7 @@ export default class EYFoundryUserDrivesModel extends BasePlugin  {
 
     console.log("User entered object - create and view called")
 
-        this.createAndViewObject(
+        this.create(
             {
                 id: "Object1",
                 name: "Object1",
@@ -118,7 +118,7 @@ class userDrivesModelComponent extends BaseComponent {
                 let url = ""
 
                 //createObject
-               modelID = this.createAndViewObject(
+               modelID = this.plugin.create(
                     {
                         id: "Object1",
                         name: "Object1",
