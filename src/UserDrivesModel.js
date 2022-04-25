@@ -103,7 +103,7 @@ class userDrivesModelComponent extends BaseComponent {
                 let ifUserDriven = true
                 let url = ""
 
-
+                console.log("calling createObject with small model!")
 
                     // Create new coin properties
                         const newCoinProps = {
@@ -137,6 +137,8 @@ class userDrivesModelComponent extends BaseComponent {
                     text: this.getField('txt-onExit'),
                     textColor: '#2DCA8C',
                     duration: 4000})
+
+              
 
               
 
