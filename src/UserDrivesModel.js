@@ -8,7 +8,7 @@ export default class EYFoundryUserDrivesModel extends BasePlugin  {
     /** Called when the plugin is loaded */
     onLoad() {
 
-       console.log("EYFoundry-UserDrivesModel Plug loaded - v0.16")
+       console.log("EYFoundry-UserDrivesModel Plug loaded - v0.2")
        
         // Register component
         this.objects.registerComponent(userDrivesModelComponent, {
@@ -53,7 +53,7 @@ class userDrivesModelComponent extends BaseComponent {
    
 
     onLoad(){
-        console.log("userDrivesModelComponent 0.16v Loaded")
+        console.log("userDrivesModelComponent 0.2v Loaded")
 
         //Generate instanceID
         this.instanceID = Math.random().toString(36).substring(2)
@@ -127,6 +127,7 @@ class userDrivesModelComponent extends BaseComponent {
                         type: 'model',
                         x: 275,                   
                         y: 400,
+                        z: 400,
                         height: 1,
                         url: this.plugin.paths.absolute('./CornPlant.glb'),
                         clientOnly: false
