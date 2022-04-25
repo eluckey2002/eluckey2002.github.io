@@ -127,8 +127,9 @@ class userDrivesModelComponent extends BaseComponent {
                         type: 'model',
                         x: 275,                   
                         y: 400,
-                        z: 400,
                         height: 1,
+                        scale: 2,
+                        shading: 'basic',
                         url: this.plugin.paths.absolute('./CornPlant.glb'),
                         clientOnly: false
                         }
