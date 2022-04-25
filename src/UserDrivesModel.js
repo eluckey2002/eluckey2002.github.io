@@ -26,6 +26,7 @@ export default class EYFoundryUserDrivesModel extends BasePlugin  {
                 { id: 'zloc', type: 'number'},
                 { id: 'lbl-url', type: 'label', value: "URL" },
                 { id: 'url', type: 'text'},
+                { id: 'lbl-url', type: 'label'},
                 { id: 'code', type: 'textarea'},
                 { id: 'eval', type: 'button'}
               
@@ -124,15 +125,18 @@ class userDrivesModelComponent extends BaseComponent {
                         const newCoinProps = {
                         name: 'Obj1',
                         type: 'model',
-                        x: parseInt(this.getField('xloc')),
-                        height: 0,
-                        z: parseInt(this.getField('zloc')),
+                        x: 275,  //parseInt(this.getField('xloc')),
+                        height: 1,
+                        z: 400,
                         url: this.plugin.paths.absolute('./CornPlant.glb'),
                         clientOnly: false
                         }
 
                     // Create a coin
                     await this.plugin.objects.create(newCoinProps)
+
+                    console.log(this.getField('zloc'))
+                    console.log(this.getField('xloc'))
 
 
           
