@@ -8,7 +8,7 @@ export default class EYFoundryUserDrivesModel extends BasePlugin  {
     /** Called when the plugin is loaded */
     onLoad() {
 
-       console.log("EYFoundry-UserDrivesModel Plug loaded - v0.15")
+       console.log("EYFoundry-UserDrivesModel Plug loaded - v0.16")
        
         // Register component
         this.objects.registerComponent(userDrivesModelComponent, {
@@ -29,21 +29,7 @@ export default class EYFoundryUserDrivesModel extends BasePlugin  {
     createAndViewObject(ifUserDriven, url)
     {
 
-    console.log("User entered object - create and view called")
-
-        this.create(
-            {
-                id: "Object1",
-                name: "Object1",
-                type: "Object",
-                x: "0",
-                y: "10",
-                z: "0",
-               // url: this.plugin.paths.absolute('./iframe.html'), 
-                url: this.plugin.paths.absolute('./CornPlant.glb')
-
-            }
-        )
+     console.log("User entered object - create and view called")
 
     }
 
@@ -57,7 +43,7 @@ class userDrivesModelComponent extends BaseComponent {
    
 
     onLoad(){
-        console.log("userDrivesModelComponent 0.15v Loaded")
+        console.log("userDrivesModelComponent 0.16v Loaded")
 
         //Generate instanceID
         this.instanceID = Math.random().toString(36).substring(2)
@@ -117,20 +103,24 @@ class userDrivesModelComponent extends BaseComponent {
                 let ifUserDriven = true
                 let url = ""
 
-                //createObject
-              this.plugin.objects.create(
-                    {
-                        id: "Object1",
-                        name: "Object1",
-                        type: "Model",
-                        x: "0",
-                        y: "10",
-                        z: "0",
-                       // url: this.plugin.paths.absolute('./iframe.html'), 
-                        url: this.plugin.paths.absolute('./CornPlant.glb')
-        
-                    }
-                )
+
+
+                    // Create new coin properties
+                        const newCoinProps = {
+                        name: 'Obj1',
+                        type: 'model',
+                        x: 0,
+                        y: 0,
+                        height: 0,
+                        url:this.plugin.paths.absolute('./CornPlant.glb'),
+                        clientOnly: true
+                        }
+
+                    // Create a coin
+                    await this.plugin.objects.create(newCoinProps)
+
+
+          
 
    
 
