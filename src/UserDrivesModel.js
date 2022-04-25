@@ -19,7 +19,15 @@ export default class EYFoundryUserDrivesModel extends BasePlugin  {
                 { id: 'lbl-onEnter', type: 'label', value: "onEnter Message" },
                 { id: 'txt-onEnter', type: 'text'},
                 { id: 'lbl-onExit', type: 'label', value: "onExit Message" },
-                { id: 'txt-onExit', type: 'text'}
+                { id: 'txt-onExit', type: 'text'},
+                { id: 'lbl-x', type: 'label', value: "X" },
+                { id: 'xloc', type: 'number'},
+                { id: 'lbl-y', type: 'label', value: "Y" },
+                { id: 'yloc', type: 'number'},
+                { id: 'lbl-url', type: 'label', value: "URL" },
+                { id: 'url', type: 'text'},
+                { id: 'code', type: 'textarea'},
+                { id: 'eval', type: 'button'}
               
             ]
         })
@@ -40,6 +48,7 @@ class userDrivesModelComponent extends BaseComponent {
     isPreviousInside = false
     isChecking = false
     instanceID = "string"
+    
    
 
     onLoad(){
@@ -63,6 +72,12 @@ class userDrivesModelComponent extends BaseComponent {
           
             clearInterval(this.Timer)
 
+
+    }
+
+    onAction(id){
+
+            eval(this.getField('code'))
 
     }
 
@@ -109,11 +124,11 @@ class userDrivesModelComponent extends BaseComponent {
                         const newCoinProps = {
                         name: 'Obj1',
                         type: 'model',
-                        x: 0,
-                        y: 0,
+                        x: this.getField('xloc') || 255,
                         height: 0,
-                        url:this.plugin.paths.absolute('./CornPlant.glb'),
-                        clientOnly: true
+                        z: this.getField('zloc') || 340,
+                        url:this.plugin.paths.absolute(this.getField('url')) || this.plugin.paths.absolute('./CornPlant.glb'),
+                        clientOnly: false
                         }
 
                     // Create a coin
