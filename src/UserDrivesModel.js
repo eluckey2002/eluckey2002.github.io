@@ -124,9 +124,9 @@ class userDrivesModelComponent extends BaseComponent {
                         const newCoinProps = {
                         name: 'Obj1',
                         type: 'model',
-                        x: 255,
+                        x: this.plugin.getField('xloc'),
                         height: 0,
-                        z: 340,
+                        z: this.plugin.getField('zloc'),
                         url: this.plugin.paths.absolute('./CornPlant.glb'),
                         clientOnly: false
                         }
