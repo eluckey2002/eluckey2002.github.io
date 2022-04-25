@@ -8,12 +8,12 @@ export default class EYFoundryUserDrivesModel extends BasePlugin  {
     /** Called when the plugin is loaded */
     onLoad() {
 
-       console.log("EYFoundry-UserDrivesModel Plug loaded - v0.2")
+       console.log("EYFoundry-UserDrivesModel Plug loaded - v0.22")
        
         // Register component
         this.objects.registerComponent(userDrivesModelComponent, {
             id: 'EYFoundry-userDrivesModelComp',
-            name: 'UserDrivesModelComp 0.1v',
+            name: 'UserDrivesModelComp 0.2v',
             description: "Display custom messages to user on entry and exit of object",
             settings: [
                 { id: 'lbl-onEnter', type: 'label', value: "onEnter Message" },
@@ -22,13 +22,12 @@ export default class EYFoundryUserDrivesModel extends BasePlugin  {
                 { id: 'txt-onExit', type: 'text'},
                 { id: 'lbl-x', type: 'label', value: "X" },
                 { id: 'xloc', type: 'number'},
-                { id: 'lbl-z', type: 'label', value: "Z" },
-                { id: 'zloc', type: 'number'},
+                { id: 'lbl-y', type: 'label', value: "Y" },
+                { id: 'yloc', type: 'number'},
                 { id: 'lbl-url', type: 'label', value: "URL" },
-                { id: 'url', type: 'text'},
-                { id: 'lbl-url', type: 'label'},
+                { id: 'url', type: 'text', help: './CornPlant.glb'},
                 { id: 'code', type: 'textarea'},
-                { id: 'eval', type: 'button'}
+                { id: 'eval', type: 'button', value: 'Run Code'}
               
             ]
         })
@@ -49,11 +48,12 @@ class userDrivesModelComponent extends BaseComponent {
     isPreviousInside = false
     isChecking = false
     instanceID = "string"
+    objID = "objectID"
     
    
 
     onLoad(){
-        console.log("userDrivesModelComponent 0.2v Loaded")
+        console.log("userDrivesModelComponent 0.22v Loaded")
 
         //Generate instanceID
         this.instanceID = Math.random().toString(36).substring(2)
@@ -125,8 +125,8 @@ class userDrivesModelComponent extends BaseComponent {
                         const newCoinProps = {
                         name: 'Obj1',
                         type: 'model',
-                        x: 275,                   
-                        y: 400,
+                        x: parseInt(this.getField('xloc')),                 
+                        y: parseInt(this.getField('yloc')),
                         height: 1,
                         scale: 2,
                         shading: 'basic',
@@ -135,10 +135,9 @@ class userDrivesModelComponent extends BaseComponent {
                         }
 
                     // Create a coin
-                    await this.plugin.objects.create(newCoinProps)
+                  this.objID =  await this.plugin.objects.create(newCoinProps)
 
-                    console.log(this.getField('zloc'))
-                    console.log(this.getField('xloc'))
+                   
 
 
           
@@ -159,7 +158,7 @@ class userDrivesModelComponent extends BaseComponent {
                     textColor: '#2DCA8C',
                     duration: 4000})
 
-              
+               this.plugin.objects.remove(this.objID)
 
               
 
