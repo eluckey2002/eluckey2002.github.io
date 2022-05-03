@@ -118,6 +118,23 @@ class userDrivesModelComponent extends BaseComponent {
                 textColor: '#2DCA8C',
                 duration: 4000})
 
+                this.plugin.objects.create({
+                        name: 'Obj55',
+                        type: 'plane',
+                        x: 0,
+                        y: 0,
+                        height: 1,
+                        scale: 2,
+                        shading: 'basic',
+                        clientOnly: false,
+                        parent: 'object:custom:EYFoundry-UserDrivesModel:mn280l723js'
+                        
+                })
+
+                console.log(three.document.getElementById('debug-stats-text'))
+
+                
+
                 let ifUserDriven = true
                 let url = ""
 
@@ -180,4 +197,6 @@ class userDrivesModelComponent extends BaseComponent {
 
    
 
-   
+
+
+

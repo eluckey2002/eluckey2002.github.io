@@ -40,7 +40,7 @@ class evanPlugIframePopup extends BaseComponent {
 
     onLoad() 
     {
-        console.log("component loaded - user settings 2.0 debugging")
+        console.log("component loaded -iframePopup")
         // Generate instance ID
         this.instanceID = Math.random().toString(36).substring(2)
 
@@ -58,6 +58,7 @@ class evanPlugIframePopup extends BaseComponent {
     
     let widthInt = parseInt(this.getField('iframe-width'))
     let heightInt = parseInt(this.getField('iframe-height'))
+    let iframeUrl = this.getField('iframe-url')
 
     console.log("UPDATE : Store width in height in temp variables and use getField with parseInt")
     console.log(widthInt)
@@ -73,7 +74,15 @@ class evanPlugIframePopup extends BaseComponent {
 
             }
         })
+        this.plugin.menus.displayPopup({
+            title: this.getField('iframe-title') || 'Product Info',
+            panel: {
+                iframeURL: this.plugin.paths.absolute(iframeUrl),
+                width: widthInt, // 780,
+                height: heightInt // 660
 
+            }
+        })
      
   
 
